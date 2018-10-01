@@ -1,0 +1,16 @@
+/// @description Variables
+hsp = 0;
+vsp = 0;
+grav = 0.3;
+wsp = 3;
+wasp = 2;
+dsp = 6;
+jumps = 0;
+hasJump = 0;
+jmax = 2;
+jsp = -6.5;
+decel = .125;
+isSkid = 0;
+onGround = true;
+landCount = 0;
+animState = 0;
