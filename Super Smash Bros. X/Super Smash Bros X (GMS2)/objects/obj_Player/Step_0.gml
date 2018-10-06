@@ -307,13 +307,15 @@ if (animState == "idle") {
 		landFrame = 33;
 	} else if (playFrame == 1) {
 		landFrame = 34;
-	} else if (playFrame == 3) {
-		landFrame = 35;
-	}
+	} 
 	playFrame += 1;
-	if (playFrame == 4) {
+	if (playFrame == 3) {
 		playFrame = 0;
-		animState = "idle";
+		if (key_right || key_left) {
+			animState = "walk";
+		} else {
+			animState = "idle";
+		}
 	}
 	image_index = landFrame;
 } else if (animState == "quickFall") {
