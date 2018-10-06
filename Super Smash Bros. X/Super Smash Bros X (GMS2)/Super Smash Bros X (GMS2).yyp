@@ -231,6 +231,14 @@
             }
         },
         {
+            "Key": "ad1e11a7-2622-4cd7-8a78-2e11795d84c1",
+            "Value": {
+                "id": "c29e3f2e-a93b-49bc-963e-4c82c7534da6",
+                "resourcePath": "scripts\\scr_PAnimVars\\scr_PAnimVars.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cc98d028-7bdd-4680-85f3-c87a7baa481e",
             "Value": {
                 "id": "1f6d38ef-3e73-408d-80b0-c2461a4f72b3",
@@ -296,7 +304,8 @@
         }
     ],
     "script_order": [
-        "7417ab3c-0a29-4840-b4e8-9838f7a7262a"
+        "7417ab3c-0a29-4840-b4e8-9838f7a7262a",
+        "ad1e11a7-2622-4cd7-8a78-2e11795d84c1"
     ],
     "tutorial": ""
 }
