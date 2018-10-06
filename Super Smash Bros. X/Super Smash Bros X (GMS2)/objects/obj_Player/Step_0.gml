@@ -1,8 +1,5 @@
 /// @description 
 
-
-show_debug_message(animState);
-
 // Keybinding
 scr_Controls();
 
@@ -23,14 +20,14 @@ if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (key_downfall) {
 }
 
 // Lag
-if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp*2,obj_Wall)) {
-	if (animState != "quickFall") {
-		animState = "land";
-	}
+if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall)) {
+	animState = "land";
 }
 
-if (animState == "land") && (playFrame < 3) {
+
+if (animState == "land") {
 	lagging = true;
+	show_debug_message(playFrame);
 } else {
 	lagging = false;
 }
@@ -131,6 +128,8 @@ if (animState == "land") {
 }
 
 x += hsp;
+
+
 
 // Animation
 sprite_index = spr_ZeroAnim;
@@ -237,6 +236,7 @@ if (animState == "idle") {
 		jumpUpFrame = 23;
 		animState = "jump";
 	}
+
 	image_index = jumpUpFrame;
 	playFrame += 1;
 	if (playFrame == 7) {
@@ -260,6 +260,7 @@ if (animState == "idle") {
 	falling = 1;
 	if (wasFalling == 0) {
 		startFalling = 1;
+		playFrame = 0;
 	} 
 	if (startFalling == 1) {
 		if (playFrame == 0) {
@@ -304,11 +305,13 @@ if (animState == "idle") {
 	landing = 1;
 	if (playFrame == 0) {
 		landFrame = 33;
-	} else {
+	} else if (playFrame == 1) {
 		landFrame = 34;
+	} else if (playFrame == 3) {
+		landFrame = 35;
 	}
 	playFrame += 1;
-	if (playFrame == 3) {
+	if (playFrame == 4) {
 		playFrame = 0;
 		animState = "idle";
 	}
@@ -342,7 +345,7 @@ if (wasIdling == 1) && (idling == 0) {
 } if (wasJumpingUp == 1) && (jumpingUp == 0) {
 	wasJumpingUp = 0;
 	playFrame = 0;
-	jumpUpFrame = 0;
+	jumpUpFrame = 22;
 }
 if (wasJumping == 1) && (jumping == 0) {
 	wasJumping = 0;
@@ -357,13 +360,14 @@ if (wasFalling == 1) && (falling == 0) {
 if (wasLanding == 1) && (landing == 0) {
 	wasLanding = 0;
 	playFrame = 0;
-	landFrame = 0;
+	landFrame = 33;
 }
 if (wasQuickFalling == 1) && (quickFalling == 0) {
 	wasQuickFalling = 0;
 	playFrame = 0;
-	quickFallFrame = 0;
+	quickFallFrame = 30;
 }
+
 
 if (dir == 1) {
 	image_xscale = 1;
