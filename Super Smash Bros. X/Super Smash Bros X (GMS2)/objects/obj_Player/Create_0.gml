@@ -56,3 +56,7 @@ landFrame = 33;
 quickFallFrame = 30;
 jabFrame = 37;
 playFrame = 0;
+
+// Boxes
+
+hurtbox = scr_HurtboxCreate(0);

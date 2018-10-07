@@ -3,6 +3,8 @@
 // Keybinding
 scr_Controls();
 
+
+
 // Verticality
 if(place_meeting(x,y+1,obj_Wall)) {
 	onGround = true;
@@ -90,6 +92,9 @@ y = y + vsp;
 // Walk Movement
 var pastDir = dir;
 dir = key_right - key_left;
+if (jabbing == 1) {
+	dir = pastDir;
+}
 if (hsp > 0) && (dir == 0) && (isSkid == 0) && (vsp != 0) {
 	hsp -= decel;
 	if (hsp < .75) {
@@ -446,7 +451,6 @@ if (animState == "idle") {
 	}
 	image_index = jabFrame;
 }
-show_debug_message(jabCombo);
 if (wasIdling == 1) && (idling == 0) {
 	wasIdling = 0;
 	playFrame = 0;
@@ -492,4 +496,12 @@ if (dir == 1) {
 	image_xscale = 1;
 } else if (dir == -1) {
 	image_xscale = -1;
+}
+
+// Hitboxes
+with hurtbox {
+	x = other.x;
+	y = other.y;
+	image_xscale = other.image_xscale;
+	image_index = other.image_index;
 }
