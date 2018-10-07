@@ -15,6 +15,9 @@ isSkid = 0;
 onGround = true;
 landCount = 0;
 
+// Attacks
+jabCombo = 0;
+
 // Animation variables
 animState = "idle";
 lagging = false;
@@ -31,6 +34,7 @@ wasJumpingUp = 0;
 wasFalling = 0;
 wasLanding = 0;
 wasQuickFalling = 0;
+wasJabbing = 0;
 
 // Is
 walking = 0
@@ -40,13 +44,15 @@ jumpingUp = 0;
 falling = 0;
 landing = 0;
 quickFalling = 0;
+jabbing = 0;
 
 // Frame Counts
 idleFrame = 0;
 walkFrame = 0;
-jumpFrame = 0;
+jumpFrame = 23;
 jumpUpFrame = 22;
-fallFrame = 0;
-landFrame = 0;
-quickFallFrame = 0;
+fallFrame = 25;
+landFrame = 33;
+quickFallFrame = 30;
+jabFrame = 37;
 playFrame = 0;

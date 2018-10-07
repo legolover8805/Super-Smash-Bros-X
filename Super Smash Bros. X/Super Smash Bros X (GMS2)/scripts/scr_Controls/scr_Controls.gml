@@ -9,7 +9,7 @@ key_jump = keyboard_check_pressed(vk_space);
 key_jumpup = keyboard_check_pressed(vk_up);
 key_jumpheld = keyboard_check(vk_space);
 key_jumpupheld = key_up;
-key_normal = keyboard_check(ord("Z"));
+key_normal = keyboard_check_pressed(ord("Z"));
 key_special = keyboard_check(ord("X"));
 
 key_utaunt = keyboard_check(ord("I"));

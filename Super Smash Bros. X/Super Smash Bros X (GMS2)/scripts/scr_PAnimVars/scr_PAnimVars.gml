@@ -5,3 +5,4 @@ falling = 0;
 landing = 0;
 quickFalling = 0;
 idling = 0;
+jabbing = 0;

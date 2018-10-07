@@ -19,15 +19,28 @@ if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (key_downfall) {
 	vsp += grav;
 }
 
+// Jab
+if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield) {
+	if (animState == "jab") {
+		if (jabCombo == 0 && playFrame <= 18) {
+			jabCombo = 1;
+		}
+	} else if (animState == "jab2") {
+		
+	} else if (animState != "jab" && animState != "jab2") {
+		playFrame = 0;
+		animState = "jab";
+	}
+}
+
 // Lag
 if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall)) {
 	animState = "land";
 }
 
 
-if (animState == "land") {
+if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jabEnd") {
 	lagging = true;
-	show_debug_message(playFrame);
 } else {
 	lagging = false;
 }
@@ -123,7 +136,7 @@ if (hsp != 0 && vsp == 0) {
 	}
 }
 
-if (animState == "land") {
+if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jabEnd") {
 	hsp = 0;
 }
 
@@ -141,6 +154,7 @@ wasJumpingUp = jumpingUp;
 wasFalling = falling;
 wasLanding = landing;
 wasQuickFalling = quickFalling;
+wasJabbing = jabbing;
 
 if (animState == "idle") {
 	scr_PAnimVars();
@@ -335,7 +349,104 @@ if (animState == "idle") {
 		playFrame = 0;
 	}
 	image_index = quickFallFrame;
+} else if (animState == "jab") {
+	scr_PAnimVars();
+	jabbing = 1;
+	if (playFrame == 0) {
+		jabFrame = 37;
+	} else if (playFrame == 1) {
+		jabFrame = 38;
+	} else if (playFrame == 2) {
+		jabFrame = 39;
+	} else if (playFrame == 3) {
+		jabFrame = 40;
+	} else if (playFrame == 5) {
+		jabFrame = 41;
+	} else if (playFrame == 6) {
+		jabFrame = 42;
+	} else if (playFrame == 7) {
+		jabFrame = 43;
+	} else if (playFrame == 8) {
+		jabFrame = 44;
+	} else if (playFrame == 10) {
+		jabFrame = 45;
+	} else if (playFrame == 12) {
+		jabFrame = 46;
+	} else if (playFrame == 14) {
+		jabFrame = 47;
+	} else if (playFrame == 16) {
+		jabFrame = 48;
+	} else if (playFrame == 18) {
+		jabFrame = 60;
+	} 
+	playFrame += 1;
+	if (jabCombo == 1 && playFrame > 10) {
+		playFrame = 0;
+		animState = "jab2";
+		jabFrame = 48;
+	} 
+	if (playFrame == 19) {
+		playFrame = 0;
+		animState = "jabEnd";
+		jabFrame = 60;
+	}
+	image_index = jabFrame; 
+} if (animState == "jab2") {
+	scr_PAnimVars();
+	jabbing = 1;
+	if (playFrame == 0) {
+		jabFrame = 49;
+	} else if (playFrame == 1) {
+		jabFrame = 50;
+	} else if (playFrame == 2) {
+		jabFrame = 51;
+	} else if (playFrame == 4) {
+		jabFrame = 52;
+	} else if (playFrame == 5) {
+		jabFrame = 53;
+	} else if (playFrame == 9) {
+		jabFrame = 54;
+	} else if (playFrame == 11) {
+		jabFrame = 55;
+	} else if (playFrame == 13) {
+		jabFrame = 56;
+	} else if (playFrame == 15) {
+		jabFrame = 57;
+	} else if (playFrame == 16) {
+		jabFrame = 58;
+	} else if (playFrame == 17) {
+		jabFrame = 59;
+	} else if (playFrame == 18) {
+		jabFrame = 49;
+	}
+	playFrame += 1;
+	if (playFrame == 19) {
+		playFrame = 0;
+		jabCombo = 0;
+		animState = "jabEnd";
+	}
+	image_index = jabFrame;
+} if (animState == "jabEnd") {
+	scr_PAnimVars();
+	jabbing = 1;
+	if (playFrame == 0) {
+		jabFrame = 61;
+	} else if (playFrame == 3) {
+		jabFrame = 62;
+	} else if (playFrame == 6) {
+		jabFrame = 63;
+	} else if (playFrame == 9) {
+		jabFrame = 64;
+	} 
+	playFrame += 1;
+	if (playFrame == 13) {
+		playFrame = 0;
+		jabCombo = 0;
+		animState = "idle";
+	}
+	image_index = jabFrame;
 }
+show_debug_message(jabCombo);
 if (wasIdling == 1) && (idling == 0) {
 	wasIdling = 0;
 	playFrame = 0;
@@ -352,12 +463,12 @@ if (wasIdling == 1) && (idling == 0) {
 if (wasJumping == 1) && (jumping == 0) {
 	wasJumping = 0;
 	playFrame = 0;
-	jumpFrame = 0;
+	jumpFrame = 23;
 }
 if (wasFalling == 1) && (falling == 0) {
 	wasFalling = 0;
 	playFrame = 0;
-	fallFrame = 0;
+	fallFrame = 25;
 }
 if (wasLanding == 1) && (landing == 0) {
 	wasLanding = 0;
@@ -369,6 +480,12 @@ if (wasQuickFalling == 1) && (quickFalling == 0) {
 	playFrame = 0;
 	quickFallFrame = 30;
 }
+if (wasJabbing == 1) && (jabbing == 0) {
+	wasJabbing = 0;
+	playFrame = 0;
+	jabFrame = 37;
+}
+
 
 
 if (dir == 1) {
