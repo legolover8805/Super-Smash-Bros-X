@@ -161,8 +161,11 @@ wasLanding = landing;
 wasQuickFalling = quickFalling;
 wasJabbing = jabbing;
 
+framesGiven = 0;
 if (animState == "idle") {
 	scr_PAnimVars();
+	damageGiven = 0;
+	knockbackGiven = 0;
 	idling = 1;
 	image_index = idleFrame;
 	if (playFrame == 40) {
@@ -196,6 +199,8 @@ if (animState == "idle") {
 	} 
 } else if (animState == "walk") {
 	scr_PAnimVars();
+	damageGiven = 0;
+	knockbackGiven = 0;
 	walking = 1;
 	if (wasWalking == 0) {
 		startWalking = 1;
@@ -248,6 +253,8 @@ if (animState == "idle") {
 	} 
 } else if (animState == "jumpUp") {
 	scr_PAnimVars();
+	damageGiven = 0;
+	knockbackGiven = 0;
 	jumpingUp = 1;
 	if (playFrame == 0) {
 		jumpUpFrame = 22;
@@ -263,6 +270,8 @@ if (animState == "idle") {
 	}
 } else if (animState == "jump") {
 	scr_PAnimVars();
+	damageGiven = 0;
+	knockbackGiven = 0;
 	jumping = 1;
 	if (playFrame == 0) {
 		jumpFrame = 23;
@@ -276,6 +285,8 @@ if (animState == "idle") {
 	}
 } else if (animState == "fall") {
 	scr_PAnimVars();
+	damageGiven = 0;
+	knockbackGiven = 0;
 	falling = 1;
 	if (wasFalling == 0) {
 		startFalling = 1;
@@ -321,6 +332,8 @@ if (animState == "idle") {
 	image_index = fallFrame;
 } else if (animState == "land") {
 	scr_PAnimVars();
+	damageGiven = 0;
+	knockbackGiven = 0;
 	landing = 1;
 	if (playFrame == 0) {
 		landFrame = 33;
@@ -339,6 +352,8 @@ if (animState == "idle") {
 	image_index = landFrame;
 } else if (animState == "quickFall") {
 	scr_PAnimVars();
+	damageGiven = 0;
+	knockbackGiven = 0;
 	quickFalling = 1;
 	if (playFrame == 0) {
 		quickFallFrame = 30;
@@ -384,6 +399,11 @@ if (animState == "idle") {
 	} else if (playFrame == 18) {
 		jabFrame = 60;
 	} 
+	if (jabFrame >= 39) && (jabFrame <= 49) {
+		damageGiven = 3;
+		knockbackGiven = 0;
+		framesGiven = 12;
+	}
 	playFrame += 1;
 	if (jabCombo == 1 && playFrame > 10) {
 		playFrame = 0;
@@ -423,6 +443,11 @@ if (animState == "idle") {
 		jabFrame = 59;
 	} else if (playFrame == 18) {
 		jabFrame = 49;
+	}
+	if (jabFrame >= 50) && (jabFrame <= 57) {
+		damageGiven = 3;
+		knockbackGiven = 0;
+		framesGiven = 12;
 	}
 	playFrame += 1;
 	if (playFrame == 19) {
@@ -504,4 +529,13 @@ with hurtbox {
 	y = other.y;
 	image_xscale = other.image_xscale;
 	image_index = other.image_index;
+}
+with hitbox {
+	x = other.x;
+	y = other.y;
+	image_xscale = other.image_xscale;
+	image_index = other.image_index;
+	percentGiven = other.damageGiven;
+	animState = other.animState;
+	framesGiven = other.framesGiven;
 }

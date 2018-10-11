@@ -15,8 +15,18 @@ isSkid = 0;
 onGround = true;
 landCount = 0;
 
+// Definition
+char = 0;
+player = 1;
+
 // Attacks
 jabCombo = 0;
+
+// Damage
+percent = 0;
+damageGiven = 0;
+knockbackGiven = 0;
+framesGiven = 0;
 
 // Animation variables
 animState = "idle";
@@ -59,4 +69,5 @@ playFrame = 0;
 
 // Boxes
 
-hurtbox = scr_HurtboxCreate(0);
+hurtbox = scr_HurtboxCreate(char,player);
+hitbox = scr_HitboxCreate(char,player);

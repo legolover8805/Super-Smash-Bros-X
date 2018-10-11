@@ -151,6 +151,14 @@
             }
         },
         {
+            "Key": "5649d0f0-53c7-4ba0-bb4c-ac2503491b0a",
+            "Value": {
+                "id": "48ab4127-0555-4251-b0f7-638fad909472",
+                "resourcePath": "scripts\\scr_HitboxCreate\\scr_HitboxCreate.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5fdb6573-aecb-4a65-8453-ae0a455381e3",
             "Value": {
                 "id": "3eb84c42-10e8-494b-a923-388b6c612d0c",
@@ -220,6 +228,14 @@
                 "id": "feacc780-2c42-4009-abf0-eb12cc8d98b8",
                 "resourcePath": "views\\7cfe952b-b494-4f33-a629-06ff297a2507.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "7e06d2ea-0822-47a9-8e06-c00ed5e2f65b",
+            "Value": {
+                "id": "e79a0226-689b-45b5-a494-9f9af21effa1",
+                "resourcePath": "objects\\obj_PHitBox\\obj_PHitBox.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -343,6 +359,14 @@
             }
         },
         {
+            "Key": "dd2b93ae-dbfa-4e80-9634-d7032ce04e68",
+            "Value": {
+                "id": "9332ddbf-56a8-4564-931f-8a91c1d85a38",
+                "resourcePath": "sprites\\spr_ZeroHit\\spr_ZeroHit.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "dd7d82ad-fc42-4062-a2c5-2eca881b3932",
             "Value": {
                 "id": "7d2f6be0-51a8-4839-8be7-2df9c53a6916",
@@ -402,7 +426,8 @@
     "script_order": [
         "7417ab3c-0a29-4840-b4e8-9838f7a7262a",
         "ad1e11a7-2622-4cd7-8a78-2e11795d84c1",
-        "b6bf8698-0174-497e-bbb9-e874f27449ab"
+        "b6bf8698-0174-497e-bbb9-e874f27449ab",
+        "5649d0f0-53c7-4ba0-bb4c-ac2503491b0a"
     ],
     "tutorial": ""
 }
