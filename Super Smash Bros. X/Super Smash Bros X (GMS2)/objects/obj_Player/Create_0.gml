@@ -25,7 +25,9 @@ jabCombo = 0;
 // Damage
 percent = 0;
 damageGiven = 0;
-knockbackGiven = 0;
+knockbackGivenX = 0;
+knockbackGivenY = 0;
+percentMultiplier = 0;
 framesGiven = 0;
 
 // Animation variables
