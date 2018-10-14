@@ -35,3 +35,6 @@ originalX = 1280;
 originalY = 720;
 xSize = 1280;
 ySize = 720;
+value = 0;
+xVal = 0;
+yVal = 0;

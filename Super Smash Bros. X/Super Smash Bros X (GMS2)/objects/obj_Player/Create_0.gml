@@ -17,6 +17,9 @@ landCount = 0;
 
 // Definition
 char = 0;
+if (char == 0) {
+	sprite_index = spr_ZeroAnim;
+}
 player = 1;
 
 // Attacks
