@@ -6,3 +6,5 @@ landing = 0;
 quickFalling = 0;
 idling = 0;
 jabbing = 0;
+fairing = 0;
+fairLanding = 0;

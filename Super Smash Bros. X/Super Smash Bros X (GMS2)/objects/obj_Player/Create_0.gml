@@ -47,6 +47,8 @@ wasFalling = 0;
 wasLanding = 0;
 wasQuickFalling = 0;
 wasJabbing = 0;
+wasFairing = 0;
+wasFairLanding = 0;
 
 // Is
 walking = 0
@@ -57,6 +59,8 @@ falling = 0;
 landing = 0;
 quickFalling = 0;
 jabbing = 0;
+fairing = 0;
+fairLanding = 0;
 
 // Frame Counts
 idleFrame = 0;
@@ -67,6 +71,9 @@ fallFrame = 25;
 landFrame = 33;
 quickFallFrame = 30;
 jabFrame = 37;
+fairFrame = 0;
+fairLandFrame = 0;
+
 playFrame = 0;
 
 // Boxes

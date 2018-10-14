@@ -3,7 +3,6 @@ damageGiven = 0;
 knockbackGivenX = 0;
 knockbackGivenY = 0;
 percentMultiplier = 0;
-	
 if (animState == "idle") {
 	idling = 1;
 	image_index = idleFrame;
@@ -165,7 +164,7 @@ if (animState == "idle") {
 		landFrame = 34;
 	} 
 	playFrame += 1;
-	if (playFrame == 2) {
+	if (playFrame >= 2) {
 		playFrame = 0;
 		if (key_right || key_left) {
 			animState = "walk";
@@ -174,6 +173,27 @@ if (animState == "idle") {
 		}
 	}
 	image_index = landFrame;
+} else if (animState == "fairland") {
+	fairLanding = 1;
+	if (playFrame == 0) {
+		fairLandFrame = 88;
+	} else if (playFrame == 3) {
+		fairLandFrame = 89;
+	} else if (playFrame == 6) {
+		fairLandFrame = 90;
+	} else if (playFrame == 9) {
+		fairLandFrame = 91;
+	} 
+	playFrame += 1;
+	if (playFrame >= 13) {
+		playFrame = 0;
+		if (key_right || key_left) {
+			animState = "walk";
+		} else {
+			animState = "idle";
+		}
+	}
+	image_index = fairLandFrame;
 } else if (animState == "quickFall") {
 	quickFalling = 1;
 	if (playFrame == 0) {
@@ -190,7 +210,41 @@ if (animState == "idle") {
 		playFrame = 0;
 	}
 	image_index = quickFallFrame;
-} else if (animState == "jab") {
+} else if (animState == "fair") {
+	fairing = 1;
+	if (playFrame == 0) {
+		fairFrame = 79;
+	} else if (playFrame == 2) {
+		fairFrame = 80;
+	} else if (playFrame == 4) {
+		fairFrame = 81;
+	} else if (playFrame == 6) {
+		fairFrame = 82;
+	} else if (playFrame == 8) {
+		fairFrame = 83;
+	} else if (playFrame == 10) {
+		fairFrame = 84;
+	} else if (playFrame == 12) {
+		fairFrame = 85;
+	} else if (playFrame == 15) {
+		fairFrame = 86;
+	} else if (playFrame == 18) {
+		fairFrame = 87;
+	}
+	playFrame += 1;
+	if (fairFrame >= 80) && (fairFrame <= 84) {
+		damageGiven = 9;
+		knockbackGivenX = 22;
+		knockbackGivenY = 6;
+		percentMultiplier = 0.01;
+		framesGiven = 20;
+	}
+	if (playFrame == 21) {
+		playFrame = 0;
+		animState = "quickfall";
+	}
+	image_index = fairFrame;
+}else if (animState == "jab") {
 	jabbing = 1;
 	if (playFrame == 0) {
 		jabFrame = 37;
@@ -267,7 +321,7 @@ if (animState == "idle") {
 	}
 	if (jabFrame >= 50) && (jabFrame <= 57) {
 		damageGiven = 3;
-		knockbackGivenX = 6;
+		knockbackGivenX = 4;
 		knockbackGivenY = 2;
 		percentMultiplier = 0.01;
 		framesGiven = 12;
@@ -318,9 +372,9 @@ if (animState == "idle") {
 		jabFrame = 78;
 	}
 	if (jabFrame >= 65) && (jabFrame <= 74) {
-		damageGiven = 3;
-		knockbackGivenX = 15;
-		knockbackGivenY = 10;
+		damageGiven = 6;
+		knockbackGivenX = 12;
+		knockbackGivenY = 8;
 		percentMultiplier = 0.01;
 		framesGiven = 30;
 	}
@@ -387,4 +441,14 @@ if (wasJabbing == 1) && (jabbing == 0) {
 	wasJabbing = 0;
 	playFrame = 0;
 	jabFrame = 37;
+}
+if (wasFairing == 1) && (fairing == 0) {
+	wasFairing = 0;
+	playFrame = 0;
+	fairFrame = 79;
+}
+if (wasFairLanding == 1) && (fairLanding == 0) {
+	wasFairLanding = 0;
+	playFrame = 0;
+	fairLandFrame = 88;
 }

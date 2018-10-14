@@ -35,15 +35,24 @@ if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up &&
 		playFrame = 0;
 		animState = "jab";
 	}
-}
-
+} else if (!onGround && key_normal && key_right && dir == 1) || (!onGround && key_normal && key_left && dir == -1){
+	if (animState != "fair") {
+		animState = "fair";
+		playFrame = 0;
+	}
+} 
 // Lag
 if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall)) {
-	animState = "land";
+	if (animState == "fair") {
+		playframe = 0;
+		animState = "fairland";
+	} else {
+		animState = "land";
+	}
 }
 
 
-if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	lagging = true;
 } else {
 	lagging = false;
@@ -76,8 +85,13 @@ if (vsp < 0) && (!key_jumpheld) && (!key_jumpupheld) {
 }
 
 if (vsp >= 0) {
-	if (!lagging) && (animState != "quickFall") {
+	if (!lagging) && (animState != "quickFall") && (animState != "fair") {
 		animState = "fall";
+	}
+	if (animState == "fair") {
+		if (playFrame == 19) {
+			animState = "fall";
+		}
 	}
 }
 
@@ -143,7 +157,7 @@ if (hsp != 0 && vsp == 0) {
 	}
 }
 
-if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	hsp = 0;
 }
 
