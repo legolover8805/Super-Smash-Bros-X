@@ -24,8 +24,8 @@ xSize = xDiff*originalX;
 ySize = -1*(ySize-originalY);
 xSize = -1*(xSize-originalX);
 
-ySize = originalY*1.3 - ySize;
-xSize = originalX*1.3 - xSize;
+ySize = originalY*1.4 - ySize;
+xSize = originalX*1.4 - xSize;
 
 x += (xTo-x)/5;
 y += (yTo-y)/5;
