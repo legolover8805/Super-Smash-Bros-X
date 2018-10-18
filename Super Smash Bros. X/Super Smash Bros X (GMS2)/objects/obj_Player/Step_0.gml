@@ -35,7 +35,7 @@ if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up &&
 		playFrame = 0;
 		animState = "jab";
 	}
-} else if (!onGround && key_normal && key_right && dir == 1) || (!onGround && key_normal && key_left && dir == -1){
+} else if (!onGround && key_normal && key_right && direct == 1) || (!onGround && key_normal && key_left && direct == -1){
 	if (animState != "fair") {
 		animState = "fair";
 		playFrame = 0;
@@ -108,6 +108,11 @@ y = y + vsp;
 // Walk Movement
 var pastDir = dir;
 dir = key_right - key_left;
+if (dir == 0 && pastDir != 0 && onGround) {
+	direct = pastDir;
+} else if (dir != 0) {
+	direct = dir;
+}
 if (jabbing == 1) {
 	dir = pastDir;
 }

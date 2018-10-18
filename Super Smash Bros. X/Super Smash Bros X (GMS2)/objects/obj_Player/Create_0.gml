@@ -78,6 +78,7 @@ fairFrame = 0;
 fairLandFrame = 0;
 
 playFrame = 0;
+direct = 0;
 
 // Boxes
 
