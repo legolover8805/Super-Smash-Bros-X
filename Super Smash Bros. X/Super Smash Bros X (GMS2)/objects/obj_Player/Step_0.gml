@@ -35,11 +35,6 @@ if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up &&
 		playFrame = 0;
 		animState = "jab";
 	}
-} else if (!onGround && key_normal && key_right && direct == 1) || (!onGround && key_normal && key_left && direct == -1){
-	if (animState != "fair") {
-		animState = "fair";
-		playFrame = 0;
-	}
 } 
 // Lag
 if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall)) {
@@ -71,7 +66,7 @@ if (onGround) && (key_jump || key_jumpup) {
 		vsp = jsp;
 		//hasJump = 1;
 		animState = "jumpUp";
-	}
+	}	
 } else if (onGround) {
 	jumps = 0;
 	//hasJump = 0;
@@ -108,14 +103,15 @@ y = y + vsp;
 // Walk Movement
 var pastDir = dir;
 dir = key_right - key_left;
-if (dir == 0 && pastDir != 0 && onGround) {
+/*if (dir == 0 && pastDir != 0 && onGround) {
 	direct = pastDir;
-} else if (dir != 0) {
+} else if (dir != 0 && onGround) {
 	direct = dir;
 }
 if (jabbing == 1) {
 	dir = pastDir;
-}
+}*/
+
 if (hsp > 0) && (dir == 0) && (isSkid == 0) && (vsp != 0) {
 	hsp -= decel;
 	if (hsp < .75) {
@@ -215,3 +211,11 @@ with hitbox {
 	knockbackGivenY = other.knockbackGivenY;
 	percentMultiplier = other.percentMultiplier;
 }
+direct = sign(image_xscale);
+if (!onGround && key_normal && key_right && direct == 1) || (!onGround && key_normal && key_left && direct == -1){
+	if (animState != "fair") {
+		animState = "fair";
+		playFrame = 0;
+	}
+} 
+show_debug_message(direct);
