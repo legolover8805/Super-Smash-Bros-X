@@ -4,13 +4,17 @@ key_down = keyboard_check(vk_down);
 key_up = keyboard_check(vk_up);
 
 key_downfall = keyboard_check_pressed(vk_down);
+key_forward = keyboard_check_pressed(vk_right);
+key_backward = keyboard_check_pressed(vk_left);
+key_normHeld = keyboard_check(ord("Z"));
 
 key_jump = keyboard_check_pressed(vk_space);
 key_jumpup = keyboard_check_pressed(vk_up);
 key_jumpheld = keyboard_check(vk_space);
 key_jumpupheld = key_up;
 key_normal = keyboard_check_pressed(ord("Z"));
-key_special = keyboard_check(ord("X"));
+key_special = keyboard_check_pressed(ord("X"));
+key_specialheld = keyboard_check(ord("X"));
 
 key_utaunt = keyboard_check(ord("I"));
 key_dtaunt = keyboard_check(ord("K"));

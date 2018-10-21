@@ -22,7 +22,7 @@ if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (key_downfall) {
 }
 
 // Jab
-if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield) {
+if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState != "FCharge" && animState != "FSmash") {
 	if (animState == "jab") {
 		if (jabCombo == 0 && playFrame <= 18) {
 			jabCombo = 1;
@@ -36,10 +36,11 @@ if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up &&
 		animState = "jab";
 	}
 } 
+
 // Lag
 if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall)) {
 	if (animState == "fair") {
-		playframe = 0;
+		playFrame = 0;
 		animState = "fairland";
 	} else {
 		animState = "land";
@@ -47,11 +48,12 @@ if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall
 }
 
 
-if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "GroundNSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	lagging = true;
 } else {
 	lagging = false;
 }
+
 
 
 if (onGround) && (key_jump || key_jumpup) {
@@ -158,8 +160,9 @@ if (hsp != 0 && vsp == 0) {
 	}
 }
 
-if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") || lagging {
 	hsp = 0;
+	dir = pastDir;
 }
 
 x += hsp;
@@ -177,6 +180,66 @@ wasFalling = falling;
 wasLanding = landing;
 wasQuickFalling = quickFalling;
 wasJabbing = jabbing;
+wasFCharging = FCharging;
+wasFSmashing = FSmashing;
+
+direct = sign(image_xscale);
+if (!onGround && key_normal && key_right && direct == 1) || (!onGround && key_normal && key_left && direct == -1){
+	if (animState != "fair") {
+		animState = "fair";
+		playFrame = 0;
+	}
+} 
+
+// Smash Attacks
+if (onGround && direct == -1 && key_rsmash) {
+	dir = 1;
+} else if (onGround && direct == 1 && key_lsmash) {
+	dir = -1;
+}
+// F-Smash
+if (onGround && key_normal && direct == 1 && key_forward && !key_left && !key_down && !key_up && !key_jump && !key_grab && !key_shield) || (onGround && direct == -1 && key_backward && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && key_normal) || (onGround && !key_grab && !key_shield && key_rsmash) || (onGround && !key_grab && !key_shield && key_lsmash){
+	if (!lagging) {
+		animState = "FCharge";
+		FChargeCount = 0;
+	}
+	lagging = true;
+} if (onGround && direct == 1 && !key_left && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState == "FCharge" && key_normHeld) || (onGround && direct == -1 && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState == "FCharge" && key_normHeld) || (onGround && direct == 1 && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState == "FCharge" && key_rsmash) || (onGround && direct == -1 && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState == "FCharge" && key_lsmash) {
+	if (FChargeCount < 120) {
+		FChargeCount += 1;
+	} else {
+		animState = "FSmash";
+		playFrame = 0;
+	}
+} if (animState == "FCharge" && !key_normHeld && !key_rsmash && !key_lsmash) {
+	animState = "FSmash";
+	playFrame = 0;
+} if (animState == "FSmash" && FCharge == 0) {
+	if (FChargeCount <= 60) {
+		FCharge = 1/3;
+	} else if (FChargeCount <= 80) {
+		FCharge = 1/2;
+	} else if (FChargeCount <= 100) {
+		FCharge = 2/3
+	} else if (FChargeCount < 120) {
+		FCharge = 5/6;
+	} else if (FChargeCount == 120) {
+		FCharge = 1;
+	}
+}  if (animState != "FSmash") {
+	FCharge = 0;
+}
+
+// Specials
+if (key_special && onGround && !key_up && !key_down && !key_right && !key_left && canShoot == true) {
+	animState = "GroundNSpecial";
+} if (canShoot == false) {
+	shotTimer += 1;
+	if (shotTimer == shotDelay) {
+		shotTimer = 0;
+		canShoot = true;
+	}
+}
 
 framesGiven = 0;
 scr_PAnimVars();
@@ -191,6 +254,7 @@ if (dir == 1) {
 } else if (dir == -1) {
 	image_xscale = -1;
 }
+
 
 // Hitboxes
 with hurtbox {
@@ -210,12 +274,5 @@ with hitbox {
 	knockbackGivenX = other.knockbackGivenX;
 	knockbackGivenY = other.knockbackGivenY;
 	percentMultiplier = other.percentMultiplier;
+	maxPauseFrames = other.maxPauseFrames;
 }
-direct = sign(image_xscale);
-if (!onGround && key_normal && key_right && direct == 1) || (!onGround && key_normal && key_left && direct == -1){
-	if (animState != "fair") {
-		animState = "fair";
-		playFrame = 0;
-	}
-} 
-show_debug_message(direct);

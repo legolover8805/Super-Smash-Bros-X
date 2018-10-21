@@ -10,6 +10,7 @@ if (owner != other.owner) {
 			isHit = 1;
 			frames = 0;
 			maxFrames = other.framesGiven;
+			maxPauseFrames = other.maxPauseFrames;
 			if (x < other.x) {
 				if (sign(image_xscale) != -1) {
 					image_xscale *= -1;

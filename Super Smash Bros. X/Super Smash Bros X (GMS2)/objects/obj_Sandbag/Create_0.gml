@@ -16,3 +16,5 @@ maxFrames = 0;
 knockbackX = 0;
 knockbackY = 0;
 percentMultiplier = 0;
+maxPauseFrames = 0;
+isPaused = false;

@@ -14,6 +14,7 @@ decel = .125;
 isSkid = 0;
 onGround = true;
 landCount = 0;
+direct = 0;
 
 // Definition
 char = 0;
@@ -24,6 +25,13 @@ player = 1;
 
 // Attacks
 jabCombo = 0;
+FChargeCount = 0;
+FCharge = 0;
+shotDelay = 30;
+shotTimer = 0;
+maxShot = 3;
+shots = 0;
+canShoot = true;
 
 // Damage
 percent = 0;
@@ -32,6 +40,7 @@ knockbackGivenX = 0;
 knockbackGivenY = 0;
 percentMultiplier = 0;
 framesGiven = 0;
+maxPauseFrames = 0;
 
 // Animation variables
 animState = "idle";
@@ -52,6 +61,9 @@ wasQuickFalling = 0;
 wasJabbing = 0;
 wasFairing = 0;
 wasFairLanding = 0;
+wasFCharging = 0;
+wasFSmashing = 0;
+wasGNSpecialing = 0;
 
 // Is
 walking = 0
@@ -64,6 +76,9 @@ quickFalling = 0;
 jabbing = 0;
 fairing = 0;
 fairLanding = 0;
+FCharging = 0;
+FSmashing = 0;
+GNSpecialing = 0;
 
 // Frame Counts
 idleFrame = 0;
@@ -76,9 +91,11 @@ quickFallFrame = 30;
 jabFrame = 37;
 fairFrame = 0;
 fairLandFrame = 0;
+FChargeFrame = 88;
+FSmashFrame = 99;
+GNSpecialFrame = 131;
 
 playFrame = 0;
-direct = 0;
 
 // Boxes
 

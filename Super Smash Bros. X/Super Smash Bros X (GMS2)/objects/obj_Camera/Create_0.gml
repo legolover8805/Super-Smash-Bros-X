@@ -3,23 +3,6 @@
 
 follow = obj_Player;
 follow2 = obj_Sandbag;
-if (follow.x > follow2.x) {
-	xDiff = follow.x-follow2.x;
-} else if (follow.x < follow2.x) {
-	xDiff = follow2.x -follow.x;
-} else {
-	xDiff = 0;
-}
-if (follow.y > follow2.y) {
-	yDiff = follow.y - follow2.y;
-} else if (follow.y < follow2.y) {
-	yDiff = follow2.y - follow.y;
-} else {
-	yDiff = 0;
-}
-
-xTo = x;
-yTo = y;
 
 camera = camera_create();
 
@@ -37,4 +20,7 @@ xSize = 1280;
 ySize = 720;
 value = 0;
 xVal = 0;
-yVal = 0;
+yVal =  0;
+xCheck = 0;
+xCheck2 = 0;
+yCheck = 0;

@@ -8,3 +8,5 @@ idling = 0;
 jabbing = 0;
 fairing = 0;
 fairLanding = 0;
+FCharging = 0;
+FSmashing = 0;
