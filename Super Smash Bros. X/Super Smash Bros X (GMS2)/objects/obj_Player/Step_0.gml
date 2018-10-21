@@ -48,7 +48,7 @@ if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall
 }
 
 
-if (animState == "land") || (animState == "GroundNSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	lagging = true;
 } else {
 	lagging = false;
@@ -82,7 +82,7 @@ if (vsp < 0) && (!key_jumpheld) && (!key_jumpupheld) {
 }
 
 if (vsp >= 0) {
-	if (!lagging) && (animState != "quickFall") && (animState != "fair") {
+	if (!lagging) && (animState != "quickFall") && (animState != "nair") && (animState != "fair") {
 		animState = "fall";
 	}
 	if (animState == "fair") {
@@ -160,7 +160,7 @@ if (hsp != 0 && vsp == 0) {
 	}
 }
 
-if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") || lagging {
+if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3")  || (animState == "fairland") || (animState == "jabEnd") || lagging {
 	hsp = 0;
 	dir = pastDir;
 }
@@ -184,9 +184,16 @@ wasFCharging = FCharging;
 wasFSmashing = FSmashing;
 
 direct = sign(image_xscale);
-if (!onGround && key_normal && key_right && direct == 1) || (!onGround && key_normal && key_left && direct == -1){
+// Aerials
+if (!onGround && key_normal && !key_down && !key_up && !key_left && key_right && direct == 1) || (!onGround && !key_right && !key_up && !key_down && key_normal && key_left && direct == -1){
 	if (animState != "fair") {
 		animState = "fair";
+		playFrame = 0;
+	}
+} 
+if (!onGround && key_normal && !key_right && !key_left && !key_down && !key_up) {
+	if (animState != "nair") {
+		animState = "nair";
 		playFrame = 0;
 	}
 } 
@@ -231,7 +238,7 @@ if (onGround && key_normal && direct == 1 && key_forward && !key_left && !key_do
 }
 
 // Specials
-if (key_special && onGround && !key_up && !key_down && !key_right && !key_left && canShoot == true) {
+if (key_special && !lagging && onGround && !key_up && !key_down && !key_right && !key_left && canShoot == true) {
 	animState = "GroundNSpecial";
 } if (canShoot == false) {
 	shotTimer += 1;
@@ -239,6 +246,10 @@ if (key_special && onGround && !key_up && !key_down && !key_right && !key_left &
 		shotTimer = 0;
 		canShoot = true;
 	}
+} 
+
+if (key_special && !lagging && onGround && !key_up && !key_down && (key_right || key_left)) {
+	animState = "GroundSSpecial";
 }
 
 framesGiven = 0;
@@ -276,3 +287,7 @@ with hitbox {
 	percentMultiplier = other.percentMultiplier;
 	maxPauseFrames = other.maxPauseFrames;
 }
+with proj {
+	proj = other.proj;
+}
+show_debug_message(animState);

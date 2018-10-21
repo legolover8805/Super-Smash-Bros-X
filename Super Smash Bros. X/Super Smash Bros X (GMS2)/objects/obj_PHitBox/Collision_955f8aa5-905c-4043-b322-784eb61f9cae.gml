@@ -20,6 +20,14 @@ if (owner != other.owner) {
 					image_xscale *= -1;
 				}
 			}
+			if (other.projectile != -1) {
+				with other {
+					instance_destroy();
+				}
+				with other.proj {
+					instance_destroy();
+				}
+			}
 		} 
 	}
 }

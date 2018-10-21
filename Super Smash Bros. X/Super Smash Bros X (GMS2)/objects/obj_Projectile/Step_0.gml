@@ -10,6 +10,13 @@ if (framesExisted == 0) {
 		with hitbox {
 			projectile = 0;
 		}
+	} else if (projectile == 1) {
+		alarm[0] = room_speed;
+		sprite_index = spr_ZeroSideSpecial;
+		hitbox = scr_HitboxCreate(char,owner);
+		with hitbox {
+			projectile = 1;
+		}
 	}
 }
 
@@ -49,6 +56,12 @@ if (char == 0) {
 		} if (framesExisted == 57) {
 			image_index = 12;
 		}
+	} else if (projectile == 1) {
+		image_index = 0;
+		moveStarted = true;
+		if (framesExisted >= 50) {
+			image_alpha -= 0.1;
+		}
 	}
 }
 
@@ -64,6 +77,7 @@ with hitbox {
 	x = other.x;
 	y = other.y;
 	image_xscale = other.image_xscale;
+	image_index = other.image_index;
 	percentGiven = other.damage;
 	knockbackGivenX = other.knockbackX;
 	knockbackGivenY = other.knockbackY;
@@ -72,6 +86,7 @@ with hitbox {
 	frames = 0;
 	framesGiven = other.framesGiven;
 	maxPauseFrames = 0;
+	proj = other.proj;
 }
 playFrames += 1;
 framesExisted += 1;

@@ -1,4 +1,4 @@
-_projectile = instance_create_layer(x,y,"Players",obj_Projectile);
+_projectile = instance_create_layer(x,y,"Projectiles",obj_Projectile);
 _projectile.char = argument0;
 _projectile.projectile = argument1;
 _projectile.knockbackX = argument2;
@@ -10,3 +10,4 @@ _projectile.framesGiven = argument7;
 _projectile.hsp = argument8;
 _projectile.vsp = argument9;
 _projectile.dir = argument10;
+return _projectile;

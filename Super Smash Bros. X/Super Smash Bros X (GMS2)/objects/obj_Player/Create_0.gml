@@ -15,6 +15,7 @@ isSkid = 0;
 onGround = true;
 landCount = 0;
 direct = 0;
+proj = noone;
 
 // Definition
 char = 0;
@@ -60,10 +61,12 @@ wasLanding = 0;
 wasQuickFalling = 0;
 wasJabbing = 0;
 wasFairing = 0;
+wasNairing = 0;
 wasFairLanding = 0;
 wasFCharging = 0;
 wasFSmashing = 0;
 wasGNSpecialing = 0;
+wasGSSpecialing = 0;
 
 // Is
 walking = 0
@@ -75,10 +78,12 @@ landing = 0;
 quickFalling = 0;
 jabbing = 0;
 fairing = 0;
+nairing = 0;
 fairLanding = 0;
 FCharging = 0;
 FSmashing = 0;
 GNSpecialing = 0;
+GSSpecialing = 0;
 
 // Frame Counts
 idleFrame = 0;
@@ -90,10 +95,12 @@ landFrame = 33;
 quickFallFrame = 30;
 jabFrame = 37;
 fairFrame = 0;
+nairFrame = 0;
 fairLandFrame = 0;
 FChargeFrame = 88;
 FSmashFrame = 99;
 GNSpecialFrame = 131;
+GSSpecialFrame = 116;
 
 playFrame = 0;
 

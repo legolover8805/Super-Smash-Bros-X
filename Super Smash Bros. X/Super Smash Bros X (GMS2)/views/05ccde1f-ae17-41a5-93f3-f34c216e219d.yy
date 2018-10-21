@@ -6,7 +6,7 @@
     "children": [
         "4e05242f-10aa-4478-9d1b-2275e6ac596f",
         "3502c0b6-7eec-404b-9e07-50742213a8fa",
-        "d04a4193-7dba-4cf3-ae03-b18242178c64"
+        "1beef383-2b7a-422e-ba0c-c70ea65811ca"
     ],
     "filterType": "GMSprite",
     "folderName": "Projectiles",

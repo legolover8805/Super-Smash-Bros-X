@@ -95,6 +95,14 @@
             }
         },
         {
+            "Key": "1beef383-2b7a-422e-ba0c-c70ea65811ca",
+            "Value": {
+                "id": "b004a3a3-1255-4db9-8439-035c9812d60c",
+                "resourcePath": "sprites\\spr_ZeroSideSpecial\\spr_ZeroSideSpecial.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "1e27f832-3b52-4ca9-bc7b-b93105e9a8a7",
             "Value": {
                 "id": "b4733bc6-132c-4bd4-9442-cb9af990f9f7",
@@ -442,7 +450,7 @@
             "Key": "d04a4193-7dba-4cf3-ae03-b18242178c64",
             "Value": {
                 "id": "a85e2491-4e7c-4e10-a8f3-17ff1fc7c371",
-                "resourcePath": "sprites\\spr_ZeroSideSpecial\\spr_ZeroSideSpecial.yy",
+                "resourcePath": "sprites\\spr_ZeroSideSpecialHit\\spr_ZeroSideSpecialHit.yy",
                 "resourceType": "GMSprite"
             }
         },

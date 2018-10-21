@@ -59,7 +59,21 @@ if (knockbackX != 0 && !isPaused) {
 		knockbackX = 0;
 	}
 }
+if (hsp < 0) && (hsp > -.01) {
+	hsp = 0;
+} else if (hsp > 0) && (hsp < .01) {
+	hsp = 0;
+}
+show_debug_message(hsp);
 x += hsp;
+
+if (x > room_width) || (x < 0) || (y > room_height) || (y < 0) {
+	x = 896;
+	y = 416;
+	hsp = 0;
+	vsp = 0;
+	percent = 0;
+}
 
 /*show_debug_message(maxFrames);
 show_debug_message(frames);
