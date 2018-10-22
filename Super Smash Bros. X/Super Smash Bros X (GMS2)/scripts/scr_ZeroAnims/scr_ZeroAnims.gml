@@ -323,7 +323,7 @@ if (animState == "idle") {
 	}
 	if (jabFrame >= 50) && (jabFrame <= 57) {
 		damageGiven = 3;
-		knockbackGivenX = 4;
+		knockbackGivenX = 2;
 		knockbackGivenY = 2;
 		percentMultiplier = 0.01;
 		framesGiven = 12;
@@ -480,11 +480,11 @@ if (animState == "idle") {
 	}
 	if (FSmashFrame >= 104) && (FSmashFrame <= 112) {
 		damageGiven = 18*FCharge;
-		knockbackGivenX = 30*FCharge;
-		knockbackGivenY = 20*FCharge;
+		knockbackGivenX = 15+(15*FCharge);
+		knockbackGivenY = 15+(5*FCharge);
 		percentMultiplier = 0.01;
 		framesGiven = 30;
-		maxPauseFrames = 10;
+		maxPauseFrames = 12;
 	}
 	image_index = FSmashFrame;
 } if (animState == "GroundNSpecial") {
@@ -618,6 +618,103 @@ _projectile.dir = argument10;*/
 		framesGiven = 5;
 	}
 	image_index = nairFrame;
+} if (animState == "AirNSpecial") {
+	ANSpecialing = 1;
+	if (playFrame == 0) {
+		ANSpecialFrame = 150;
+	} else if (playFrame == 4) {
+		ANSpecialFrame = 151;
+	} else if (playFrame == 6) {
+		ANSpecialFrame = 152;
+	} else if (playFrame == 8) {
+		ANSpecialFrame = 153;
+	} else if (playFrame == 10) {
+		ANSpecialFrame = 154;
+	} else if (playFrame == 12) {
+		ANSpecialFrame = 155;
+	} else if (playFrame == 14) {
+		ANSpecialFrame = 156;
+	} else if (playFrame == 16) {
+		ANSpecialFrame = 157;
+		proj = scr_ProjectileSpawn(char,0,1,1,5,0.01,player,15,5,0,direct);
+		canShoot = false;
+	} else if (playFrame == 18) {
+		ANSpecialFrame = 158;
+	} 
+	playFrame += 1;
+	if (playFrame == 23) {
+		playFrame = 0;
+		animState = "fall";
+	}
+	image_index = ANSpecialFrame;
+} if (animState == "UpSpecial") {
+	upSpecialing = 1;
+	if (playFrame == 0) {
+		upSpecialFrame = 159;
+	} else if (playFrame == 4) {
+		upSpecialFrame = 160;
+	} else if (playFrame == 6) {
+		upSpecialFrame = 161;
+	} else if (playFrame == 8) {
+		upSpecialFrame = 162;
+	} else if (playFrame == 10) {
+		upSpecialFrame = 163;
+	} else if (playFrame == 12) {
+		upSpecialFrame = 164;
+	} else if (playFrame == 14) {
+		upSpecialFrame = 165;
+	} else if (playFrame == 16) {
+		upSpecialFrame = 166;
+	} else if (playFrame == 18) {
+		upSpecialFrame = 167;
+	} else if (playFrame == 20) {
+		upSpecialFrame = 168;
+	} else if (playFrame == 22) {
+		upSpecialFrame = 169;
+	} else if (playFrame == 24) {
+		upSpecialFrame = 170;
+	} else if (playFrame == 26) {
+		upSpecialFrame = 171;
+	} else if (playFrame == 28) {
+		upSpecialFrame = 172;
+	} else if (playFrame == 30) {
+		upSpecialFrame = 173;
+	} else if (playFrame == 32) {
+		upSpecialFrame = 174;
+	} else if (playFrame == 34) {
+		upSpecialFrame = 175;
+	} 
+	playFrame += 1;
+	if (playFrame == 6) {
+		vsp = -8;
+	} else if (playFrame == 37) {
+		if (vsp < 0) {
+			playFrame = 6;
+		} else {
+			playFrame = 0;
+			animState = "fall";
+			isFreeFalling = true;
+		}
+	}
+	if (vsp >= 0) {
+		playFrame = 0;
+		animState = "fall";
+		isFreeFalling = true;
+	}
+	if (upSpecialFrame == 160) {
+		damageGiven = 4;
+		knockbackGivenX = 0;
+		knockbackGivenY = 8;
+		percentMultiplier = 0.01;
+		framesGiven = 3;
+	} else if (upSpecialFrame <= 172) {
+		damageGiven = 10;
+		knockbackGivenX = 5;
+		knockbackGivenY = 2;
+		percentMultiplier = 0.01;
+		framesGiven = 35;	
+	}
+	image_index = upSpecialFrame;
 }
 if (wasIdling == 1) && (idling == 0) {
 	wasIdling = 0;
@@ -686,8 +783,16 @@ if (wasGNSpecialing == 1) && (GNSpecialing == 0) {
 	wasGNSpecialing = 0;
 	playFrame = 0;
 	GNSpecialFrame = 131;
+}if (wasANSpecialing == 1) && (ANSpecialing == 0) {
+	wasANSpecialing = 0;
+	playFrame = 0;
+	ANSpecialFrame = 150;
 }if (wasGSSpecialing == 1) && (GSSpecialing == 0) {
 	wasGSSpecialing = 0;
 	playFrame = 0;
 	GSSpecialFrame = 116;
+} if (wasUpSpecialing == 1) && (upSpecialing == 0) {
+	wasUpSpecialing = 0;
+	playFrame = 0;
+	upSpecialFrame = 159;
 }

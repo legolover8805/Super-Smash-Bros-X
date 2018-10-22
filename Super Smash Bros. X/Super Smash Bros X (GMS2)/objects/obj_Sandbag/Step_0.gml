@@ -39,8 +39,13 @@ if (isHit == 1 && !isPaused) {
 show_debug_message(percent)
 
 if (knockbackY != 0 && !isPaused) {
-	vsp = percentMultiplier * percent * knockbackY * -1;
-	knockbackY = 0;
+	if (knockbackYCount < 4) {
+		vsp -= (percentMultiplier * percent * knockbackY)/4;
+		knockbackYCount+=1;
+	} else { 
+		knockbackY = 0;
+		knockbackYCount = 0;
+	}
 } 
 y = y + vsp;
 
@@ -64,7 +69,7 @@ if (hsp < 0) && (hsp > -.01) {
 } else if (hsp > 0) && (hsp < .01) {
 	hsp = 0;
 }
-show_debug_message(hsp);
+
 x += hsp;
 
 if (x > room_width) || (x < 0) || (y > room_height) || (y < 0) {

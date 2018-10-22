@@ -12,11 +12,15 @@ if(place_meeting(x,y+1,obj_Wall)) {
 	onGround = false;
 }
 if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (key_downfall) {
-	vsp += grav+7;
-	animState = "quickFall";
+	if (!airLagging) {
+		vsp += grav+7;
+		animState = "quickFall";
+	}
 } else if (vsp > 1.5) && (!onGround) && (key_downfall) {
-	vsp += grav+4;
-	animState = "quickFall";
+	if (!airLagging) {
+		vsp += grav+4;
+		animState = "quickFall";
+	}
 } else {
 	vsp += grav;
 }
@@ -56,33 +60,33 @@ if (animState == "land") || (animState == "GroundNSpecial") || (animState == "Gr
 
 
 
-if (onGround) && (key_jump || key_jumpup) {
+if (onGround) && (key_jump) { // || key_jumpup
 	if (!lagging) {
 		jumps += 1;
 		vsp = jsp;
 		animState = "jumpUp";
 	}
-} else if (!onGround) && (key_jump || key_jumpup) && (jumps < jmax) {
+} else if (!onGround) && (key_jump) && (!airLagging) && (jumps < jmax) {
 	if (!lagging) {
 		jumps += 1;
 		vsp = jsp;
-		//hasJump = 1;
+		hasJump = 1;
 		animState = "jumpUp";
 	}	
 } else if (onGround) {
 	jumps = 0;
-	//hasJump = 0;
+	hasJump = 0;
 }
-/* if (!onGround) && (hasJump = 0) {
+if (!onGround) && (hasJump = 0) {
 	jumps = 1;
-} */
+} 
 
 if (vsp < 0) && (!key_jumpheld) && (!key_jumpupheld) {
 	vsp += grav;
 }
 
 if (vsp >= 0) {
-	if (!lagging) && (animState != "quickFall") && (animState != "nair") && (animState != "fair") {
+	if (!lagging) && !airLagging && (animState != "UpSpecial") && (animState != "quickFall") && (animState != "nair") && (animState != "AirNSpecial") && (animState != "fair") {
 		animState = "fall";
 	}
 	if (animState == "fair") {
@@ -185,13 +189,13 @@ wasFSmashing = FSmashing;
 
 direct = sign(image_xscale);
 // Aerials
-if (!onGround && key_normal && !key_down && !key_up && !key_left && key_right && direct == 1) || (!onGround && !key_right && !key_up && !key_down && key_normal && key_left && direct == -1){
+if (!onGround && key_normal && !airLagging && !key_down && !key_up && !key_left && key_right && direct == 1) || (!onGround && !key_right && !key_up && !key_down && key_normal && key_left && direct == -1){
 	if (animState != "fair") {
 		animState = "fair";
 		playFrame = 0;
 	}
 } 
-if (!onGround && key_normal && !key_right && !key_left && !key_down && !key_up) {
+if (!onGround && key_normal && !airLagging && !key_right && !key_left && !key_down && !key_up) {
 	if (animState != "nair") {
 		animState = "nair";
 		playFrame = 0;
@@ -240,7 +244,10 @@ if (onGround && key_normal && direct == 1 && key_forward && !key_left && !key_do
 // Specials
 if (key_special && !lagging && onGround && !key_up && !key_down && !key_right && !key_left && canShoot == true) {
 	animState = "GroundNSpecial";
-} if (canShoot == false) {
+} else if (!onGround && !key_normal && !airLagging && !key_left && !key_right && !key_down && !key_up && key_special && canShoot == true) {
+	animState = "AirNSpecial";
+}
+if (canShoot == false) {
 	shotTimer += 1;
 	if (shotTimer == shotDelay) {
 		shotTimer = 0;
@@ -250,6 +257,19 @@ if (key_special && !lagging && onGround && !key_up && !key_down && !key_right &&
 
 if (key_special && !lagging && onGround && !key_up && !key_down && (key_right || key_left)) {
 	animState = "GroundSSpecial";
+}
+
+if (key_special && key_up && !airLagging) {
+	animState = "UpSpecial";
+	vsp = -5;
+}
+if (animState == "nair") || (animState == "fair") || (animState == "AirNSpecial") || (isFreeFalling) || (animState == "UpSpecial") {
+	airLagging = true;
+} else {
+	airLagging = false;
+}
+if (onGround) && (isFreeFalling) {
+	isFreeFalling = false;
 }
 
 framesGiven = 0;
@@ -290,4 +310,4 @@ with hitbox {
 with proj {
 	proj = other.proj;
 }
-show_debug_message(animState);
+show_debug_message(vsp);

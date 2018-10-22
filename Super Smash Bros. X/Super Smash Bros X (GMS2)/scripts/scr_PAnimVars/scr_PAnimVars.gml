@@ -12,4 +12,6 @@ fairLanding = 0;
 FCharging = 0;
 FSmashing = 0;
 GNSpecialing = 0;
+ANSpecialing = 0;
 GSSpecialing = 0;
+upSpecialing = 0;

@@ -46,6 +46,8 @@ maxPauseFrames = 0;
 // Animation variables
 animState = "idle";
 lagging = false;
+airLagging = false;
+isFreeFalling = false;
 
 // Start
 startWalking = 0;
@@ -66,7 +68,9 @@ wasFairLanding = 0;
 wasFCharging = 0;
 wasFSmashing = 0;
 wasGNSpecialing = 0;
+wasANSpecialing = 0;
 wasGSSpecialing = 0;
+wasUpSpecialing = 0;
 
 // Is
 walking = 0
@@ -83,7 +87,9 @@ fairLanding = 0;
 FCharging = 0;
 FSmashing = 0;
 GNSpecialing = 0;
+ANSpecialing = 0;
 GSSpecialing = 0;
+upSpecialing = 0;
 
 // Frame Counts
 idleFrame = 0;
@@ -100,7 +106,9 @@ fairLandFrame = 0;
 FChargeFrame = 88;
 FSmashFrame = 99;
 GNSpecialFrame = 131;
+ANSpecialFrame = 150;
 GSSpecialFrame = 116;
+upSpecialFrame = 159;
 
 playFrame = 0;
 
