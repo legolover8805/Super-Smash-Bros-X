@@ -28,6 +28,19 @@ if (owner != other.owner) {
 					instance_destroy();
 				}
 			}
+			if (other.attack == other.prevAttack) {
+				other.staleCounter += 1;
+				if (other.staleCounter > 3) {
+					other.staleCounter = 3;
+				}
+				if (other.staleCounter>=other.percentGiven) {
+					other.staleCounter -= 1;
+				}
+				percent -= other.staleCounter;
+			} else {
+				other.staleCounter = 0;
+			}
+			other.prevAttack = other.attack;
 		} 
 	}
 }

@@ -297,6 +297,7 @@ with hurtbox {
 with hitbox {
 	x = other.x;
 	y = other.y;
+	attack = other.animState;
 	image_xscale = other.image_xscale;
 	image_index = other.image_index;
 	percentGiven = other.damageGiven;

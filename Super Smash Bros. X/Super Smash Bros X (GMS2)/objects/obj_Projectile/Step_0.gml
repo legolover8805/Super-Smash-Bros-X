@@ -76,6 +76,7 @@ if (moveStarted) {
 with hitbox {
 	x = other.x;
 	y = other.y;
+	attack = "Projectile";
 	image_xscale = other.image_xscale;
 	image_index = other.image_index;
 	percentGiven = other.damage;
