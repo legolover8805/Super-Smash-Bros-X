@@ -10,4 +10,3 @@ if (char == 0) {
 } else if (char == -1) {
 	sprite_index = spr_SandbagHurt;
 }
-show_debug_message(attack);

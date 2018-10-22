@@ -311,4 +311,3 @@ with hitbox {
 with proj {
 	proj = other.proj;
 }
-show_debug_message(vsp);
