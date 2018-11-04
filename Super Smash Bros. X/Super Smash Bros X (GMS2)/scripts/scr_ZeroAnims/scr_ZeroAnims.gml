@@ -545,17 +545,8 @@ if (animState == "idle") {
 	} else if (playFrame == 11) {
 		GSSpecialFrame = 121;
 		proj = scr_ProjectileSpawn(char,1,10,3,7,0.01,player,40,7,0,direct)
-		/* _projectile.char = argument0;
-_projectile.projectile = argument1;
-_projectile.knockbackX = argument2;
-_projectile.knockbackY = argument3;
-_projectile.damage = argument4;
-_projectile.percentMultiplier = argument5;
-_projectile.owner = argument6;
-_projectile.framesGiven = argument7;
-_projectile.hsp = argument8;
-_projectile.vsp = argument9;
-_projectile.dir = argument10;*/
+		canShoot = false;
+		shotDelay = 50;
 	} else if (playFrame == 14) {
 		GSSpecialFrame = 122;
 	} else if (playFrame == 17) {
@@ -712,18 +703,24 @@ _projectile.dir = argument10;*/
 		animState = "fall";
 		isFreeFalling = true;
 	}
-	if (upSpecialFrame == 160) {
-		damageGiven = 4;
+	if (upSpecialFrame <= 162) {
+		damageGiven = 5;
 		knockbackGivenX = 0;
 		knockbackGivenY = 8;
-		percentMultiplier = 0.01;
+		percentMultiplier = 0;
+		framesGiven = 3;
+	} else if (upSpecialFrame <= 169) {
+		damageGiven = 3;
+		knockbackGivenX = 2;
+		knockbackGivenY = 2;
+		percentMultiplier = 0;
 		framesGiven = 3;
 	} else if (upSpecialFrame <= 172) {
-		damageGiven = 10;
-		knockbackGivenX = 5;
-		knockbackGivenY = 2;
+		damageGiven = 2;
+		knockbackGivenX = 7;
+		knockbackGivenY = 4;
 		percentMultiplier = 0.01;
-		framesGiven = 35;	
+		framesGiven = 25;	
 	}
 	image_index = upSpecialFrame;
 }if (animState == "dair") {

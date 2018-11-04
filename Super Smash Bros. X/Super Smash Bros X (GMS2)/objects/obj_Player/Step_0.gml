@@ -11,7 +11,7 @@ if(place_meeting(x,y+1,obj_Wall)) {
 }
 
 // Aerials
-if (!onGround && !airLagging){
+if (!onGround && !airLagging && animState != "quickFall"){
 	if ((direct == 1) && ((key_right && key_normal) || (key_rsmashp))) {
 		if (animState != "fair") {
 			animState = "fair";
@@ -289,10 +289,13 @@ if (key_special && !lagging && onGround && !key_up && !key_down && !key_right &&
 	animState = "AirNSpecial";
 }
 
+// Down
 if (key_special && !key_up && key_down && !key_right && !key_left && canShoot == true) {
-	proj = scr_ProjectileSpawn(char,2,0,0,0,0,player,0,0,0,direct)
-	canShoot = false;
-	shotDelay = 60;
+	if (char == 0) {
+		proj = scr_ProjectileSpawn(char,2,0,0,0,0,player,0,0,0,direct)
+		canShoot = false;
+		shotDelay = 40;
+	}
 }
 
 if (canShoot == false) {

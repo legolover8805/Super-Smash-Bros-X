@@ -29,18 +29,25 @@ if (maxPauseFrames != 0) {
 }
 if (isHit == 1 && !isPaused) {
 	image_index = 6;
+	if (frames == 0) {
+		percentMultiplier *= percent;
+		if (percentMultiplier == 0) {
+			percentMultiplier = 1;
+		}
+	}
 	frames += 1;
 	if (frames >= maxFrames) {
+		percentMultiplier = 0;
 		isHit = 0;
 	}
 } else if (!isPaused) {
 	frames = 0;
 }
-show_debug_message(percent)
+
 
 if (knockbackY != 0 && !isPaused) {
 	if (knockbackYCount < 4) {
-		vsp -= (percentMultiplier * percent * knockbackY)/4;
+		vsp -= (percentMultiplier * knockbackY)/4;
 		knockbackYCount+=1;
 	} else { 
 		knockbackY = 0;
@@ -51,7 +58,7 @@ y = y + vsp;
 
 // Knockback
 if (knockbackX != 0 && !isPaused) {
-	knockValue = percentMultiplier * percent * knockbackX * dir;
+	knockValue = percentMultiplier * knockbackX * dir;
 	if (hsp < knockValue && dir == 1) {
 		hsp += knockValue/20;
 	} else if (dir == 1 && hsp >= knockValue) {
@@ -83,7 +90,7 @@ if (x > room_width) || (x < 0) || (y > room_height) || (y < 0) {
 /*show_debug_message(maxFrames);
 show_debug_message(frames);
 */
-
+show_debug_message(percent)
 x = round(x);
 y = round(y);
 
