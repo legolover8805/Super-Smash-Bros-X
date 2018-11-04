@@ -3,22 +3,46 @@
 // Keybinding
 scr_Controls();
 
-
-
 // Verticality
 if(place_meeting(x,y+1,obj_Wall)) {
 	onGround = true;
 } else {
 	onGround = false;
 }
-if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (key_downfall) {
+
+// Aerials
+if (!onGround && !airLagging){
+	if ((direct == 1) && ((key_right && key_normal) || (key_rsmashp))) {
+		if (animState != "fair") {
+			animState = "fair";
+			playFrame = 0;
+		}
+	} if ((direct == -1) && ((key_left && key_normal) || (key_lsmashp))){
+		if (animState != "fair") {
+			animState = "fair";
+			playFrame = 0;
+		}
+	} if (key_down && key_normal) || (key_dsmashp) { 
+		if (animState != "dair") {
+			animState = "dair";
+			playFrame = 0;
+		}
+	} if (key_normal && !key_left && !key_right && !key_down && !key_up) {
+		if (animState != "nair") {
+			animState = "nair";
+			playFrame = 0;
+		}
+	}
+} 
+
+if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (animState != "dair") && (key_downfall) {
 	if (!airLagging) {
-		vsp += grav+7;
+		vsp += grav+6;
 		animState = "quickFall";
 	}
 } else if (vsp > 1.5) && (!onGround) && (key_downfall) {
 	if (!airLagging) {
-		vsp += grav+4;
+		vsp += grav+3;
 		animState = "quickFall";
 	}
 } else {
@@ -46,13 +70,23 @@ if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall
 	if (animState == "fair") {
 		playFrame = 0;
 		animState = "fairland";
+	} else if (animState == "dair" && !isDairLanding) {
+		playFrame = 14;
+		isDairLanding = true;
+	} else if (isDairLanding) {
+		if (playFrame < 14) {
+			playFrame = 14;
+		}
+		isDairLanding = true;
 	} else {
 		animState = "land";
 	}
+} else if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp-4,obj_Wall)) {
+	animState = "fall";
 }
 
 
-if (animState == "land") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	lagging = true;
 } else {
 	lagging = false;
@@ -67,7 +101,7 @@ if (onGround) && (key_jump) { // || key_jumpup
 		animState = "jumpUp";
 	}
 } else if (!onGround) && (key_jump) && (!airLagging) && (jumps < jmax) {
-	if (!lagging) {
+	if (!lagging && animState != "dair") {
 		jumps += 1;
 		vsp = jsp;
 		hasJump = 1;
@@ -86,7 +120,7 @@ if (vsp < 0) && (!key_jumpheld) && (!key_jumpupheld) {
 }
 
 if (vsp >= 0) {
-	if (!lagging) && !airLagging && (animState != "UpSpecial") && (animState != "quickFall") && (animState != "nair") && (animState != "AirNSpecial") && (animState != "fair") {
+	if (!lagging) && !airLagging && (animState != "UpSpecial") && (animState != "quickFall") && (animState != "dair") && (animState != "nair") && (animState != "AirNSpecial") && (animState != "fair") {
 		animState = "fall";
 	}
 	if (animState == "fair") {
@@ -100,6 +134,10 @@ if (vsp >= 0) {
 if (place_meeting(x,y+vsp,obj_Wall)) {
 	while (!place_meeting(x,y+sign(vsp),obj_Wall)) {
 		y += sign(vsp);
+	}
+	if (sign(vsp) == -1) {
+		onGround = false;
+		animState = "fall";
 	}
 	vsp = 0;
 }
@@ -159,7 +197,7 @@ if (hsp != 0 && vsp == 0) {
 		animState = "walk";
 	}
 } else if (hsp == 0 && vsp == 0) {
-	if (!lagging) {
+	if (!lagging && !isDairLanding) {
 		animState = "idle";
 	}
 }
@@ -188,19 +226,22 @@ wasFCharging = FCharging;
 wasFSmashing = FSmashing;
 
 direct = sign(image_xscale);
-// Aerials
-if (!onGround && key_normal && !airLagging && !key_down && !key_up && !key_left && key_right && direct == 1) || (!onGround && !key_right && !key_up && !key_down && key_normal && key_left && direct == -1){
-	if (animState != "fair") {
-		animState = "fair";
-		playFrame = 0;
-	}
+
+// Crouching
+if (onGround && key_down && !lagging && animState != "crouch" && animState != "dtilt") {
+	animState = "crouch";
 } 
-if (!onGround && key_normal && !airLagging && !key_right && !key_left && !key_down && !key_up) {
-	if (animState != "nair") {
-		animState = "nair";
-		playFrame = 0;
-	}
-} 
+if (animState == "crouch" && !key_down) {
+	crouchFirst = true;
+	animState = "idle";
+	playFrame = 0;
+}
+// Tilts
+if (onGround && key_down && key_normal && animState != "dtilt") {
+	playFrame = 0;
+	animState = "dtilt";
+}
+
 
 // Smash Attacks
 if (onGround && direct == -1 && key_rsmash) {
@@ -247,10 +288,18 @@ if (key_special && !lagging && onGround && !key_up && !key_down && !key_right &&
 } else if (!onGround && !key_normal && !airLagging && !key_left && !key_right && !key_down && !key_up && key_special && canShoot == true) {
 	animState = "AirNSpecial";
 }
+
+if (key_special && !key_up && key_down && !key_right && !key_left && canShoot == true) {
+	proj = scr_ProjectileSpawn(char,2,0,0,0,0,player,0,0,0,direct)
+	canShoot = false;
+	shotDelay = 60;
+}
+
 if (canShoot == false) {
 	shotTimer += 1;
 	if (shotTimer == shotDelay) {
 		shotTimer = 0;
+		shotDelay = 30;
 		canShoot = true;
 	}
 } 
@@ -259,11 +308,14 @@ if (key_special && !lagging && onGround && !key_up && !key_down && (key_right ||
 	animState = "GroundSSpecial";
 }
 
-if (key_special && key_up && !airLagging) {
-	animState = "UpSpecial";
-	vsp = -5;
+if (key_special && key_up && !airLagging && !isFreeFalling) {
+	if (animState != "UpSpecial") {
+		animState = "UpSpecial";
+		isFreeFalling = true;
+		vsp = -5;
+	}
 }
-if (animState == "nair") || (animState == "fair") || (animState == "AirNSpecial") || (isFreeFalling) || (animState == "UpSpecial") {
+if (animState == "nair") || (animState == "dair") || (animState == "fair") || (animState == "AirNSpecial") || (isFreeFalling) || (animState == "UpSpecial") {
 	airLagging = true;
 } else {
 	airLagging = false;
@@ -285,7 +337,6 @@ if (dir == 1) {
 } else if (dir == -1) {
 	image_xscale = -1;
 }
-
 
 // Hitboxes
 with hurtbox {
@@ -311,3 +362,12 @@ with hitbox {
 with proj {
 	proj = other.proj;
 }
+
+// Fixing
+if (animState != "dair") {
+	isDairLanding = false;
+}
+
+
+//show_debug_message(animState);
+//show_debug_message(onGround);

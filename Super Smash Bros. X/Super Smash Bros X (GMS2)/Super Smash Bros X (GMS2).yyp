@@ -71,6 +71,14 @@
             }
         },
         {
+            "Key": "1165d77f-5255-4b93-b8af-d5134b098fc0",
+            "Value": {
+                "id": "c76b009d-765c-44db-8934-5307b1835a66",
+                "resourcePath": "sprites\\spr_ZeroCloneAnim\\spr_ZeroCloneAnim.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "141fcce3-f37a-42a0-985e-bbc93e7b4c67",
             "Value": {
                 "id": "df2dc846-26d4-4aad-8066-70ab58130611",
@@ -372,6 +380,14 @@
                 "id": "1d4e86f8-bf54-4a4d-97b2-b9e86435171e",
                 "resourcePath": "objects\\obj_Sandbag\\obj_Sandbag.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "a742f16a-64d1-43c5-9e35-5224eb0cab8a",
+            "Value": {
+                "id": "64834633-bc7b-405a-a77b-0c72a754a609",
+                "resourcePath": "sprites\\spr_ZeroCloneHit\\spr_ZeroCloneHit.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

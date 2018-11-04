@@ -7,6 +7,14 @@ framesGiven = 0;
 maxPauseFrames = 0;
 if (animState == "idle") {
 	idling = 1;
+	if (crouchFirst) {
+		if (playFrame == 0) {
+			idleFrame = 185;
+		} else {
+			idleFrame = 0;
+			crouchFirst = false;
+		}
+	}
 	image_index = idleFrame;
 	if (playFrame == 40) {
 		idleFrame = 1;
@@ -509,6 +517,8 @@ if (animState == "idle") {
 		GNSpecialFrame = 139;
 		proj = scr_ProjectileSpawn(char,0,1,1,5,0.01,player,15,5,0,direct);
 		canShoot = false;
+		shotTimer = 0;
+		shotDelay = 30;
 	} else if (playFrame == 18) {
 		GNSpecialFrame = 140;
 	} else if (playFrame == 20) {
@@ -651,11 +661,11 @@ _projectile.dir = argument10;*/
 	upSpecialing = 1;
 	if (playFrame == 0) {
 		upSpecialFrame = 159;
-	} else if (playFrame == 4) {
+	} else if (playFrame == 3) {
 		upSpecialFrame = 160;
 	} else if (playFrame == 6) {
 		upSpecialFrame = 161;
-	} else if (playFrame == 8) {
+	} else if (playFrame == 7) {
 		upSpecialFrame = 162;
 	} else if (playFrame == 10) {
 		upSpecialFrame = 163;
@@ -687,16 +697,17 @@ _projectile.dir = argument10;*/
 	playFrame += 1;
 	if (playFrame == 6) {
 		vsp = -8;
+		hsp = 3*direct;
 	} else if (playFrame == 37) {
 		if (vsp < 0) {
-			playFrame = 6;
+			playFrame = 8;
 		} else {
 			playFrame = 0;
 			animState = "fall";
 			isFreeFalling = true;
 		}
 	}
-	if (vsp >= 0) {
+	if (vsp >= 0 && playFrame >= 7) {
 		playFrame = 0;
 		animState = "fall";
 		isFreeFalling = true;
@@ -715,6 +726,76 @@ _projectile.dir = argument10;*/
 		framesGiven = 35;	
 	}
 	image_index = upSpecialFrame;
+}if (animState == "dair") {
+	dairing = 1;
+	if (playFrame == 0) {
+		dairFrame = 175;
+	} else if (playFrame == 4) {
+		dairFrame = 176;
+	} else if (playFrame == 7) {
+		dairFrame = 177;
+	} else if (playFrame == 10) {
+		dairFrame = 178;
+	} else if (playFrame == 14) {
+		dairFrame = 179;
+	} else if (playFrame == 17) {
+		dairFrame = 180;
+	} else if (playFrame == 21) {
+		dairFrame = 181;
+	} else if (playFrame == 24) {
+		dairFrame = 182;
+	} else if (playFrame == 27) {
+		dairFrame = 183;
+	} 
+	playFrame += 1;
+	if (playFrame == 14) {
+		playFrame = 5;
+	} if (playFrame == 31) {
+		playFrame = 0;
+		animState = "idle";
+		isDairLanding = false;
+	}
+	image_index = dairFrame;
+} if (animState == "crouch") {
+	crouching = 1;
+	if (playFrame == 0) {
+		crouchFrame = 184;
+	} else if (playFrame == 1) {
+		crouchFrame = 185;
+	}
+	playFrame += 1;
+	image_index = crouchFrame;
+} if (animState == "dtilt") {
+	downTilting = 1;
+	if (playFrame == 0) {
+		downTiltFrame = 186;
+	} else if (playFrame == 2) {
+		downTiltFrame = 187;
+	} else if (playFrame == 4) {
+		downTiltFrame = 188;
+	} else if (playFrame == 6) {
+		downTiltFrame = 189;
+	} else if (playFrame == 8) {
+		downTiltFrame = 190;
+	} else if (playFrame == 10) {
+		downTiltFrame = 191;
+	} else if (playFrame == 12) {
+		downTiltFrame = 192;
+	} else if (playFrame == 14) {
+		downTiltFrame = 193;
+	} else if (playFrame == 16) {
+		downTiltFrame = 194;
+	} else if (playFrame == 18) {
+		downTiltFrame = 195;
+	} else if (playFrame == 20) {
+		downTiltFrame = 196;
+	}
+	playFrame += 1;
+	if (playFrame == 23) {
+		playFrame = 0;
+		animState = "crouch";
+	}
+	image_index = downTiltFrame;
 }
 if (wasIdling == 1) && (idling == 0) {
 	wasIdling = 0;
@@ -739,20 +820,30 @@ if (wasFalling == 1) && (falling == 0) {
 	playFrame = 0;
 	fallFrame = 25;
 }
-if (wasLanding == 1) && (landing == 0) {
-	wasLanding = 0;
-	playFrame = 0;
-	landFrame = 33;
-}
 if (wasQuickFalling == 1) && (quickFalling == 0) {
 	wasQuickFalling = 0;
 	playFrame = 0;
 	quickFallFrame = 30;
 }
+if (wasLanding == 1) && (landing == 0) {
+	wasLanding = 0;
+	playFrame = 0;
+	landFrame = 33;
+}
+if (wasCrouching == 1) && (crouching == 0) {
+	wasCrouching = 0;
+	playFrame = 0;
+	crouchFrame = 184;
+}
 if (wasJabbing == 1) && (jabbing == 0) {
 	wasJabbing = 0;
 	playFrame = 0;
 	jabFrame = 37;
+}
+if (wasDownTilting == 1) && (downTilting == 0) {
+	wasDownTilting = 0;
+	playFrame = 0;
+	downTiltFrame = 186;
 }
 if (wasFairing == 1) && (fairing == 0) {
 	wasFairing = 0;
@@ -763,6 +854,11 @@ if (wasNairing == 1) && (nairing == 0) {
 	wasNairing = 0;
 	playFrame = 0;
 	nairFrame = 142;
+}
+if (wasDairing == 1) && (dairing == 0) {
+	wasDairing = 0;
+	playFrame = 0;
+	dairFrame = 175;
 }
 if (wasFairLanding == 1) && (fairLanding == 0) {
 	wasFairLanding = 0;

@@ -26,5 +26,10 @@ key_dsmash = keyboard_check(ord("S"));
 key_lsmash = keyboard_check(ord("A"));
 key_rsmash = keyboard_check(ord("D"));
 
+key_usmashp = keyboard_check_pressed(ord("W"));
+key_dsmashp = keyboard_check_pressed(ord("S"));
+key_lsmashp = keyboard_check_pressed(ord("A"));
+key_rsmashp = keyboard_check_pressed(ord("D"));
+
 key_grab = keyboard_check(ord("Q"));
 key_shield = keyboard_check(ord("E"));
