@@ -33,6 +33,8 @@ shotTimer = 0;
 maxShot = 3;
 shots = 0;
 canShoot = true;
+isMeteor = false;
+hitConnect = false;
 
 // Damage
 percent = 0;

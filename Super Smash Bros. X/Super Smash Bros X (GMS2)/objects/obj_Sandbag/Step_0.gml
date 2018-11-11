@@ -8,8 +8,17 @@ if (place_meeting(x,y+vsp,obj_Wall)) {
 	while (!place_meeting(x,y+sign(vsp),obj_Wall)) {
 		y += sign(vsp);
 	}
-	vsp = 0;
-} 
+	if (stayMeteor == false) {
+		vsp = 0;
+	} else {
+		stayMeteor = false;
+		vsp = -(savedBackY-weight);
+	}
+	savedBackY = 0;
+	onGround = true;
+}  else {
+	onGround = false;
+}
 if (place_meeting(x,y+1,obj_Wall)) {
 	image_index = 0;
 } else {
@@ -47,8 +56,22 @@ if (isHit == 1 && !isPaused) {
 
 if (knockbackY != 0 && !isPaused) {
 	if (knockbackYCount < 4) {
-		vsp -= (percentMultiplier * knockbackY)/4;
-		knockbackYCount+=1;
+		if (!isMeteorSmashed) {
+			vsp -= (percentMultiplier * knockbackY)/4;
+			savedBackY = knockbackY;
+			knockbackYCount+=1;
+		} else {
+			if (onGround == false) {
+				stayMeteor = true;
+				vsp += (percentMultiplier * knockbackY)/4;
+				knockbackYCount+=1;
+				savedBackY = knockbackY;
+			} else {
+				vsp -= (percentMultiplier * knockbackY);
+				knockbackYCount = 4;
+				savedBackY = knockbackY;
+			}
+		}
 	} else { 
 		knockbackY = 0;
 		knockbackYCount = 0;

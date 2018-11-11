@@ -71,11 +71,11 @@ if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall
 		playFrame = 0;
 		animState = "fairland";
 	} else if (animState == "dair" && !isDairLanding) {
-		playFrame = 14;
+		playFrame = 20;
 		isDairLanding = true;
 	} else if (isDairLanding) {
-		if (playFrame < 14) {
-			playFrame = 14;
+		if (playFrame < 20) {
+			playFrame = 20;
 		}
 		isDairLanding = true;
 	} else {
@@ -361,6 +361,7 @@ with hitbox {
 	knockbackGivenY = other.knockbackGivenY;
 	percentMultiplier = other.percentMultiplier;
 	maxPauseFrames = other.maxPauseFrames;
+	isMeteor = other.isMeteor;
 }
 with proj {
 	proj = other.proj;

@@ -11,11 +11,12 @@ if (owner != other.owner) {
 			}
 		}
 		if (isHit == 0) {
+			other.fighters[other.owner].hitConnect = true;
 			percent += other.percentGiven;
 			knockbackX = other.knockbackGivenX;
 			knockbackY = other.knockbackGivenY;
 			percentMultiplier = other.percentMultiplier;
-			show_debug_message(knockbackY)
+			isMeteorSmashed = other.isMeteor;
 			isHit = 1;
 			frames = 0;
 			maxFrames = other.framesGiven;

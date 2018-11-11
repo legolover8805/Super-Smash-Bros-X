@@ -1,4 +1,4 @@
-
+isMeteor = false;
 damageGiven = 0;
 knockbackGivenX = 0;
 knockbackGivenY = 0;
@@ -720,7 +720,7 @@ if (animState == "idle") {
 		knockbackGivenX = 7;
 		knockbackGivenY = 4;
 		percentMultiplier = 0.01;
-		framesGiven = 25;	
+		framesGiven = 15;	
 	}
 	image_index = upSpecialFrame;
 }if (animState == "dair") {
@@ -733,22 +733,52 @@ if (animState == "idle") {
 		dairFrame = 177;
 	} else if (playFrame == 10) {
 		dairFrame = 178;
-	} else if (playFrame == 14) {
+	} else if (playFrame == 13) {
+		dairFrame = 177;
+	} else if (playFrame == 16) {
+		dairFrame = 178;
+	} else if (playFrame == 20) {
 		dairFrame = 179;
-	} else if (playFrame == 17) {
-		dairFrame = 180;
-	} else if (playFrame == 21) {
-		dairFrame = 181;
 	} else if (playFrame == 24) {
+		dairFrame = 180;
+	} else if (playFrame == 28) {
+		dairFrame = 181;
+	} else if (playFrame == 31) {
 		dairFrame = 182;
-	} else if (playFrame == 27) {
+	} else if (playFrame == 34) {
 		dairFrame = 183;
+	} else if (playFrame == 37) {
+		dairFrame = 60;
+	}else if (playFrame == 41) {
+		dairFrame = 61;
+	} else if (playFrame == 45) {
+		dairFrame = 62;
+	} else if (playFrame == 49) {
+		dairFrame = 63;
+	} else if (playFrame == 53) {
+		dairFrame = 64;
 	} 
+	if (playFrame <= 12 && playFrame >= 7 && !hitConnect) {
+		damageGiven = 9;
+		knockbackGivenX = 2;
+		knockbackGivenY = 6;
+		isMeteor = true;
+		percentMultiplier = 0.01;
+		framesGiven = 25;
+	} else if ((dairFrame == 177 || dairFrame == 178) && !hitConnect) {
+		damageGiven = 9;
+		knockbackGivenX = 3;
+		knockbackGivenY = 2;
+		isMeteor = true;
+		percentMultiplier = 0.01;
+		framesGiven = 12;
+	}
 	playFrame += 1;
-	if (playFrame == 14) {
-		playFrame = 5;
-	} if (playFrame == 31) {
+	if (playFrame == 20) {
+		playFrame = 13;
+	} if (playFrame == 58) {
 		playFrame = 0;
+		hitConnect = false;
 		animState = "idle";
 		isDairLanding = false;
 	}
@@ -787,11 +817,19 @@ if (animState == "idle") {
 	} else if (playFrame == 20) {
 		downTiltFrame = 196;
 	}
+	if (downTiltFrame <= 190 && downTiltFrame >= 188) {
+		damageGiven = 6;
+		knockbackGivenX = 11;
+		knockbackGivenY = 8;
+		percentMultiplier = 0.01;
+		framesGiven = 15;
+		maxPauseFrames = 6;
+	} 
 	playFrame += 1;
 	if (playFrame == 23) {
 		playFrame = 0;
 		animState = "crouch";
-	}
+	} 
 	image_index = downTiltFrame;
 }
 if (wasIdling == 1) && (idling == 0) {
