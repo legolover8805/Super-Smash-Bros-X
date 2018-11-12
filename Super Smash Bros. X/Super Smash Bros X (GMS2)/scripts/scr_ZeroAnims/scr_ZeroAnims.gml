@@ -415,6 +415,7 @@ if (animState == "idle") {
 	image_index = jabFrame;
 } if (animState == "FCharge") {
 	FCharging = 1;
+	image_index = 92;
 	if (playFrame == 0) {
 		FChargeFrame = 92;
 	} else if (playFrame == 3) {
@@ -481,11 +482,6 @@ if (animState == "idle") {
 		FSmashFrame = 64;
 	}
 	playFrame += 1;
-	if (playFrame == 65) {
-		playFrame = 0;
-		animState = "idle";
-		FSmashFrame = 99;
-	}
 	if (FSmashFrame >= 104) && (FSmashFrame <= 112) {
 		damageGiven = 18*FCharge;
 		knockbackGivenX = 15+(15*FCharge);
@@ -495,6 +491,11 @@ if (animState == "idle") {
 		maxPauseFrames = 12;
 	}
 	image_index = FSmashFrame;
+	if (playFrame == 65) {
+		playFrame = 0;
+		animState = "idle";
+		FSmashFrame = 99;
+	}
 } if (animState == "GroundNSpecial") {
 	GNSpecialing = 1;
 	if (playFrame == 0) {
@@ -758,20 +759,28 @@ if (animState == "idle") {
 	} else if (playFrame == 53) {
 		dairFrame = 64;
 	} 
-	if (playFrame <= 12 && playFrame >= 7 && !hitConnect) {
+	if (playFrame <= 12 && playFrame >= 7) {
 		damageGiven = 9;
 		knockbackGivenX = 2;
-		knockbackGivenY = 6;
+		knockbackGivenY = 5.5;
 		isMeteor = true;
 		percentMultiplier = 0.01;
 		framesGiven = 25;
-	} else if ((dairFrame == 177 || dairFrame == 178) && !hitConnect) {
+	} else if ((dairFrame == 177 || dairFrame == 178)) {
 		damageGiven = 9;
 		knockbackGivenX = 3;
 		knockbackGivenY = 2;
 		isMeteor = true;
 		percentMultiplier = 0.01;
 		framesGiven = 12;
+	}
+	if (hitConnect == true) {
+		vsp = -2;
+		playFrame = 0;
+		animState = "fall";
+		hitConnect = false;
+		airLag = true;
+		airLagMax = 20;
 	}
 	playFrame += 1;
 	if (playFrame == 20) {
@@ -831,6 +840,82 @@ if (animState == "idle") {
 		animState = "crouch";
 	} 
 	image_index = downTiltFrame;
+} if (animState == "DCharge") {
+	DCharging = 1;
+	if (playFrame == 0) {
+		DChargeFrame = 197;
+	} else if (playFrame == 4) {
+		DChargeFrame = 198;
+	} else if (playFrame == 8) {
+		DChargeFrame = 199;
+	} else if (playFrame == 12) {
+		DChargeFrame = 219;
+	} else if (playFrame == 16) {
+		DChargeFrame = 220;
+	} else if (playFrame == 20) {
+		DChargeFrame = 219;
+	}
+	playFrame += 1;
+	if (playFrame == 25) {
+		playFrame = 8;
+	}
+	image_index = DChargeFrame;
+} if (animState == "DSmash") {
+	DSmashing = 1;
+	if (playFrame == 0) {
+		DSmashFrame = 200;
+	} else if (playFrame == 2) {
+		DSmashFrame = 201;
+	} else if (playFrame == 4) {
+		DSmashFrame = 202;
+	} else if (playFrame == 6) {
+		DSmashFrame = 203;
+	} else if (playFrame == 9) {
+		DSmashFrame = 204;
+	} else if (playFrame == 12) {
+		DSmashFrame = 205;
+	} else if (playFrame == 15) {
+		DSmashFrame = 206;
+	} else if (playFrame == 18) {
+		DSmashFrame = 207;
+	} else if (playFrame == 21) {
+		DSmashFrame = 208;
+	} else if (playFrame == 24) {
+		DSmashFrame = 209;
+	} else if (playFrame == 27) {
+		DSmashFrame = 210;
+	} else if (playFrame == 30) {
+		DSmashFrame = 211;
+	} else if (playFrame == 33) {
+		DSmashFrame = 212;
+	} else if (playFrame == 36) {
+		DSmashFrame = 213;
+	} else if (playFrame == 39) {
+		DSmashFrame = 214;
+	} else if (playFrame == 42) {
+		DSmashFrame = 215;
+	} else if (playFrame == 45) {
+		DSmashFrame = 216;
+	} else if (playFrame == 48) {
+		DSmashFrame = 217;
+	} else if (playFrame == 51) {
+		DSmashFrame = 218;
+	}
+	playFrame += 1;
+	if (DSmashFrame >= 203) && (DSmashFrame <= 208) {
+		damageGiven = 2 + (18*DCharge);
+		knockbackGivenX = 10+(15*DCharge);
+		knockbackGivenY = 10+(9*DCharge);
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+		maxPauseFrames = 12;
+	}
+	image_index = DSmashFrame;
+	if (playFrame == 54) {
+		playFrame = 0;
+		animState = "idle";
+		DSmashFrame = 200;
+	}
 }
 if (wasIdling == 1) && (idling == 0) {
 	wasIdling = 0;
@@ -909,6 +994,16 @@ if (wasFSmashing == 1) && (FSmashing == 0) {
 	wasFSmashing = 0;
 	playFrame = 0;
 	FSmashFrame = 99;
+}
+if (wasDCharging == 1) && (DCharging == 0) {
+	wasDCharging = 0;
+	playFrame = 0;
+	FChargeFrame = 197;
+}
+if (wasDSmashing == 1) && (DSmashing == 0) {
+	wasDSmashing = 0;
+	playFrame = 0;
+	DSmashFrame = 200;
 }
 if (wasGNSpecialing == 1) && (GNSpecialing == 0) {
 	wasGNSpecialing = 0;

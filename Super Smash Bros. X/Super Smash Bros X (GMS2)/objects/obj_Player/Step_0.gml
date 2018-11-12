@@ -5,6 +5,7 @@ scr_Controls();
 
 // Verticality
 if(place_meeting(x,y+1,obj_Wall)) {
+	airLag = false;
 	onGround = true;
 } else {
 	onGround = false;
@@ -22,7 +23,7 @@ if (!onGround && !airLagging && animState != "quickFall"){
 			animState = "fair";
 			playFrame = 0;
 		}
-	} if (key_down && key_normal) || (key_dsmashp) { 
+	} if ((key_down && key_normal) || (key_dsmash) && !airLag){ 
 		if (animState != "dair") {
 			animState = "dair";
 			playFrame = 0;
@@ -35,6 +36,15 @@ if (!onGround && !airLagging && animState != "quickFall"){
 	}
 } 
 
+if (airLag) {
+	if (airLagCounter < airLagMax) {
+		airLagCounter += 1;
+	} else {
+		airLagCounter = 0;
+		airLag = false;
+	}
+} 
+
 if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (animState != "dair") && (key_downfall) {
 	if (!airLagging) {
 		vsp += grav+6;
@@ -43,14 +53,13 @@ if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (animState != "dair") && (key_d
 } else if (vsp > 1.5) && (!onGround) && (key_downfall) {
 	if (!airLagging) {
 		vsp += grav+3;
-		animState = "quickFall";
 	}
 } else {
 	vsp += grav;
 }
 
 // Jab
-if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState != "FCharge" && animState != "FSmash") {
+if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState != "FCharge" && animState != "DCharge" && animState != "FSmash" && animState != "DSmash") {
 	if (animState == "jab") {
 		if (jabCombo == 0 && playFrame <= 18) {
 			jabCombo = 1;
@@ -86,7 +95,7 @@ if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall
 }
 
 
-if (animState == "land") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	lagging = true;
 } else {
 	lagging = false;
@@ -244,11 +253,12 @@ if (onGround && key_down && key_normal && animState != "dtilt") {
 
 
 // Smash Attacks
-if (onGround && direct == -1 && key_rsmash) {
+if (onGround && !lagging && direct == -1 && key_rsmash) {
 	dir = 1;
-} else if (onGround && direct == 1 && key_lsmash) {
+} else if (onGround && !lagging && direct == 1 && key_lsmash) {
 	dir = -1;
 }
+
 // F-Smash
 if (onGround && key_normal && direct == 1 && key_forward && !key_left && !key_down && !key_up && !key_jump && !key_grab && !key_shield) || (onGround && direct == -1 && key_backward && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && key_normal) || (onGround && !key_grab && !key_shield && key_rsmash) || (onGround && !key_grab && !key_shield && key_lsmash){
 	if (!lagging) {
@@ -256,7 +266,7 @@ if (onGround && key_normal && direct == 1 && key_forward && !key_left && !key_do
 		FChargeCount = 0;
 	}
 	lagging = true;
-} if (onGround && direct == 1 && !key_left && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState == "FCharge" && key_normHeld) || (onGround && direct == -1 && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState == "FCharge" && key_normHeld) || (onGround && direct == 1 && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState == "FCharge" && key_rsmash) || (onGround && direct == -1 && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState == "FCharge" && key_lsmash) {
+} if (onGround && animState == "FCharge" && key_normHeld) ||  (onGround && direct == 1 && animState == "FCharge" && key_rsmash) || (onGround && direct == -1 && animState == "FCharge" && key_lsmash) {
 	if (FChargeCount < 120) {
 		FChargeCount += 1;
 	} else {
@@ -282,6 +292,39 @@ if (onGround && key_normal && direct == 1 && key_forward && !key_left && !key_do
 	FCharge = 0;
 }
 
+// D-Smash
+if (onGround && key_normal && !key_right && !key_left && key_down && !key_up && !key_jump && !key_grab && !key_shield) || (onGround && !key_grab && !key_shield && key_dsmash){
+	if (!lagging) {
+		animState = "DCharge";
+		DChargeCount = 0;
+	}
+	lagging = true;
+} if (onGround && animState == "DCharge" && key_normHeld) || (onGround && animState == "DCharge" && key_dsmash) {
+	if (DChargeCount < 120) {
+		DChargeCount += 1;
+	} else {
+		animState = "DSmash";
+		playFrame = 0;
+	}
+} if (animState == "DCharge" && !key_normHeld && !key_dsmash) {
+	animState = "DSmash";
+	playFrame = 0;
+} if (animState == "DSmash" && DCharge == 0) {
+	if (DChargeCount <= 60) {
+		DCharge = 1/3;
+	} else if (DChargeCount <= 80) {
+		DCharge = 1/2;
+	} else if (DChargeCount <= 100) {
+		DCharge = 2/3
+	} else if (DChargeCount < 120) {
+		DCharge = 5/6;
+	} else if (DChargeCount == 120) {
+		DCharge = 1;
+	}
+}  if (animState != "DSmash") {
+	DCharge = 0;
+}
+
 // Specials
 if (key_special && !lagging && onGround && !key_up && !key_down && !key_right && !key_left && canShoot == true) {
 	animState = "GroundNSpecial";
@@ -292,7 +335,7 @@ if (key_special && !lagging && onGround && !key_up && !key_down && !key_right &&
 // Down
 if (key_special && !key_up && key_down && !key_right && !key_left && canShoot == true) {
 	if (char == 0) {
-		proj = scr_ProjectileSpawn(char,2,0,0,0,0,player,0,0,0,direct)
+		proj = scr_ProjectileSpawn(char,2,10,10,6,0.01,player,13,0,0,direct)
 		canShoot = false;
 		shotDelay = 40;
 	}
@@ -371,7 +414,7 @@ with proj {
 if (animState != "dair") {
 	isDairLanding = false;
 }
+if (animState == "dair" && onGround == true && playFrame < 20) {
+	playFrame = 20;
+}
 
-
-//show_debug_message(animState);
-//show_debug_message(onGround);
