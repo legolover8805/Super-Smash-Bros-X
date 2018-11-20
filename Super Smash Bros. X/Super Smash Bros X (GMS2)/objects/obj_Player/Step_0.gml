@@ -103,6 +103,12 @@ if (animState == "land") || (animState == "dizzyWake") || (animState == "dizzy")
 	lagging = false;
 }
 
+if (animState == "land") || (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+	crouchLagging = true;
+} else {
+	crouchLagging = false;
+}
+
 if (animState == "land") || (animState == "dizzy") || (animState == "dizzyWake") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "fairland") || (animState == "jabEnd") {
 	jabLagging = true;
 } else {
@@ -245,7 +251,7 @@ if (animState == "dizzy") {
 	}
 }
 
-if (animState == "land") || (animState == "dizzy") || (animState == "shield") || (animState == "jab") || (animState == "jab2") || (animState == "jab3")  || (animState == "fairland") || (animState == "jabEnd") || lagging {
+if (animState == "land") || (crouchLagging) || (jabLagging) || (animState == "dizzy") || (animState == "shield") || (animState == "jab") || (animState == "jab2") || (animState == "jab3")  || (animState == "fairland") || (animState == "jabEnd") || lagging {
 	hsp = 0;
 	dir = pastDir;
 }
@@ -271,7 +277,7 @@ wasFSmashing = FSmashing;
 direct = sign(image_xscale);
 
 // Crouching
-if (onGround && key_down && !lagging && animState != "crouch" && animState != "shield" && animState != "dtilt") {
+if (onGround && key_down && !crouchLagging && animState != "crouch" && animState != "shield" && animState != "dtilt") {
 	animState = "crouch";
 } 
 if (animState == "crouch" && !key_down) {
@@ -279,8 +285,9 @@ if (animState == "crouch" && !key_down) {
 	animState = "idle";
 	playFrame = 0;
 }
+
 // Tilts
-if (onGround && key_down && key_normal && animState != "dtilt") {
+if (onGround && key_down && key_normal && !crouchLagging && animState != "dtilt") {
 	playFrame = 0;
 	animState = "dtilt";
 }
@@ -367,7 +374,7 @@ if (key_special && !lagging && onGround && !key_up && !key_shield && !key_down &
 }
 
 // Down
-if (key_special && animState != "shield" && !lagging && !key_up && key_down && !key_right && !key_left && canShoot == true) {
+if (key_special && !key_shield && !crouchLagging && !key_up && key_down && !key_right && !key_left && canShoot == true) {
 	if (char == 0) {
 		proj = scr_ProjectileSpawn(char,2,10,10,6,0.01,player,13,0,0,direct)
 		canShoot = false;
@@ -458,3 +465,5 @@ if (animState != "dair") {
 if (animState == "dair" && onGround == true && playFrame < 20) {
 	playFrame = 20;
 }
+print (animState);
+print(airLag);

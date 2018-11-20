@@ -5,6 +5,11 @@ knockbackGivenY = 0;
 percentMultiplier = 0;
 framesGiven = 0;
 maxPauseFrames = 0;
+
+if (playFrame == 0) {
+	hitConnect = false;
+}
+
 if (animState == "idle") {
 	idling = 1;
 	if (crouchFirst) {

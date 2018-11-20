@@ -27,6 +27,7 @@ player = 1;
 // Attacks
 jabCombo = 0;
 jabLagging = false;
+crouchLagging = false;
 FChargeCount = 0;
 FCharge = 0;
 DChargeCount = 0;
