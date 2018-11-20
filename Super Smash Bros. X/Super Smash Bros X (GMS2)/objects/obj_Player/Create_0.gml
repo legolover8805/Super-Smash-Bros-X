@@ -26,6 +26,7 @@ player = 1;
 
 // Attacks
 jabCombo = 0;
+jabLagging = false;
 FChargeCount = 0;
 FCharge = 0;
 DChargeCount = 0;
@@ -40,6 +41,8 @@ hitConnect = false;
 airLag = false;
 airLagCounter = 0;
 airLagMax = 0;
+dizzyCount = 0;
+dizzyMax = 600;
 
 // Damage
 percent = 0;
@@ -85,6 +88,8 @@ wasGNSpecialing = 0;
 wasANSpecialing = 0;
 wasGSSpecialing = 0;
 wasUpSpecialing = 0;
+wasShielding = 0;
+wasDizzy = 0;
 
 // Is
 walking = 0
@@ -109,6 +114,8 @@ GNSpecialing = 0;
 ANSpecialing = 0;
 GSSpecialing = 0;
 upSpecialing = 0;
+shielding = 0;
+isDizzy = 0;
 
 // Frame Counts
 idleFrame = 0;
@@ -133,6 +140,8 @@ GNSpecialFrame = 131;
 ANSpecialFrame = 150;
 GSSpecialFrame = 116;
 upSpecialFrame = 159;
+shieldFrame = 240;
+dizzyFrame = 241;
 
 playFrame = 0;
 
@@ -140,3 +149,4 @@ playFrame = 0;
 
 hurtbox = scr_HurtboxCreate(char,player);
 hitbox = scr_HitboxCreate(char,player);
+shield = scr_ShieldCreate(player);

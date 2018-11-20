@@ -19,3 +19,5 @@ GNSpecialing = 0;
 ANSpecialing = 0;
 GSSpecialing = 0;
 upSpecialing = 0;
+shielding = 0;
+isDizzy = 0;

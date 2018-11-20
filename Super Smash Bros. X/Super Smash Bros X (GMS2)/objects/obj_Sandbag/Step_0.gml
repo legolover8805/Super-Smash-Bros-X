@@ -113,7 +113,7 @@ if (x > room_width) || (x < 0) || (y > room_height) || (y < 0) {
 /*show_debug_message(maxFrames);
 show_debug_message(frames);
 */
-show_debug_message(percent)
+//show_debug_message(percent)
 x = round(x);
 y = round(y);
 

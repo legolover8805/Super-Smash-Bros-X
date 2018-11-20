@@ -916,6 +916,43 @@ if (animState == "idle") {
 		animState = "idle";
 		DSmashFrame = 200;
 	}
+} if (animState == "shield") {
+	shielding = 1;
+	shieldFrame = 240;
+	image_index = shieldFrame;
+} if (animState == "dizzy") {
+	isDizzy = 1;
+	if (playFrame == 0) {
+		dizzyFrame = 241;
+	} else if (playFrame == 4) {
+		dizzyFrame = 242;
+	} else if (playFrame == 8) {
+		dizzyFrame = 243;
+	} else if (playFrame == 14) {
+		dizzyFrame = 244;
+	} else if (playFrame == 20) {
+		dizzyFrame = 243;
+	} else if (playFrame == 26) {
+		dizzyFrame = 242;
+	} 
+	playFrame += 1;
+	if (playFrame == 33) {
+		playFrame = 8;
+	}
+	image_index = dizzyFrame;
+} if (animState == "dizzyWake") {
+	isDizzy = 1;
+	if (playFrame == 0) {
+		dizzyFrame = 242;
+	} else if (playFrame == 12) {
+		dizzyFrame = 241;
+	}
+	playFrame += 1;
+	if (playFrame == 25) {
+		playFrame = 0;
+		animState = "idle";
+	}
+	image_index = dizzyFrame;
 }
 if (wasIdling == 1) && (idling == 0) {
 	wasIdling = 0;
@@ -1021,4 +1058,12 @@ if (wasGNSpecialing == 1) && (GNSpecialing == 0) {
 	wasUpSpecialing = 0;
 	playFrame = 0;
 	upSpecialFrame = 159;
+} if (wasShielding == 1) && (shielding == 0) {
+	wasShielding = 0;
+	playFrame = 0;
+	shieldFrame = 240;
+} if (wasDizzy == 1) && (isDizzy == 0) {
+	wasDizzy = 0;
+	playFrame = 0;
+	dizzyFrame = 241;
 }

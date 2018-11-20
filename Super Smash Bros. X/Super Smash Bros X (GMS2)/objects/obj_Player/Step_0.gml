@@ -59,7 +59,7 @@ if (vsp >= -.5) && (vsp <= .5) && (!onGround) && (animState != "dair") && (key_d
 }
 
 // Jab
-if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && animState != "FCharge" && animState != "DCharge" && animState != "FSmash" && animState != "DSmash") {
+if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && !jabLagging && animState != "FCharge" && animState != "DCharge" && animState != "FSmash" && animState != "DSmash") {
 	if (animState == "jab") {
 		if (jabCombo == 0 && playFrame <= 18) {
 			jabCombo = 1;
@@ -73,6 +73,8 @@ if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up &&
 		animState = "jab";
 	}
 } 
+
+
 
 // Lag
 if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall)) {
@@ -95,12 +97,17 @@ if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall
 }
 
 
-if (animState == "land") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	lagging = true;
 } else {
 	lagging = false;
 }
 
+if (animState == "land") || (animState == "dizzy") || (animState == "dizzyWake") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "fairland") || (animState == "jabEnd") {
+	jabLagging = true;
+} else {
+	jabLagging = false;
+}
 
 
 if (onGround) && (key_jump) { // || key_jumpup
@@ -211,7 +218,34 @@ if (hsp != 0 && vsp == 0) {
 	}
 }
 
-if (animState == "land") || (animState == "jab") || (animState == "jab2") || (animState == "jab3")  || (animState == "fairland") || (animState == "jabEnd") || lagging {
+if (!lagging && onGround && key_shield) {
+	animState = "shield";
+	shield.shielding = true;
+}
+
+if (animState != "shield") {
+	shield.shielding = false;
+}
+
+if (shield.hp <= 0) {
+	animState = "dizzy";
+}
+
+if (animState == "dizzy") {
+	dizzyCount += 1;
+	lagging = true;
+	if (key_mash) {
+		dizzyCount += 2;
+	}
+	if (dizzyCount >= dizzyMax) {
+		animState = "dizzyWake";
+		playFrame = 0;
+		dizzyCount = 0;
+		shield.hp = 30;
+	}
+}
+
+if (animState == "land") || (animState == "dizzy") || (animState == "shield") || (animState == "jab") || (animState == "jab2") || (animState == "jab3")  || (animState == "fairland") || (animState == "jabEnd") || lagging {
 	hsp = 0;
 	dir = pastDir;
 }
@@ -237,7 +271,7 @@ wasFSmashing = FSmashing;
 direct = sign(image_xscale);
 
 // Crouching
-if (onGround && key_down && !lagging && animState != "crouch" && animState != "dtilt") {
+if (onGround && key_down && !lagging && animState != "crouch" && animState != "shield" && animState != "dtilt") {
 	animState = "crouch";
 } 
 if (animState == "crouch" && !key_down) {
@@ -253,9 +287,9 @@ if (onGround && key_down && key_normal && animState != "dtilt") {
 
 
 // Smash Attacks
-if (onGround && !lagging && direct == -1 && key_rsmash) {
+if (onGround && !lagging && !key_shield && direct == -1 && key_rsmash) {
 	dir = 1;
-} else if (onGround && !lagging && direct == 1 && key_lsmash) {
+} else if (onGround && !lagging && !key_shield && direct == 1 && key_lsmash) {
 	dir = -1;
 }
 
@@ -326,14 +360,14 @@ if (onGround && key_normal && !key_right && !key_left && key_down && !key_up && 
 }
 
 // Specials
-if (key_special && !lagging && onGround && !key_up && !key_down && !key_right && !key_left && canShoot == true) {
+if (key_special && !lagging && onGround && !key_up && !key_shield && !key_down && !key_right && !key_left && canShoot == true) {
 	animState = "GroundNSpecial";
-} else if (!onGround && !key_normal && !airLagging && !key_left && !key_right && !key_down && !key_up && key_special && canShoot == true) {
+} else if (!onGround && !key_normal && !airLagging && !key_shield && !key_left && !key_right && !key_down && !key_up && key_special && canShoot == true) {
 	animState = "AirNSpecial";
 }
 
 // Down
-if (key_special && !key_up && key_down && !key_right && !key_left && canShoot == true) {
+if (key_special && animState != "shield" && !lagging && !key_up && key_down && !key_right && !key_left && canShoot == true) {
 	if (char == 0) {
 		proj = scr_ProjectileSpawn(char,2,10,10,6,0.01,player,13,0,0,direct)
 		canShoot = false;
@@ -350,11 +384,11 @@ if (canShoot == false) {
 	}
 } 
 
-if (key_special && !lagging && onGround && !key_up && !key_down && (key_right || key_left)) {
+if (key_special && !lagging && onGround && !key_shield && !key_up && !key_down && (key_right || key_left)) {
 	animState = "GroundSSpecial";
 }
 
-if (key_special && key_up && !airLagging && !isFreeFalling) {
+if (key_special && key_up && !lagging && !key_shield && !airLagging && !isFreeFalling) {
 	if (animState != "UpSpecial") {
 		animState = "UpSpecial";
 		isFreeFalling = true;
@@ -369,6 +403,8 @@ if (animState == "nair") || (animState == "dair") || (animState == "fair") || (a
 if (onGround) && (isFreeFalling) {
 	isFreeFalling = false;
 }
+
+
 
 framesGiven = 0;
 scr_PAnimVars();
@@ -409,6 +445,11 @@ with hitbox {
 with proj {
 	proj = other.proj;
 }
+with shield {
+	direct = other.direct;
+	x = other.x-5*other.direct;
+	y = other.y+2;
+}
 
 // Fixing
 if (animState != "dair") {
@@ -417,4 +458,3 @@ if (animState != "dair") {
 if (animState == "dair" && onGround == true && playFrame < 20) {
 	playFrame = 20;
 }
-
