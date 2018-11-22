@@ -103,9 +103,11 @@ if (hsp < 0) && (hsp > -.01) {
 x += hsp;
 
 if (x > room_width) || (x < 0) || (y > room_height) || (y < 0) {
-	x = 896;
-	y = 416;
+	x = reviveX;
+	y = reviveY;
 	hsp = 0;
+	isPaused = false;
+	isHit = 0;
 	vsp = 0;
 	percent = 0;
 }

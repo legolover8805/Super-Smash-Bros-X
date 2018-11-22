@@ -24,3 +24,5 @@ isMeteorSmashed = false;
 stayMeteor = false;
 savedBackY = 0;
 onGround = true;
+reviveX = x;
+reviveY = y;

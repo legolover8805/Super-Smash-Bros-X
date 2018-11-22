@@ -1,18 +1,18 @@
 {
-    "id": "d0f77d67-3b1e-4857-941b-35e3c8a77e16",
+    "id": "2c277f84-8ca6-49ed-846e-3f14b793b48a",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "obj_Wall",
+    "name": "obj_StageEnd",
     "eventList": [
         {
-            "id": "71a60596-4c58-47c0-a34d-839f3ef5f75d",
+            "id": "b094c21b-b59e-4f62-9350-a89370cd7a99",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 0,
-            "m_owner": "d0f77d67-3b1e-4857-941b-35e3c8a77e16"
+            "m_owner": "2c277f84-8ca6-49ed-846e-3f14b793b48a"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
@@ -33,6 +33,6 @@
     "physicsStartAwake": true,
     "properties": null,
     "solid": false,
-    "spriteId": "ab73fd84-0875-4ece-8382-0b443dec1062",
+    "spriteId": "337c191f-37e9-44f4-8219-cd4d5fb322f5",
     "visible": true
 }
