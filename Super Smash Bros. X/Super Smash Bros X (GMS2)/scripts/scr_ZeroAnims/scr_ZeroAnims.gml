@@ -259,6 +259,7 @@ if (animState == "idle") {
 		animState = "quickfall";
 	}
 	image_index = fairFrame;
+	
 }else if (animState == "jab") {
 	jabbing = 1;
 	if (playFrame == 0) {
@@ -865,7 +866,9 @@ if (animState == "idle") {
 		playFrame = 8;
 	}
 	image_index = DChargeFrame;
-} if (animState == "DSmash") {
+} 
+
+if (animState == "DSmash") {
 	DSmashing = 1;
 	if (playFrame == 0) {
 		DSmashFrame = 200;
@@ -958,7 +961,70 @@ if (animState == "idle") {
 		animState = "idle";
 	}
 	image_index = dizzyFrame;
+} if (animState == "fRoll") {
+	fRolling = 1;
+	if (playFrame == 0) {
+		fRollFrame = 245;
+	} else if (playFrame == 3) {
+		fRollFrame = 246;
+	} else if (playFrame == 6) {
+		fRollFrame = 247;
+	} else if (playFrame == 9) {
+		fRollFrame = 249;
+	} else if (playFrame == 12) {
+		fRollFrame = 250;
+	} else if (playFrame == 16) {
+		fRollFrame = 251;
+	} else if (playFrame == 22) {
+		fRollFrame = 252;
+	}
+	playFrame += 1;
+	if (playFrame == 29) {
+		playFrame = 0;
+		animState = "shield";
+	}
+	image_index = fRollFrame;
+} if (animState == "bRoll") {
+	bRolling = 1;
+	if (playFrame == 0) {
+		bRollFrame = 253;
+	} else if (playFrame == 3) {
+		bRollFrame = 254;
+	} else if (playFrame == 6) {
+		bRollFrame = 255;
+	} else if (playFrame == 9) {
+		bRollFrame = 256;
+	} else if (playFrame == 18) {
+		bRollFrame = 257;
+	}
+	playFrame += 1;
+	if (playFrame == 29) {
+		playFrame = 0;
+		animState = "shield";
+	}
+	image_index = bRollFrame;
+} if (animState == "spotDodge") {
+	spotDodging = 1;
+	if (playFrame == 0) {
+		spotDodgeFrame = 258;
+	} else if (playFrame == 5) {
+		spotDodgeFrame = 259;
+	} else if (playFrame == 10) {
+		spotDodgeFrame = 260;
+	} else if (playFrame == 15) {
+		spotDodgeFrame = 261;
+	} else if (playFrame == 25) {
+		spotDodgeFrame = 260;
+	}
+	playFrame += 1;
+	if (playFrame == 27) {
+		playFrame = 0;
+		animState = "shield";
+	}
+	image_index = spotDodgeFrame;
 }
+
+
 if (wasIdling == 1) && (idling == 0) {
 	wasIdling = 0;
 	playFrame = 0;
@@ -1071,4 +1137,16 @@ if (wasGNSpecialing == 1) && (GNSpecialing == 0) {
 	wasDizzy = 0;
 	playFrame = 0;
 	dizzyFrame = 241;
+} if (wasFRolling == 1) && (fRolling == 0) {
+	wasFRolling = 0;
+	playFrame = 0;
+	fRollFrame = 245;
+} if (wasBRolling == 1) && (bRolling == 0) {
+	wasBRolling = 0;
+	playFrame = 0;
+	bRollFrame = 253;
+} if (wasSpotDodging == 1) && (spotDodging == 0) {
+	wasSpotDodging = 0;
+	playFrame = 0;
+	spotDodgeFrame = 258;
 }

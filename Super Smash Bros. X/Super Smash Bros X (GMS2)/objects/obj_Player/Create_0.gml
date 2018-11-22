@@ -16,6 +16,7 @@ onGround = true;
 landCount = 0;
 direct = 0;
 proj = noone;
+onLedge = false;
 
 // Definition
 char = 0;
@@ -44,6 +45,21 @@ airLagCounter = 0;
 airLagMax = 0;
 dizzyCount = 0;
 dizzyMax = 600;
+
+// Dodges
+fRollCount = 0;
+fRSpeedStart = 12;
+fRSpeedEnd = 20;
+fRSwap = 12;
+fRollMax = 29;
+bRollCount = 0;
+bRSpeedStart = 7;
+bRSpeedEnd = 20;
+bRollMax = 29;
+fRollSpeed = 3;
+fRollSpd = 3;
+bRollSpeed = 3;
+bRollSpd = 3;
 
 // Damage
 percent = 0;
@@ -91,6 +107,9 @@ wasGSSpecialing = 0;
 wasUpSpecialing = 0;
 wasShielding = 0;
 wasDizzy = 0;
+wasFRolling = 0;
+wasBRolling = 0;
+wasSpotDodging = 0;
 
 // Is
 walking = 0
@@ -117,6 +136,9 @@ GSSpecialing = 0;
 upSpecialing = 0;
 shielding = 0;
 isDizzy = 0;
+fRolling = 0;
+bRolling = 0;
+spotDodging = 0;
 
 // Frame Counts
 idleFrame = 0;
@@ -143,6 +165,9 @@ GSSpecialFrame = 116;
 upSpecialFrame = 159;
 shieldFrame = 240;
 dizzyFrame = 241;
+fRollFrame = 245;
+bRollFrame = 253;
+spotDodgeFrame = 258;
 
 playFrame = 0;
 

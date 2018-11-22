@@ -21,3 +21,6 @@ GSSpecialing = 0;
 upSpecialing = 0;
 shielding = 0;
 isDizzy = 0;
+fRolling = 0;
+bRolling = 0;
+spotDodging = 0;
