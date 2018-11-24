@@ -1026,6 +1026,119 @@ if (animState == "DSmash") {
 		animState = "shield";
 	}
 	image_index = spotDodgeFrame;
+} if (animState == "ledgeGrab") {
+	ledgeGrabbing = 1;
+	if (playFrame == 0) {
+		ledgeGrabFrame = 232;
+	} else if (playFrame == 5) {
+		ledgeGrabFrame = 233;
+	} else if (playFrame == 10) {
+		ledgeGrabFrame = 234;
+	} else if (playFrame == 14) {
+		ledgeGrabFrame = 235;
+	} else if (playFrame == 18) {
+		ledgeGrabFrame = 236;
+		canClimb = true;
+	} 
+	playFrame += 1;
+	image_index = ledgeGrabFrame;
+} if (animState == "ledgeClimb") {
+	ledgeClimbing = 1;
+	if (playFrame == 0) {
+		ledgeClimbFrame = 237;
+	} else if (playFrame == 6) {
+		ledgeClimbFrame = 238;
+	} else if (playFrame == 16) {
+		ledgeClimbFrame = 239;
+	}
+	playFrame += 1;
+	if (playFrame == 27) {
+		playFrame = 0;
+		animState = "idle";
+	}
+	image_index = ledgeClimbFrame;
+} if (animState == "ledgeClimbJump") {
+	ledgeClimbJumping = 1;
+	if (playFrame == 0) {
+		ledgeClimbJumpFrame = 237;
+	} else if (playFrame == 5) {
+		ledgeClimbJumpFrame = 238;
+	} else if (playFrame == 10) {
+		ledgeClimbJumpFrame = 239;
+	}
+	playFrame += 1;
+	if (playFrame == 14) {
+		playFrame = 0;
+		jumps += 1;
+		vsp = jsp;
+		animState = "jumpUp";
+	}
+	image_index = ledgeClimbJumpFrame;
+} if (animState == "ledgeClimbAttack") {
+	ledgeClimbAttacking = 1;
+	if (playFrame == 0) {
+		ledgeClimbAttackFrame = 237;
+	} else if (playFrame == 5) {
+		ledgeClimbAttackFrame = 238;
+	} else if (playFrame == 10) {
+		ledgeClimbAttackFrame = 239;
+	}
+	playFrame += 1;
+	if (playFrame == 14) {
+		playFrame = 0;
+		animState = "dtilt";
+	}
+	image_index = ledgeClimbAttackFrame;
+} if (animState == "bair") {
+	bairing = 1;
+	if (playFrame == 0) {
+		bairFrame = 262;
+	} else if (playFrame == 2) {
+		bairFrame = 263;
+	} else if (playFrame == 4) {
+		bairFrame = 264;
+	} else if (playFrame == 6) {
+		bairFrame = 265;
+	} else if (playFrame == 8) {
+		bairFrame = 266;
+	} else if (playFrame == 10) {
+		bairFrame = 267;
+	} else if (playFrame == 12) {
+		bairFrame = 268;
+	} else if (playFrame == 14) {
+		bairFrame = 269;
+	} else if (playFrame == 16) {
+		bairFrame = 270;
+	} else if (playFrame == 18) {
+		bairFrame = 271;
+	}
+	playFrame += 1;
+	if (playFrame == 21) {
+		playFrame = 0;
+		animState = "fall";
+		airLag = true;
+		airLagMax = 60;
+	}
+	if (bairFrame == 264) {
+		damageGiven = 10;
+		knockbackGivenX = 25;
+		knockbackGivenY = 8;
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+	} else if (bairFrame == 265) || (bairFrame == 266) {
+		damageGiven = 8;
+		knockbackGivenX = 18;
+		knockbackGivenY = 5;
+		percentMultiplier = 0.01;
+		framesGiven = 20;
+	} else if (bairFrame == 267) || (bairFrame == 268) {
+		damageGiven = 6;
+		knockbackGivenX = 12;
+		knockbackGivenY = 4;
+		percentMultiplier = 0.01;
+		framesGiven = 20;
+	} 
+	image_index = bairFrame;
 }
 
 
@@ -1086,6 +1199,11 @@ if (wasNairing == 1) && (nairing == 0) {
 	wasNairing = 0;
 	playFrame = 0;
 	nairFrame = 142;
+}
+if (wasBairing == 1) && (bairing == 0) {
+	wasBairing = 0;
+	playFrame = 0;
+	bairFrame = 262;
 }
 if (wasDairing == 1) && (dairing == 0) {
 	wasDairing = 0;
@@ -1153,4 +1271,20 @@ if (wasGNSpecialing == 1) && (GNSpecialing == 0) {
 	wasSpotDodging = 0;
 	playFrame = 0;
 	spotDodgeFrame = 258;
+} if (wasLedgeGrabbing == 1) && (ledgeGrabbing == 0) {
+	wasLedgeGrabbing = 0;
+	playFrame = 0;
+	ledgeGrabFrame = 232;
+} if (wasLedgeClimbing == 1) && (ledgeClimbing == 0) {
+	wasLedgeClimbing= 0;
+	playFrame = 0;
+	ledgeClimbFrame = 237;
+} if (wasLedgeClimbJumping == 1) && (ledgeClimbJumping == 0) {
+	wasLedgeClimbJumping= 0;
+	playFrame = 0;
+	ledgeClimbJumpFrame = 237;
+} if (wasLedgeClimbAttacking == 1) && (ledgeClimbAttacking == 0) {
+	wasLedgeClimbAttacking= 0;
+	playFrame = 0;
+	ledgeClimbAttackFrame = 237;
 }

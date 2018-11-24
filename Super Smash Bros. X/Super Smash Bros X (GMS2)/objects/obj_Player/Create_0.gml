@@ -18,6 +18,16 @@ direct = 0;
 proj = noone;
 onLedge = false;
 floorDistance = 0;
+airStopped = false;
+ledge = noone;
+hangLedge = false;
+ledgeHeight = 30;
+ledgeDist = 28;
+notLedge = 0;
+notLedgeMax = 0;
+ledgeTop = 58;
+ledgeHor = 48;
+canClimb = false;
 
 // Definition
 char = 0;
@@ -96,6 +106,7 @@ wasJabbing = 0;
 wasDownTilting = 0;
 wasFairing = 0;
 wasNairing = 0;
+wasBairing = 0;
 wasDairing = 0;
 wasFairLanding = 0;
 wasFCharging = 0;
@@ -111,6 +122,10 @@ wasDizzy = 0;
 wasFRolling = 0;
 wasBRolling = 0;
 wasSpotDodging = 0;
+wasLedgeGrabbing = 0;
+wasLedgeClimbing = 0;
+wasLedgeClimbJumping = 0;
+wasLedgeClimbAttacking = 0;
 
 // Is
 walking = 0
@@ -125,6 +140,7 @@ jabbing = 0;
 downTilting = 0;
 fairing = 0;
 nairing = 0;
+bairing = 0;
 dairing = 0;
 fairLanding = 0;
 FCharging = 0;
@@ -140,6 +156,11 @@ isDizzy = 0;
 fRolling = 0;
 bRolling = 0;
 spotDodging = 0;
+ledgeGrabbing = 0;
+ledgeClimbing = 0;
+ledgeClimbJumping = 0;
+ledgeClimbAttacking = 0;
+
 
 // Frame Counts
 idleFrame = 0;
@@ -154,6 +175,7 @@ jabFrame = 37;
 downTiltFrame = 186;
 fairFrame = 0;
 nairFrame = 0;
+bairFrame = 262;
 dairFrame = 175;
 fairLandFrame = 0;
 FChargeFrame = 88;
@@ -169,6 +191,10 @@ dizzyFrame = 241;
 fRollFrame = 245;
 bRollFrame = 253;
 spotDodgeFrame = 258;
+ledgeGrabFrame = 232;
+ledgeClimbFrame = 237;
+ledgeClimbJumpFrame = 237;
+ledgeClimbAttackFrame = 237;
 
 playFrame = 0;
 

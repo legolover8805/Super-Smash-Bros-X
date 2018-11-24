@@ -23,6 +23,16 @@ if (!onGround && !airLagging && animState != "quickFall"){
 			animState = "fair";
 			playFrame = 0;
 		}
+	} if ((direct == -1) && !airLag && ((key_right && key_normal) || (key_rsmashp))) {
+		if (animState != "bair") {
+			animState = "bair";
+			playFrame = 0;
+		}
+	} if ((direct == 1) && !airLag && ((key_left && key_normal) || (key_lsmashp))){
+		if (animState != "bair") {
+			animState = "bair";
+			playFrame = 0;
+		}
 	} if ((!airLag) && (key_down && key_normal)) || ((key_dsmash) && !airLag){ 
 		if (animState != "dair") {
 			animState = "dair";
@@ -35,6 +45,7 @@ if (!onGround && !airLagging && animState != "quickFall"){
 		}
 	}
 } 
+
 
 if (airLag) {
 	if (airLagCounter < airLagMax) {
@@ -78,42 +89,47 @@ if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up &&
 
 // Lag
 if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall)) {
-	if (animState == "fair") {
-		playFrame = 0;
-		animState = "fairland";
-	} else if (animState == "dair" && !isDairLanding) {
-		playFrame = 20;
-		isDairLanding = true;
-	} else if (isDairLanding) {
-		if (playFrame < 20) {
+	if (!airStopped) {
+		if (animState == "fair") {
+			playFrame = 0;
+			animState = "fairland";
+		} else if (animState == "dair" && !isDairLanding) {
 			playFrame = 20;
+			isDairLanding = true;
+		} else if (isDairLanding) {
+			if (playFrame < 20) {
+				playFrame = 20;
+			}
+			isDairLanding = true;
+		} else {
+			animState = "land";
 		}
-		isDairLanding = true;
-	} else {
-		animState = "land";
 	}
 } else if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp-4,obj_Wall)) {
-	animState = "fall";
+	if (!airStopped) {
+		animState = "fall";
+	}
 }
 
 
-if (animState == "land") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") ||  (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") ||  (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	lagging = true;
 } else {
 	lagging = false;
 }
 
-if (animState == "land") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	crouchLagging = true;
 } else {
 	crouchLagging = false;
 }
 
-if (animState == "land") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzy") || (animState == "dizzyWake") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzy") || (animState == "dizzyWake") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "fairland") || (animState == "jabEnd") {
 	jabLagging = true;
 } else {
 	jabLagging = false;
 }
+
 
 if (!onGround && animState == "shield") {
 	animState = "jumpUp";
@@ -126,7 +142,7 @@ if (onGround) && (key_jump) { // || key_jumpup
 		animState = "jumpUp";
 	}
 } else if (!onGround) && (key_jump) && (!airLagging) && (jumps < jmax) {
-	if (!lagging && !airLag && animState != "dair") {
+	if (!lagging && !airLag && animState != "UpSpecial" && animState != "dair") {
 		jumps += 1;
 		vsp = jsp;
 		hasJump = 1;
@@ -145,7 +161,7 @@ if (vsp < 0) && (!key_jumpheld) && (!key_jumpupheld) {
 }
 
 if (vsp >= 0) {
-	if (!lagging) && !airLagging && (animState != "UpSpecial") && (animState != "quickFall") && (animState != "dair") && (animState != "nair") && (animState != "AirNSpecial") && (animState != "fair") {
+	if (!lagging) && !airLagging && (animState != "bair") && (animState != "UpSpecial") && (animState != "quickFall") && (animState != "dair") && (animState != "nair") && (animState != "AirNSpecial") && (animState != "fair") {
 		animState = "fall";
 	}
 	/*if (animState == "fair") {
@@ -167,11 +183,74 @@ if (place_meeting(x,y+vsp,obj_Wall)) {
 	vsp = 0;
 }
 
+if (hangLedge) {
+	animState = "ledgeGrab";
+	airLag = false;
+	isFreeFalling = false;
+	onGround = false;
+	airStopped = true;
+	dir = ledge.side;
+	if (ledge.side == -1) {
+		x = ledge.x - ledge.sprite_width + ledgeDist;
+	} else {
+		x = ledge.x - ledgeDist;
+	}
+	y = ledge.y + ledgeHeight;
+	hsp = 0;
+	vsp = 0;
+	if (canClimb) {
+		if (key_jump || key_jumpup) {
+			animState = "ledgeClimbJump";
+			playFrame = 0;
+			hangLedge = false;
+			x += ledgeHor*direct;
+			y -= ledgeTop;
+			notLedgeMax = 60;
+			jumps = 0;
+		}
+		if (key_normal) {
+			animState = "ledgeClimbAttack";
+			playFrame = 0;
+			hangLedge = false;
+			x += ledgeHor*direct;
+			y -= ledgeTop;
+			notLedgeMax = 60;
+			jumps = 0;
+		}
+		if (direct == 1 && key_backward) || (direct == -1 && key_forward) {
+			hsp = 5*direct;
+			dir *= -1;
+			notLedgeMax = 40;
+			hangLedge = false;
+			playFrame = 0;
+			animState = "fall";
+			jumps = 1;
+		} else if (direct == 1 && key_forward) || (direct == -1 && key_backward) {
+			hangLedge = false;
+			playFrame = 0;
+			animState = "ledgeClimb";
+			x += ledgeHor*direct;
+			y -= ledgeTop;
+			notLedgeMax = 60;
+			jumps = 0;
+		}
+	}
+} else {
+	canClimb = false;
+	airStopped = false;
+}
+
 y = y + vsp;
 
-// Walk Movement
-var pastDir = dir;
-dir = key_right - key_left;
+if (notLedgeMax > 0) {
+	notLedge += 1;
+	if (notLedge == notLedgeMax) {
+		notLedgeMax = 0;
+	}
+} else {
+	notLedge = 0;
+}
+
 
 /*if (dir == 0 && pastDir != 0 && onGround) {
 	direct = pastDir;
@@ -182,6 +261,9 @@ if (jabbing == 1) {
 	dir = pastDir;
 }*/
 
+// Walk Movement
+pastDir = dir;
+dir = key_right - key_left;
 if (hsp > 0) && (dir == 0) && (isSkid == 0) && (vsp != 0) {
 	hsp -= decel;
 	if (hsp < .75) {
@@ -201,7 +283,7 @@ if (hsp > 0) && (dir == 0) && (isSkid == 0) && (vsp != 0) {
 } else {
 	if (vsp != 0) {
 		hsp = dir * wasp;
-		if (!key_jumpup && !key_jump) {
+		if (!key_jumpup && !key_jump) || (airLagging) || (airLag) || (animState == "UpSpecial") {
 			dir = pastDir;
 		}
 	} else {
@@ -209,6 +291,7 @@ if (hsp > 0) && (dir == 0) && (isSkid == 0) && (vsp != 0) {
 	}
 	isSkid = 0;
 }
+
 
 // Horizontal Collision
 if (place_meeting(x+hsp,y,obj_Wall)) {
@@ -218,12 +301,12 @@ if (place_meeting(x+hsp,y,obj_Wall)) {
 	hsp = 0;
 }
 
-if (hsp != 0 && vsp == 0) {
+if (hsp != 0 && !hangLedge && vsp == 0) {
 	if (!lagging) {
 		animState = "walk";
 	}
 } else if (hsp == 0 && vsp == 0) {
-	if (!lagging && !isDairLanding) {
+	if (!lagging && !hangLedge && !isDairLanding) {
 		animState = "idle";
 	}
 }
@@ -352,6 +435,7 @@ wasCrouching = crouching
 wasDownTilting = downTilting;
 wasFairing = fairing;
 wasNairing = nairing;
+wasBairing = bairing;
 wasDairing = dairing;
 wasFairLanding = fairLanding;
 wasDCharging = DCharging;
@@ -364,6 +448,11 @@ wasShielding = shielding;
 wasDizzy = isDizzy;
 wasFRolling = fRolling;
 wasBRolling = bRolling;
+wasSpotDodging = spotDodging;
+wasLedgeGrabbing = ledgeGrabbing;
+wasLedgeClimbing = ledgeClimbing;
+wasLedgeClimbJumping = ledgeClimbJumping;
+wasLedgeClimbAttacking = ledgeClimbAttacking;
 
 direct = sign(image_xscale);
 
@@ -493,7 +582,7 @@ if (key_special && key_up && !lagging && !key_shield && !airLagging && !isFreeFa
 		vsp = -5;
 	}
 }
-if (animState == "nair") || (animState == "dair") || (animState == "fair") || (animState == "AirNSpecial") || (isFreeFalling) || (animState == "UpSpecial") {
+if (animState == "nair") || (animState == "bair") || (animState == "ledgeGrab") || (animState == "dair") || (animState == "fair") || (animState == "AirNSpecial") || (isFreeFalling) || (animState == "UpSpecial") {
 	airLagging = true;
 } else {
 	airLagging = false;
