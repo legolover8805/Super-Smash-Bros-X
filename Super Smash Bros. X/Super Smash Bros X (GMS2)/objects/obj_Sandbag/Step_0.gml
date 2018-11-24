@@ -126,3 +126,21 @@ with hurtbox {
 	image_yscale = other.image_yscale;
 	image_index = other.image_index;
 }
+floorDistance = distance_to_object(obj_Wall)+yHalfSize;
+heightDistance = distance_to_object(obj_StageLength)+yHalfSize;
+
+with shadow {
+	x = other.x;
+	floorDistance = other.floorDistance;
+	heightDistance = other.heightDistance;
+	if (other.onGround) {
+		y = other.y+floorDistance;
+		isVisible = true;
+	} else {
+		isVisible = false;
+	}
+	if (heightDistance < 0) {
+		isVisible = false;
+		image_alpha = 0;
+	}
+}

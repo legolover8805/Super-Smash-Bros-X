@@ -256,7 +256,9 @@ if (animState == "idle") {
 	}
 	if (playFrame == 21) {
 		playFrame = 0;
-		animState = "quickfall";
+		airLag = true;
+		airLagMax = 40;
+		animState = "fall";
 	}
 	image_index = fairFrame;
 	
@@ -611,6 +613,8 @@ if (animState == "idle") {
 	if (playFrame == 17) {
 		playFrame = 0;
 		animState = "fall";
+		airLag = true;
+		airLagMax = 60;
 	}
 	if (nairFrame < 147) {
 		damageGiven = 12;

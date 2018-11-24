@@ -15,7 +15,8 @@
         "5b23a1ae-0d33-4dc3-b373-01f3b7b73d75",
         "4747a97c-4b5b-452e-bb75-b43b1fd875b6",
         "58abaa9e-8351-4073-8d5b-e7f59aa7d94b",
-        "9db45f63-f729-4b6b-a174-84a45fbbe73f"
+        "9db45f63-f729-4b6b-a174-84a45fbbe73f",
+        "b6f033bb-6a37-4d37-83b0-85e68bb7c799"
     ],
     "IsDnD": false,
     "layers": [
@@ -46,9 +47,35 @@
         },
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
+            "name": "FrontEffects",
+            "id": "a6453bef-1720-48f1-844b-8838ee98c1b0",
+            "depth": 100,
+            "grid_x": 32,
+            "grid_y": 32,
+            "hierarchyFrozen": false,
+            "hierarchyVisible": true,
+            "inheritLayerDepth": false,
+            "inheritLayerSettings": false,
+            "inheritSubLayers": false,
+            "inheritVisibility": false,
+            "instances": [
+
+            ],
+            "layers": [
+
+            ],
+            "m_parentID": "00000000-0000-0000-0000-000000000000",
+            "m_serialiseFrozen": false,
+            "modelName": "GMRInstanceLayer",
+            "mvc": "1.0",
+            "userdefined_depth": false,
+            "visible": true
+        },
+        {
+            "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Shield_Layer",
             "id": "a7f5c90f-5d5d-4df3-aa35-93b0a11f25da",
-            "depth": 100,
+            "depth": 200,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -74,7 +101,7 @@
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Box_Layer",
             "id": "207656e6-ef50-4ee2-a824-c6e3e0ac694b",
-            "depth": 200,
+            "depth": 300,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -100,7 +127,33 @@
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Projectiles",
             "id": "29bd4f85-1c61-4a12-9fa7-06e505d3d2c7",
-            "depth": 300,
+            "depth": 400,
+            "grid_x": 32,
+            "grid_y": 32,
+            "hierarchyFrozen": false,
+            "hierarchyVisible": true,
+            "inheritLayerDepth": false,
+            "inheritLayerSettings": false,
+            "inheritSubLayers": false,
+            "inheritVisibility": false,
+            "instances": [
+
+            ],
+            "layers": [
+
+            ],
+            "m_parentID": "00000000-0000-0000-0000-000000000000",
+            "m_serialiseFrozen": false,
+            "modelName": "GMRInstanceLayer",
+            "mvc": "1.0",
+            "userdefined_depth": false,
+            "visible": true
+        },
+        {
+            "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
+            "name": "FrontPlayerEffect",
+            "id": "6d0d3399-3586-4341-9597-3d915e804c67",
+            "depth": 500,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -126,7 +179,7 @@
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Players",
             "id": "a4380d9c-89d3-461d-a9f4-ade06c85af8f",
-            "depth": 400,
+            "depth": 600,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -153,7 +206,7 @@
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Instances",
             "id": "ecb2aaa1-d649-48e3-ba11-9102ea8973ea",
-            "depth": 500,
+            "depth": 700,
             "grid_x": 1,
             "grid_y": 1,
             "hierarchyFrozen": false,
@@ -182,9 +235,35 @@
         },
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
+            "name": "BGFrontEffects",
+            "id": "e533d27a-8bd9-4392-9069-5f7fb540adf6",
+            "depth": 800,
+            "grid_x": 32,
+            "grid_y": 32,
+            "hierarchyFrozen": false,
+            "hierarchyVisible": true,
+            "inheritLayerDepth": false,
+            "inheritLayerSettings": false,
+            "inheritSubLayers": false,
+            "inheritVisibility": false,
+            "instances": [
+{"name": "inst_2C67A8FE","id": "b6f033bb-6a37-4d37-83b0-85e68bb7c799","colour": { "Value": 4294967295 },"creationCodeFile": "","creationCodeType": "","ignore": false,"inheritCode": false,"inheritItemSettings": false,"IsDnD": false,"m_originalParentID": "00000000-0000-0000-0000-000000000000","m_serialiseFrozen": false,"modelName": "GMRInstance","name_with_no_file_rename": "inst_2C67A8FE","objId": "1daa6314-366d-44b4-b832-5ca80e3b33dd","properties": null,"rotation": 0,"scaleX": 4.276667,"scaleY": 1,"mvc": "1.0","x": -2.000031,"y": 465}
+            ],
+            "layers": [
+
+            ],
+            "m_parentID": "00000000-0000-0000-0000-000000000000",
+            "m_serialiseFrozen": false,
+            "modelName": "GMRInstanceLayer",
+            "mvc": "1.0",
+            "userdefined_depth": false,
+            "visible": true
+        },
+        {
+            "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Stage",
             "id": "13494be9-4ddd-4c97-a161-2d11ea8b710a",
-            "depth": 600,
+            "depth": 900,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -213,7 +292,7 @@
             "animationFPS": 15,
             "animationSpeedType": "0",
             "colour": { "Value": 4293214765 },
-            "depth": 700,
+            "depth": 1000,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,

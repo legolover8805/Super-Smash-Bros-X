@@ -17,6 +17,7 @@ landCount = 0;
 direct = 0;
 proj = noone;
 onLedge = false;
+floorDistance = 0;
 
 // Definition
 char = 0;
@@ -172,7 +173,14 @@ spotDodgeFrame = 258;
 playFrame = 0;
 
 // Boxes
-
 hurtbox = scr_HurtboxCreate(char,player);
 hitbox = scr_HitboxCreate(char,player);
+
+// Effects
 shield = scr_ShieldCreate(player);
+shadow = scr_ShadowCreate(.75,.1);
+yHalfSize = 25;
+xDisjoint = 2;
+headHeight = 16;
+starRight = 7;
+starLeft = 20;

@@ -26,3 +26,6 @@ savedBackY = 0;
 onGround = true;
 reviveX = x;
 reviveY = y;
+shadow = scr_ShadowCreate(.4,.1);
+yHalfSize = 21;
+xDisjoint = 2;

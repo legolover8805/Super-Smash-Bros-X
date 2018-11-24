@@ -115,6 +115,9 @@ if (animState == "land") || (animState == "spotDodge") || (animState == "fRoll")
 	jabLagging = false;
 }
 
+if (!onGround && animState == "shield") {
+	animState = "jumpUp";
+}
 
 if (onGround) && (key_jump) { // || key_jumpup
 	if (!lagging) {
@@ -123,7 +126,7 @@ if (onGround) && (key_jump) { // || key_jumpup
 		animState = "jumpUp";
 	}
 } else if (!onGround) && (key_jump) && (!airLagging) && (jumps < jmax) {
-	if (!lagging && animState != "dair") {
+	if (!lagging && !airLag && animState != "dair") {
 		jumps += 1;
 		vsp = jsp;
 		hasJump = 1;
@@ -145,11 +148,11 @@ if (vsp >= 0) {
 	if (!lagging) && !airLagging && (animState != "UpSpecial") && (animState != "quickFall") && (animState != "dair") && (animState != "nair") && (animState != "AirNSpecial") && (animState != "fair") {
 		animState = "fall";
 	}
-	if (animState == "fair") {
+	/*if (animState == "fair") {
 		if (playFrame == 19) {
 			animState = "fall";
 		}
-	}
+	}*/
 }
 
 // Vertical Collision
@@ -239,6 +242,16 @@ if (shield.hp <= 0) {
 }
 
 if (animState == "dizzy") {
+	if (dizzyCount == 0) {
+		star1 = scr_StarCreate(x+starRight,x-starLeft,.5,.25,.25);
+		star2 = scr_StarCreate(x+starRight,x-starLeft,.5,.25,.25);
+		star3 = scr_StarCreate(x+starRight,x-starLeft,.5,.25,.25);
+		star4 = scr_StarCreateBG(x+starRight,x-starLeft,-.5,.25,.25);
+		star5 = scr_StarCreateBG(x+starRight,x-starLeft,-.5,.25,.25);
+		star2.x -= 9;
+		star3.x -= 18;
+		star4.x -= 9;
+	}
 	dizzyCount += 1;
 	lagging = true;
 	if (key_mash) {
@@ -249,6 +262,11 @@ if (animState == "dizzy") {
 		playFrame = 0;
 		dizzyCount = 0;
 		shield.hp = 30;
+		star1.isAlive = false;
+		star2.isAlive = false;
+		star3.isAlive = false;
+		star4.isAlive = false;
+		star5.isAlive = false;
 	}
 }
 
@@ -447,7 +465,7 @@ if (key_special && !lagging && onGround && !key_up && !key_shield && !key_down &
 }
 
 // Down
-if (key_special && !key_shield && !crouchLagging && !key_up && key_down && !key_right && !key_left && canShoot == true) {
+if (key_special && !key_shield && !crouchLagging && key_down && canShoot == true) {
 	if (char == 0) {
 		proj = scr_ProjectileSpawn(char,2,10,10,6,0.01,player,13,0,0,direct)
 		canShoot = false;
@@ -529,6 +547,25 @@ with shield {
 	direct = other.direct;
 	x = other.x-5*other.direct;
 	y = other.y+2;
+}
+
+floorDistance = distance_to_object(obj_Wall)+yHalfSize;
+heightDistance = distance_to_object(obj_StageLength)+yHalfSize;
+
+with shadow {
+	x = other.x-other.xDisjoint*other.direct;
+	floorDistance = other.floorDistance;
+	heightDistance = other.heightDistance;
+	if (other.onGround) {
+		y = other.y+floorDistance;
+		isVisible = true;
+	} else {
+		isVisible = false;
+	}
+	if (heightDistance < 0) {
+		isVisible = false;
+		image_alpha = 0;
+	}
 }
 
 // Fixing
