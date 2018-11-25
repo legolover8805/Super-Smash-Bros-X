@@ -325,7 +325,7 @@ if (shield.hp <= 0) {
 }
 
 if (animState == "dizzy") {
-	if (dizzyCount == 0) {
+	if (dizzyCount == 0 && direct == 1) {
 		star1 = scr_StarCreate(x+starRight,x-starLeft,.5,.25,.25);
 		star2 = scr_StarCreate(x+starRight,x-starLeft,.5,.25,.25);
 		star3 = scr_StarCreate(x+starRight,x-starLeft,.5,.25,.25);
@@ -334,6 +334,15 @@ if (animState == "dizzy") {
 		star2.x -= 9;
 		star3.x -= 18;
 		star4.x -= 9;
+	} else if (dizzyCount == 0 && direct = -1) {
+		star1 = scr_StarCreate(x+starLeft,x-starRight,.5,.25,.25);
+		star2 = scr_StarCreate(x+starLeft,x-starRight,.5,.25,.25);
+		star3 = scr_StarCreate(x+starLeft,x-starRight,.5,.25,.25);
+		star4 = scr_StarCreateBG(x+starLeft,x-starRight,-.5,.25,.25);
+		star5 = scr_StarCreateBG(x+starLeft,x-starRight,-.5,.25,.25);
+		star2.x += 9;
+		star3.x += 18;
+		star4.x += 9;
 	}
 	dizzyCount += 1;
 	lagging = true;

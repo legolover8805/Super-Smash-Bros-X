@@ -110,6 +110,8 @@ if (x > room_width) || (x < 0) || (y > room_height) || (y < 0) {
 	isHit = 0;
 	vsp = 0;
 	percent = 0;
+	knockbackX = 0;
+	knockbackY = 0;
 }
 
 /*show_debug_message(maxFrames);

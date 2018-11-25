@@ -111,6 +111,14 @@
             }
         },
         {
+            "Key": "126bed42-8402-4b52-8c38-af5523e31c00",
+            "Value": {
+                "id": "34f7a1ed-403a-403f-85b5-c099b27b4c82",
+                "resourcePath": "fonts\\fnt_PercentSmall\\fnt_PercentSmall.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "141fcce3-f37a-42a0-985e-bbc93e7b4c67",
             "Value": {
                 "id": "df2dc846-26d4-4aad-8066-70ab58130611",
@@ -183,6 +191,14 @@
             }
         },
         {
+            "Key": "298c4530-0387-443f-b5b8-cdb7b4db6568",
+            "Value": {
+                "id": "947b55fc-b8c3-40b6-b802-9f7b1bbd6ee1",
+                "resourcePath": "views\\298c4530-0387-443f-b5b8-cdb7b4db6568.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "2c277f84-8ca6-49ed-846e-3f14b793b48a",
             "Value": {
                 "id": "207b2af3-a1c8-4c98-a545-1ddac0d96924",
@@ -220,6 +236,14 @@
                 "id": "c3d028d8-c8a4-42fc-b45a-743a469a18a2",
                 "resourcePath": "views\\35d6e10a-4584-434e-9f8d-262902db3978.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "35e395bb-f2ac-4c7a-8bca-c82befa7eec7",
+            "Value": {
+                "id": "d700cf86-5a51-42d6-9915-9fbb050e8b9c",
+                "resourcePath": "sprites\\spr_PercentShadow\\spr_PercentShadow.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -324,6 +348,14 @@
                 "id": "7300e895-f73c-4392-8134-446523fb44fd",
                 "resourcePath": "views\\5a7d39ca-3386-4849-a8a2-89715989b555.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "5eca6bc5-32ae-43c6-bbba-a703b97b0781",
+            "Value": {
+                "id": "726ab3e5-13f8-49d1-a144-f6abca38c83b",
+                "resourcePath": "scripts\\scr_PercentCreate\\scr_PercentCreate.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -623,6 +655,14 @@
             }
         },
         {
+            "Key": "c10b02b3-0e25-4dbf-94d7-3b16b1d49fa1",
+            "Value": {
+                "id": "d2397734-4353-43e5-99d4-4727f50dc625",
+                "resourcePath": "fonts\\fnt_Percent\\fnt_Percent.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "c9130711-7470-4154-9f39-7de4d2bf8af4",
             "Value": {
                 "id": "118f579b-eef6-4947-abdf-36fe74f3cfc6",
@@ -743,6 +783,14 @@
             }
         },
         {
+            "Key": "fde9bdd1-403c-40ec-9683-45b9b7c0a039",
+            "Value": {
+                "id": "070346c8-8331-46c5-980c-f01ed0bdee6e",
+                "resourcePath": "sprites\\spr_PercentWhite\\spr_PercentWhite.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "ffc0c370-09b0-4808-8374-2002a85bde54",
             "Value": {
                 "id": "1f73adf9-136a-4262-bdef-ce9493d5a55e",
@@ -762,7 +810,8 @@
         "8345ae15-f069-4927-9aaf-eac55295db99",
         "99e43a04-76e9-4202-a212-f95e9230bd5f",
         "487fb563-363e-4d51-8f4e-053224451a40",
-        "c9130711-7470-4154-9f39-7de4d2bf8af4"
+        "c9130711-7470-4154-9f39-7de4d2bf8af4",
+        "5eca6bc5-32ae-43c6-bbba-a703b97b0781"
     ],
     "tutorial": ""
 }
