@@ -102,6 +102,7 @@ if (animState == "idle") {
 		playFrame = 0;
 	} 
 } else if (animState == "dashStart") {
+	dashStarting = 1;
 	if (playFrame == 0) {
 		dashStartFrame = 221;
 	} else if (playFrame == 3) {
@@ -120,6 +121,7 @@ if (animState == "idle") {
 		playFrame = 0;
 	}
 } else if (animState == "dashLoop") {
+	dashing = 1;
 	if (playFrame == 0) {
 		dashFrame = 225;
 	} else if (playFrame == 3) {
@@ -133,6 +135,7 @@ if (animState == "idle") {
 		playFrame = 0;
 	}
 } else if (animState == "dashLag") {
+	dashLagging = 1;
 	if (playFrame == 0) {
 		dashFrame = 228;
 	} else if (playFrame == 3) {
@@ -149,7 +152,51 @@ if (animState == "idle") {
 		animState = "idle";
 		playFrame = 0;
 	}
-} else if (animState == "jumpUp") {
+} else if (animState == "dashAttack") {
+	dashAttacking = 1;
+	if (playFrame == 0) {
+		dashAttackFrame = 272;
+	} else if (playFrame == 3) {
+		dashAttackFrame = 273;
+	} else if (playFrame == 6) {
+		dashAttackFrame = 274;
+	} else if (playFrame == 9) {
+		dashAttackFrame = 275;
+	} else if (playFrame == 12) {
+		dashAttackFrame = 276;
+	} else if (playFrame == 15) {
+		dashAttackFrame = 277;
+	} else if (playFrame == 18) {
+		dashAttackFrame = 278;
+	} else if (playFrame == 21) {
+		dashAttackFrame = 279;
+	} else if (playFrame == 24) {
+		dashAttackFrame = 280;
+	} else if (playFrame == 27) {
+		dashAttackFrame = 281;
+	} else if (playFrame == 30) {
+		dashAttackFrame = 282;
+	} else if (playFrame == 33) {
+		dashAttackFrame = 60;
+	} else if (playFrame == 36) {
+		dashAttackFrame = 61;
+	} else if (playFrame == 39) {
+		dashAttackFrame = 62;
+	} else if (playFrame == 42) {
+		dashAttackFrame = 63;
+	} else if (playFrame == 45) {
+		dashAttackFrame = 64;
+	}
+	image_index = dashAttackFrame;
+	playFrame += 1;
+	if (playFrame == 49) {
+		isDashing = false;
+		animState = "idle";
+		playFrame = 0;
+	}
+}
+
+else if (animState == "jumpUp") {
 	jumpingUp = 1;
 	if (playFrame == 0) {
 		jumpUpFrame = 22;
@@ -1211,6 +1258,10 @@ if (wasIdling == 1) && (idling == 0) {
 	wasDashLagging = 0;
 	playFrame = 0;
 	dashLagFrame = 228;
+} if (wasDashAttacking == 1) && (dashAttacking == 0) {
+	wasDashAttacking = 0;
+	playFrame = 0;
+	dashAttackFrame = 272;
 } if (wasJumpingUp == 1) && (jumpingUp == 0) {
 	wasJumpingUp = 0;
 	playFrame = 0;

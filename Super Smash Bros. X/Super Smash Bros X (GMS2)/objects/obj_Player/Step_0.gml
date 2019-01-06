@@ -114,13 +114,13 @@ if (animState == "land") || (animState == "ledgeGrab") || (animState == "ledgeCl
 	lagging = false;
 }
 
-if (animState == "land") || (animState == "dashLoop") || (animState == "dashStart") || (animState == "dashLag") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "dashAttack") || (animState == "dashLoop") || (animState == "dashStart") || (animState == "dashLag") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
 	crouchLagging = true;
 } else {
 	crouchLagging = false;
 }
 
-if (animState == "land") || (animState == "dashLoop") || (animState == "dashStart") || (animState == "dashLag") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzy") || (animState == "dizzyWake") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "land") || (animState == "dashAttack") || (animState == "dashLoop") || (animState == "dashStart") || (animState == "dashLag") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzy") || (animState == "dizzyWake") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "fairland") || (animState == "jabEnd") {
 	jabLagging = true;
 } else {
 	jabLagging = false;
@@ -292,21 +292,30 @@ if (hsp > 0) && (dir == 0) && (isSkid == 0) && (vsp != 0) {
 if (isDashing) {
 	vsp = 0;
 	stuckGround = true;
-	if (animState = "dashLoop") {
+	if (animState == "dashLoop") {
 		totalFrames += 1;
 		if (dir != direct && totalFrames >= 9) {
 			animState = "dashLag";
 		}
 		hsp = dsp*direct;
-	} else if (animState = "dashStart") {
+	} else if (animState == "dashStart") {
 		hsp = dssp *direct;
 		if (key_forward || key_backward) {
 			dance = true;
 		} else {
 			dance = false;
 		}
-	} else if (animState = "dashLag") {
+	} else if (animState == "dashLag") {
 		hsp = dlag * direct;
+	} else if (animState == "dashAttack") {
+		if (playFrame <= 21) {
+			dattsp = 2;
+		} else if (playFrame < 33) {
+			dattsp = 0.5;
+		} else {
+			dattsp = 0.1;
+		}
+		hsp = dattsp * direct;
 	} else {
 		isDashing = false;
 	}
@@ -321,6 +330,9 @@ if (isDashing) {
 			isDashing = false;
 			hsp = dasp*direct;
 		}
+	}
+	if (key_normal && animState != "dashAttack") {
+		animState = "dashAttack";
 	}
 	if (!onGround) {
 		isDashing = false;
@@ -489,6 +501,7 @@ wasWalking = walking;
 wasDashStarting = dashStarting;
 wasDashing = dashing;
 wasDashLagging = dashLagging;
+wasDashAttacking = dashAttacking;
 wasJumping = jumping;
 wasJumpingUp = jumpingUp;
 wasFalling = falling;
