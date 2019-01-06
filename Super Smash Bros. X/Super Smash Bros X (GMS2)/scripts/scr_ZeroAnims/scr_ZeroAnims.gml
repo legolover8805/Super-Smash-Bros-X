@@ -101,6 +101,54 @@ if (animState == "idle") {
 	if (playFrame == 29) {
 		playFrame = 0;
 	} 
+} else if (animState == "dashStart") {
+	if (playFrame == 0) {
+		dashStartFrame = 221;
+	} else if (playFrame == 3) {
+		dashStartFrame = 222;
+	} else if (playFrame == 6) {
+		dashStartFrame = 223;
+	} else if (playFrame == 9) {
+		dashStartFrame = 224;
+	}
+	image_index = dashStartFrame;
+	playFrame += 1;
+	if (playFrame == 13) {
+		if (!dance) {
+			animState = "dashLoop";
+		}
+		playFrame = 0;
+	}
+} else if (animState == "dashLoop") {
+	if (playFrame == 0) {
+		dashFrame = 225;
+	} else if (playFrame == 3) {
+		dashFrame = 226;
+	} else if (playFrame == 6) {
+		dashFrame = 227;
+	}
+	image_index = dashFrame;
+	playFrame += 1;
+	if (playFrame == 10) {
+		playFrame = 0;
+	}
+} else if (animState == "dashLag") {
+	if (playFrame == 0) {
+		dashFrame = 228;
+	} else if (playFrame == 3) {
+		dashFrame = 229;
+	} else if (playFrame == 6) {
+		dashFrame = 230;
+	} else if (playFrame == 9) {
+		dashFrame = 231;
+	} 
+	image_index = dashLagFrame;
+	playFrame += 1;
+	if (playFrame == 14) {
+		isDashing = false;
+		animState = "idle";
+		playFrame = 0;
+	}
 } else if (animState == "jumpUp") {
 	jumpingUp = 1;
 	if (playFrame == 0) {
@@ -1150,6 +1198,19 @@ if (wasIdling == 1) && (idling == 0) {
 	wasWalking = 0;
 	playFrame = 0;
 	walkFrame = 0;
+	dashCheck = true;
+} if (wasDashStarting == 1) && (dashStarting == 0) {
+	wasDashStarting = 0;
+	playFrame = 0;
+	dashStartFrame = 221;
+} if (wasDashing == 1) && (dashing == 0) {
+	wasDashing = 0;
+	playFrame = 0;
+	dashFrame = 225;
+} if (wasDashLagging == 1) && (dashLagging == 0) {
+	wasDashLagging = 0;
+	playFrame = 0;
+	dashLagFrame = 228;
 } if (wasJumpingUp == 1) && (jumpingUp == 0) {
 	wasJumpingUp = 0;
 	playFrame = 0;

@@ -1,4 +1,7 @@
-walking = 0
+walking = 0;
+dashStarting = 0;
+dashing = 0;
+dashLagging = 0;
 jumping = 0;
 jumpingUp = 0;
 falling = 0;

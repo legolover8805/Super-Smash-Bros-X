@@ -5,7 +5,10 @@ grav = 0.3;
 dir = 1;
 wsp = 3;
 wasp = 2;
-dsp = 6;
+dsp = 4;
+dssp = 6;
+dlag = .2;
+dasp = 3;
 jumps = 0;
 hasJump = 0;
 jmax = 2;
@@ -28,6 +31,13 @@ notLedgeMax = 0;
 ledgeTop = 58;
 ledgeHor = 48;
 canClimb = false;
+dashCheck = false;
+dashCountMax = 10;
+dashCount = 0;
+isDashing = false;
+stuckGround = false;
+totalFrames = 0;
+dance = true;
 
 // Definition
 char = 0;
@@ -96,6 +106,9 @@ startFalling = 0;
 // Was
 wasIdling = 0;
 wasWalking = 0;
+wasDashStarting = 0;
+wasDashing = 0;
+wasDashLagging = 0;
 wasJumping = 0;
 wasJumpingUp = 0;
 wasFalling = 0;
@@ -129,6 +142,9 @@ wasLedgeClimbAttacking = 0;
 
 // Is
 walking = 0
+dashStarting = 0;
+dashing = 0;
+dashLagging = 0;
 idling = 0;
 jumping = 0;
 jumpingUp = 0;
@@ -165,6 +181,9 @@ ledgeClimbAttacking = 0;
 // Frame Counts
 idleFrame = 0;
 walkFrame = 0;
+dashStartFrame = 221;
+dashFrame = 225;
+dashLagFrame = 228;
 jumpFrame = 23;
 jumpUpFrame = 22;
 fallFrame = 25;
