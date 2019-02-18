@@ -39,6 +39,14 @@
             }
         },
         {
+            "Key": "014d0988-4200-4443-b2db-9bcc3b408422",
+            "Value": {
+                "id": "e6e5dbfa-1104-432d-9896-6370fe8f13e8",
+                "resourcePath": "views\\014d0988-4200-4443-b2db-9bcc3b408422.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "04baad5c-ba23-4f7a-a757-cc0adff10cb0",
             "Value": {
                 "id": "e894b2a7-7de2-4c84-9a16-3572898633f3",
@@ -139,6 +147,14 @@
             "Value": {
                 "id": "28adc646-2df1-41fe-93df-4577d185f9b3",
                 "resourcePath": "views\\1567aee0-a01a-4af3-a4fc-563582fe4317.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "158fe873-8186-4d0f-ad7a-bb3c1a1f1e4e",
+            "Value": {
+                "id": "e4a36691-800e-41c5-8301-f547063c7b7e",
+                "resourcePath": "views\\158fe873-8186-4d0f-ad7a-bb3c1a1f1e4e.yy",
                 "resourceType": "GMFolder"
             }
         },
@@ -476,6 +492,14 @@
                 "id": "8efa2715-bb68-45e1-9b63-2409749f9189",
                 "resourcePath": "scripts\\scr_ShieldCreate\\scr_ShieldCreate.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "93493f1d-9fe5-44aa-8f39-098ee6ee0fff",
+            "Value": {
+                "id": "40700289-5ba8-4db8-80b4-9223804d22b9",
+                "resourcePath": "sprites\\spr_SoraAnim\\spr_SoraAnim.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
