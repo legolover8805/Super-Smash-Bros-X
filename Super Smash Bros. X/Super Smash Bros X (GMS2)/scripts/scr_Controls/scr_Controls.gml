@@ -32,5 +32,6 @@ key_lsmashp = keyboard_check_pressed(ord("A"));
 key_rsmashp = keyboard_check_pressed(ord("D"));
 
 key_grab = keyboard_check(ord("Q"));
+key_grabp = keyboard_check_pressed(ord("Q"));
 key_shield = keyboard_check(ord("E"));
 key_mash = keyboard_check_pressed(vk_anykey);

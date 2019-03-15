@@ -39,14 +39,14 @@ if (maxPauseFrames != 0) {
 if (isHit == 1 && !isPaused) {
 	image_index = 6;
 	if (frames == 0) {
-		percentMultiplier *= percent;
-		if (percentMultiplier == 0) {
-			percentMultiplier = 1;
+		percentMultiplied *= percent;
+		if (percentMultiplied == 0) {
+			percentMultiplied = 1;
 		}
 	}
 	frames += 1;
 	if (frames >= maxFrames) {
-		percentMultiplier = 0;
+		percentMultiplied = 0;
 		isHit = 0;
 	}
 } else if (!isPaused) {
@@ -57,17 +57,17 @@ if (isHit == 1 && !isPaused) {
 if (knockbackY != 0 && !isPaused) {
 	if (knockbackYCount < 4) {
 		if (!isMeteorSmashed) {
-			vsp -= (percentMultiplier * knockbackY)/4;
+			vsp -= (percentMultiplied * knockbackY)/4;
 			savedBackY = knockbackY;
 			knockbackYCount+=1;
 		} else {
 			if (onGround == false) {
 				stayMeteor = true;
-				vsp += (percentMultiplier * knockbackY)/4;
+				vsp += (percentMultiplied * knockbackY)/4;
 				knockbackYCount+=1;
 				savedBackY = knockbackY;
 			} else {
-				vsp -= (percentMultiplier * knockbackY);
+				vsp -= (percentMultiplied * knockbackY);
 				knockbackYCount = 4;
 				savedBackY = knockbackY;
 			}
@@ -77,11 +77,16 @@ if (knockbackY != 0 && !isPaused) {
 		knockbackYCount = 0;
 	}
 } 
+
+if (isGrabbed) {
+	hsp = 0;
+	vsp = 0;
+}
 y = y + vsp;
 
 // Knockback
 if (knockbackX != 0 && !isPaused) {
-	knockValue = percentMultiplier * knockbackX * dir;
+	knockValue = percentMultiplied * knockbackX * dir;
 	if (hsp < knockValue && dir == 1) {
 		hsp += knockValue/20;
 	} else if (dir == 1 && hsp >= knockValue) {
@@ -98,6 +103,11 @@ if (hsp < 0) && (hsp > -.01) {
 	hsp = 0;
 } else if (hsp > 0) && (hsp < .01) {
 	hsp = 0;
+}
+
+if (isGrabbed) {
+	hsp = 0;
+	vsp = 0;
 }
 
 x += hsp;

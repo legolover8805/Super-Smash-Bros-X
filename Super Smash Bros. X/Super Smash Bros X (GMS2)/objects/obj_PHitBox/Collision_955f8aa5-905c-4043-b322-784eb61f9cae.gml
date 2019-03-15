@@ -15,8 +15,9 @@ if (owner != other.owner) {
 			percent += other.percentGiven;
 			knockbackX = other.knockbackGivenX;
 			knockbackY = other.knockbackGivenY;
-			percentMultiplier = other.percentMultiplier;
+			percentMultiplied = other.percentMultiplier;
 			isMeteorSmashed = other.isMeteor;
+			isGrabbed = other.isGrab;
 			isHit = 1;
 			frames = 0;
 			maxFrames = other.framesGiven;
@@ -30,19 +31,39 @@ if (owner != other.owner) {
 					image_xscale *= -1;
 				}
 			}
-			if (other.attack == other.prevAttack) {
-				other.staleCounter += 1;
-				if (other.staleCounter > 3) {
-					other.staleCounter = 3;
+			//print(isGrabbed);
+			if (!isGrabbed) {
+				if (other.attack == other.prevAttack) {
+					other.staleCounter += 1;
+					if (other.staleCounter > 9) {
+						other.staleCounter = 9;
+					}
+					if (other.staleCounter>=other.percentGiven) {
+						other.staleCounter -= 1;
+					} if (other.staleCounter <= 0 && other.percentGiven != 0) {
+						other.staleCounter = other.percentGiven - 1;
+					}
+					percent -= other.staleCounter;
+				} else {
+					other.staleCounter = 0;
 				}
-				if (other.staleCounter>=other.percentGiven) {
-					other.staleCounter -= 1;
-				}
-				percent -= other.staleCounter;
+				other.prevAttack = other.attack;
 			} else {
-				other.staleCounter = 0;
+				while (x < other.x-other.grabSpotX) {
+					x += 1;
+				} 
+				while (x > other.x+other.grabSpotX) {
+					x-= 1;
+				}
+				if (other.grabSpotY != 0) {
+					while (y < other.y+other.grabSpotY) {
+						y-= 1;
+					} 
+					while (y > other.y+other.grabSpotY) {
+						y+= 1;
+					}
+				}
 			}
-			other.prevAttack = other.attack;
 		} 
 	}
 }

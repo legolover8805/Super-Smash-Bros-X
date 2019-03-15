@@ -137,6 +137,8 @@ with hitbox {
 	knockbackGivenY = other.knockbackY;
 	percentMultiplier = other.percentMultiplier;
 	isMeteor = false;
+	isGrab = false;
+	grabSpot = 0;
 	isHit = 1;
 	frames = 0;
 	framesGiven = other.framesGiven;

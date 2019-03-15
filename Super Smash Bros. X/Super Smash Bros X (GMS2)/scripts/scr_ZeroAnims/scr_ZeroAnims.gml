@@ -52,6 +52,7 @@ if (animState == "idle") {
 	} 
 } else if (animState == "walk") {
 	walking = 1;
+	dashDirect = direct;
 	if (wasWalking == 0) {
 		startWalking = 1;
 	} 
@@ -137,19 +138,37 @@ if (animState == "idle") {
 } else if (animState == "dashLag") {
 	dashLagging = 1;
 	if (playFrame == 0) {
-		dashFrame = 228;
-	} else if (playFrame == 3) {
-		dashFrame = 229;
+		dashLagFrame = 228;
+	} else if (playFrame == 2) {
+		dashLagFrame = 229;
+	} else if (playFrame == 4) {
+		dashLagFrame = 230;
 	} else if (playFrame == 6) {
-		dashFrame = 230;
-	} else if (playFrame == 9) {
-		dashFrame = 231;
+		dashLagFrame = 231;
 	} 
 	image_index = dashLagFrame;
 	playFrame += 1;
-	if (playFrame == 14) {
+	if (playFrame == 10) {
 		isDashing = false;
 		animState = "idle";
+		playFrame = 0;
+	}
+} else if (animState == "dashLagShield") {
+	dashLagging = 1;
+	if (playFrame == 0) {
+		dashLagFrame = 228;
+	} else if (playFrame == 4) {
+		dashLagFrame = 229;
+	} else if (playFrame == 8) {
+		dashLagFrame = 230;
+	} else if (playFrame == 12) {
+		dashLagFrame = 231;
+	} 
+	image_index = dashLagFrame;
+	playFrame += 1;
+	if (playFrame == 20) {
+		isDashing = false;
+		animState = "shield";
 		playFrame = 0;
 	}
 } else if (animState == "dashAttack") {
@@ -713,13 +732,13 @@ else if (animState == "jumpUp") {
 	}
 	if (nairFrame < 147) {
 		damageGiven = 12;
-		knockbackGivenX = 2;
+		knockbackGivenX = 7;
 		knockbackGivenY = 2;
 		percentMultiplier = 0.01;
 		framesGiven = 16;
 	} else {
 		damageGiven = 6;
-		knockbackGivenX = 0;
+		knockbackGivenX = 10;
 		knockbackGivenY = 0;
 		percentMultiplier = 0.01;
 		framesGiven = 5;
@@ -1234,6 +1253,79 @@ if (animState == "DSmash") {
 		framesGiven = 20;
 	} 
 	image_index = bairFrame;
+} else if (animState == "grab") {
+	grabbing = 1;
+	if (hitConnect) {
+		animState = "hold";
+		playFrame = 0;
+	}
+	if (playFrame == 40) {
+		animState = "idle";
+		isGrab = 0;
+		playFrame = 0;
+	}
+	playFrame += 1;
+	image_index = grabFrame;
+} else if (animState == "dashGrab") {
+	dashGrabbing = 1;
+	image_index = dashGrabFrame;
+} else if (animState == "hold") {
+	holding = 1;
+	image_index = holdFrame;
+} else if (animState == "pummel") {
+	pummelling = 1;
+	if (playFrame == 0) {
+		pummelFrame = 37;
+	} if (playFrame == 3) {
+		pummelFrame = 38;
+	} if (playFrame == 6) {
+		pummelFrame = 39;
+	} if (playFrame == 9) {
+		pummelFrame = 40;
+	} if (playFrame == 12) {
+		pummelFrame = 41;
+	} if (playFrame == 15) {
+		pummelFrame = 42;
+	} if (playFrame == 18) {
+		pummelFrame = 43;
+	} if (playFrame == 21) {
+		pummelFrame = 44;
+	} if (playFrame == 24) {
+		pummelFrame = 45;
+	} if (playFrame == 27) {
+		pummelFrame = 46;
+	} if (playFrame == 30) {
+		pummelFrame = 47;
+	} if (playFrame == 33) {
+		pummelFrame = 48;
+	}
+	if (playFrame == 20) {
+		damageGiven = 2;
+	}
+	playFrame += 1;
+	if (playFrame == 37) {
+		playFrame = 0;
+		animState = "hold";
+	}
+	image_index = pummelFrame;
+} else if (animState == "uThrow") {
+	image_index = pummelFrame;
+} else if (animState == "letGo") {
+	lettingGo = 1;
+	isGrab = false;
+	if (playFrame == 1) {
+		damageGiven = 0;
+		knockbackGivenX = 20;
+		knockbackGivenY = 500;
+		percentMultiplier = 0;
+		framesGiven = 10;
+	}
+	playFrame += 1;
+	if (playFrame == 5) {
+		animState = "idle";
+		playFrame = 0;
+	}
+	image_index = grabFrame;
 }
 
 
@@ -1245,6 +1337,7 @@ if (wasIdling == 1) && (idling == 0) {
 	wasWalking = 0;
 	playFrame = 0;
 	walkFrame = 0;
+	dashDirect = direct;
 	dashCheck = true;
 } if (wasDashStarting == 1) && (dashStarting == 0) {
 	wasDashStarting = 0;
@@ -1399,4 +1492,24 @@ if (wasGNSpecialing == 1) && (GNSpecialing == 0) {
 	wasLedgeClimbAttacking= 0;
 	playFrame = 0;
 	ledgeClimbAttackFrame = 237;
+} if (wasGrabbing == 1) && (grabbing == 0) {
+	wasGrabbing = 0;
+	playFrame = 0;
+	grabFrame = 283;
+} if (wasDashGrabbing == 1) && (dashGrabbing == 0) {
+	wasDashGrabbing = 0;
+	playFrame = 0;
+	dashGrabFrame = 283;
+} if (wasHolding == 1) && (holding == 0) {
+	wasHolding = 0;
+	playFrame = 0;
+	holdFrame = 283;
+} if (wasPummelling == 1) && (pummelling == 0) {
+	wasPummelling = 0;
+	playFrame = 0;
+	pummelFrame = 37;
+} if (wasLettingGo = 1) && (lettingGo = 0) {
+	wasLettingGo = 0;
+	playFrame = 0;
+	letGoFrame = 283;
 }

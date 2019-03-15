@@ -35,10 +35,17 @@ canClimb = false;
 dashCheck = false;
 dashCountMax = 10;
 dashCount = 0;
+dashDirect = 1;
+dashShield = false;
 isDashing = false;
 stuckGround = false;
 totalFrames = 0;
 dance = true;
+isGrab = false;
+isGrabbing = true;
+whoGrab = pointer_null;
+grabSpotX = 20;
+grabSpotY = 0;
 
 // Definition
 char = 0;
@@ -141,6 +148,11 @@ wasLedgeGrabbing = 0;
 wasLedgeClimbing = 0;
 wasLedgeClimbJumping = 0;
 wasLedgeClimbAttacking = 0;
+wasGrabbing = 0;
+wasHolding = 0;
+wasDashGrabbing = 0;
+wasPummelling = 0;
+wasLettingGo = 0;
 
 // Is
 walking = 0
@@ -179,6 +191,11 @@ ledgeGrabbing = 0;
 ledgeClimbing = 0;
 ledgeClimbJumping = 0;
 ledgeClimbAttacking = 0;
+grabbing = 0;
+dashGrabbing = 0;
+holding = 0;
+pummelling = 0;
+lettingGo = 0;
 
 
 // Frame Counts
@@ -218,6 +235,12 @@ ledgeGrabFrame = 232;
 ledgeClimbFrame = 237;
 ledgeClimbJumpFrame = 237;
 ledgeClimbAttackFrame = 237;
+grabFrame = 283;
+dashGrabFrame = 283;
+letGoFrame = 283;
+holdFrame = 283;
+pummelFrame = 37;
+
 
 playFrame = 0;
 

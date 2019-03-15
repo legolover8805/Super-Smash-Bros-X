@@ -34,4 +34,6 @@ ogPercentX = 1000;
 percentRuns = 0;
 percentColor = c_white;
 percentCenterColor = c_white;
+isGrabbed = false;
+whoGrab = pointer_null;
 //hundreds = scr_PercentCreate();
