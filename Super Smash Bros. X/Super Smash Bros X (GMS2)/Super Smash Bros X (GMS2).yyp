@@ -127,6 +127,14 @@
             }
         },
         {
+            "Key": "13421c92-3062-4288-a528-9f7c9aebad2f",
+            "Value": {
+                "id": "1e065e38-c0bb-4714-bfe7-352692a78c7b",
+                "resourcePath": "views\\13421c92-3062-4288-a528-9f7c9aebad2f.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "141fcce3-f37a-42a0-985e-bbc93e7b4c67",
             "Value": {
                 "id": "df2dc846-26d4-4aad-8066-70ab58130611",
@@ -407,6 +415,14 @@
             }
         },
         {
+            "Key": "7023cd97-654e-495d-ac90-a6acea673cb3",
+            "Value": {
+                "id": "d7cc78cd-0db0-46f7-83db-39c9824896ba",
+                "resourcePath": "sprites\\SpriteSizeReference\\SpriteSizeReference.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "7302ca5a-fee7-4034-9c79-f5c033df17ab",
             "Value": {
                 "id": "ce7e63f7-813d-4933-ad1b-228d357e2cdd",
@@ -468,6 +484,14 @@
                 "id": "e79a0226-689b-45b5-a494-9f9af21effa1",
                 "resourcePath": "objects\\obj_PHitBox\\obj_PHitBox.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "7e667003-b925-40b8-b1b9-c98b11483fe0",
+            "Value": {
+                "id": "05f0794c-0531-4a3f-920e-d5df90d0ee0e",
+                "resourcePath": "sprites\\spr_GenoAnim\\spr_GenoAnim.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
