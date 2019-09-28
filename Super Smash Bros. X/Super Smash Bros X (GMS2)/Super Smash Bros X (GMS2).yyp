@@ -63,6 +63,14 @@
             }
         },
         {
+            "Key": "074fe619-e5dc-4eda-bf17-7e5a79e5e9e9",
+            "Value": {
+                "id": "03e8b046-56a5-4005-9d8c-64f545819af2",
+                "resourcePath": "scripts\\scr_GenoTraits\\scr_GenoTraits.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "075766a1-79a6-4e47-9f9e-72c78e5f732d",
             "Value": {
                 "id": "e4f7c315-1a4a-4d18-a63f-6bde0e94f0ae",
@@ -207,6 +215,14 @@
             }
         },
         {
+            "Key": "22ef7228-cf66-4c95-ad5f-4d9e06b07c5d",
+            "Value": {
+                "id": "fe793fea-d903-4b3f-a59a-2b1889da5274",
+                "resourcePath": "scripts\\scr_GenoAnims\\scr_GenoAnims.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "27713307-a7bc-4856-8b37-28236b2c39d3",
             "Value": {
                 "id": "ecbcb28b-415d-4898-bf68-c31d737f3aac",
@@ -228,6 +244,14 @@
                 "id": "207b2af3-a1c8-4c98-a545-1ddac0d96924",
                 "resourcePath": "objects\\obj_StageEnd\\obj_StageEnd.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "32fbe612-7351-4c01-871c-45c498a7cadb",
+            "Value": {
+                "id": "4a3e96a2-b262-4ea1-82aa-f0e87c0e2be8",
+                "resourcePath": "scripts\\scr_ZeroTraits\\scr_ZeroTraits.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -854,6 +878,9 @@
         "b6bf8698-0174-497e-bbb9-e874f27449ab",
         "5649d0f0-53c7-4ba0-bb4c-ac2503491b0a",
         "b2e3dd63-38a9-46d6-b200-a6fd3a11fef0",
+        "32fbe612-7351-4c01-871c-45c498a7cadb",
+        "22ef7228-cf66-4c95-ad5f-4d9e06b07c5d",
+        "074fe619-e5dc-4eda-bf17-7e5a79e5e9e9",
         "ffc0c370-09b0-4808-8374-2002a85bde54",
         "8345ae15-f069-4927-9aaf-eac55295db99",
         "99e43a04-76e9-4202-a212-f95e9230bd5f",
