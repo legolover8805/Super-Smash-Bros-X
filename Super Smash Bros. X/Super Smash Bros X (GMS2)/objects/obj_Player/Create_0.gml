@@ -7,7 +7,7 @@ hasJump = 0;
 onGround = true;
 
 // Definition
-char = 0;
+char = 1;
 if (char == 0) {
 	sprite_index = spr_ZeroAnim;
 	scr_ZeroTraits()

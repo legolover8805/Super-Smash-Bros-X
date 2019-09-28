@@ -537,7 +537,7 @@ x += hsp;
 
 
 // Animation
-sprite_index = spr_ZeroAnim;
+// sprite_index = spr_ZeroAnim;
 image_speed = 0;
 wasIdling = idling;
 wasWalking = walking;
@@ -728,6 +728,8 @@ framesGiven = 0;
 scr_PAnimVars();
 if (char == 0) {
 	scr_ZeroAnims();
+} else if (char == 1) {
+	scr_GenoAnims();
 }
 
 
@@ -802,5 +804,5 @@ if (animState == "dair" && onGround == true && playFrame < 20) {
 	vsp = 0;
 }*/
 onLedge = false;
-//print(animState);
+print(animState);
 //print(dashCheck);
