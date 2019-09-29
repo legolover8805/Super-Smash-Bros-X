@@ -45,7 +45,9 @@ xDisjoint = 2;
 headHeight = 16;
 starRight = 7;
 starLeft = 20;
-
+starDist = 9;
+shadowX = .75;
+shadowY = .1;
 
 // Attacks
 jabCombo = 0;

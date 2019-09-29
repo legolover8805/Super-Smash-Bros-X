@@ -1,4 +1,6 @@
 // Variables
+char = 1;
+player = 1;
 hsp = 0;
 vsp = 0;
 dir = 1;
@@ -10,10 +12,10 @@ onGround = true;
 char = 1;
 if (char == 0) {
 	sprite_index = spr_ZeroAnim;
-	scr_ZeroTraits()
+	scr_ZeroTraits();
 } else if (char == 1) {
 	sprite_index = spr_GenoAnim;
-	scr_GenoTraits()
+	scr_GenoTraits();
 }
 player = 1;
 
@@ -134,4 +136,4 @@ hitbox = scr_HitboxCreate(char,player);
 
 // Effects
 shield = scr_ShieldCreate(player);
-shadow = scr_ShadowCreate(.75,.1);
+shadow = scr_ShadowCreate(shadowX,shadowY);

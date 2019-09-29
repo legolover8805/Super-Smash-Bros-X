@@ -1,6 +1,6 @@
 // Specific values
-grav = 0.2;
-wsp = 1.5;
+grav = 0.15;
+wsp = 1.8;
 wasp = 2;
 dsp = 4;
 dssp = 6;
@@ -8,8 +8,8 @@ dlag = .2;
 dasp = 5;
 dattsp = 3;
 jmax = 2;
-jsp = -7;
-decel = .125;
+jsp = -5.5;
+decel = .5;
 isSkid = 0;
 landCount = 0;
 direct = 0;
@@ -40,11 +40,15 @@ isGrabbing = true;
 whoGrab = pointer_null;
 grabSpotX = 20;
 grabSpotY = 0;
-yHalfSize = 25;
-xDisjoint = 2;
-headHeight = 16;
-starRight = 7;
-starLeft = 20;
+yHalfSize = 10;
+xDisjoint = 1;
+headHeight = 12;
+starRight = 12;
+starLeft = 12;
+starDist = 9;
+
+shadowX = .4;
+shadowY = .15;
 
 
 // Attacks

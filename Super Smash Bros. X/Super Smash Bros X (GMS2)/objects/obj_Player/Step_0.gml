@@ -421,18 +421,18 @@ if (animState == "dizzy") {
 		star3 = scr_StarCreate(x+starRight,x-starLeft,.5,.25,.25);
 		star4 = scr_StarCreateBG(x+starRight,x-starLeft,-.5,.25,.25);
 		star5 = scr_StarCreateBG(x+starRight,x-starLeft,-.5,.25,.25);
-		star2.x -= 9;
-		star3.x -= 18;
-		star4.x -= 9;
+		star2.x -= starDist;
+		star3.x -= starDist*2;
+		star4.x -= starDist;
 	} else if (dizzyCount == 0 && direct = -1) {
 		star1 = scr_StarCreate(x+starLeft,x-starRight,.5,.25,.25);
 		star2 = scr_StarCreate(x+starLeft,x-starRight,.5,.25,.25);
 		star3 = scr_StarCreate(x+starLeft,x-starRight,.5,.25,.25);
 		star4 = scr_StarCreateBG(x+starLeft,x-starRight,-.5,.25,.25);
 		star5 = scr_StarCreateBG(x+starLeft,x-starRight,-.5,.25,.25);
-		star2.x += 9;
-		star3.x += 18;
-		star4.x += 9;
+		star2.x += starDist;
+		star3.x += starDist*2;
+		star4.x += starDist;
 	}
 	dizzyCount += 1;
 	lagging = true;
@@ -806,3 +806,5 @@ if (animState == "dair" && onGround == true && playFrame < 20) {
 onLedge = false;
 print(animState);
 //print(dashCheck);
+print(char);
+print(player);

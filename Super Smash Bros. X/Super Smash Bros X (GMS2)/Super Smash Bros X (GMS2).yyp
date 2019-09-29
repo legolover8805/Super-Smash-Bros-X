@@ -63,6 +63,14 @@
             }
         },
         {
+            "Key": "05e7f732-36f6-4985-87d9-8419000bb238",
+            "Value": {
+                "id": "2582d5ca-3e52-4eda-aad1-5f72ac69f3f9",
+                "resourcePath": "objects\\obj_Control\\obj_Control.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "074fe619-e5dc-4eda-bf17-7e5a79e5e9e9",
             "Value": {
                 "id": "03e8b046-56a5-4005-9d8c-64f545819af2",
@@ -399,6 +407,14 @@
             }
         },
         {
+            "Key": "5e3b5c1e-22ac-41db-8874-df9b281c4a75",
+            "Value": {
+                "id": "b9ec517b-cb68-4a03-937a-b29f422ef63e",
+                "resourcePath": "objects\\obj_Zero\\obj_Zero.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "5eca6bc5-32ae-43c6-bbba-a703b97b0781",
             "Value": {
                 "id": "726ab3e5-13f8-49d1-a144-f6abca38c83b",
@@ -620,6 +636,14 @@
                 "id": "1d4e86f8-bf54-4a4d-97b2-b9e86435171e",
                 "resourcePath": "objects\\obj_Sandbag\\obj_Sandbag.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "a72e70f8-ad46-476d-a7cb-fc5d5f29726b",
+            "Value": {
+                "id": "50538cd4-9a00-46ed-ad10-f65e8be9edbb",
+                "resourcePath": "scripts\\scr_PlayerCreate\\scr_PlayerCreate.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -886,7 +910,8 @@
         "99e43a04-76e9-4202-a212-f95e9230bd5f",
         "487fb563-363e-4d51-8f4e-053224451a40",
         "c9130711-7470-4154-9f39-7de4d2bf8af4",
-        "5eca6bc5-32ae-43c6-bbba-a703b97b0781"
+        "5eca6bc5-32ae-43c6-bbba-a703b97b0781",
+        "a72e70f8-ad46-476d-a7cb-fc5d5f29726b"
     ],
     "tutorial": ""
 }
