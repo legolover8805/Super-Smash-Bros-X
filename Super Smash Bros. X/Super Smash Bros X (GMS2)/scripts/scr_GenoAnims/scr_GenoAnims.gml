@@ -291,157 +291,119 @@ else if (animState == "jumpUp") {
 }else if (animState == "jab") {
 	jabbing = 1;
 	if (playFrame == 0) {
-		jabFrame = 37;
-	} else if (playFrame == 1) {
-		jabFrame = 38;
-	} else if (playFrame == 2) {
-		jabFrame = 39;
+		jabFrame = 117;
 	} else if (playFrame == 3) {
-		jabFrame = 40;
-	} else if (playFrame == 5) {
-		jabFrame = 41;
+		jabFrame = 118;
 	} else if (playFrame == 6) {
-		jabFrame = 42;
-	} else if (playFrame == 7) {
-		jabFrame = 43;
-	} else if (playFrame == 8) {
-		jabFrame = 44;
-	} else if (playFrame == 10) {
-		jabFrame = 45;
-	} else if (playFrame == 12) {
-		jabFrame = 46;
-	} else if (playFrame == 14) {
-		jabFrame = 47;
-	} else if (playFrame == 16) {
-		jabFrame = 48;
-	} else if (playFrame == 18) {
-		jabFrame = 60;
-	} 
-	if (jabFrame >= 39) && (jabFrame <= 49) {
-		damageGiven = 3;
-		knockbackGivenX = 2;
-		knockbackGivenY = 1;
-		percentMultiplier = 0.01;
-		framesGiven = 12;
+		jabFrame = 119;
+	} else if (playFrame == 9) {
+		jabFrame = 120;
+	} else if (playFrame == 13) {
+		jabFrame = 121;
+	} else if (playFrame == 17) {
+		jabFrame = 122;
 	}
 	playFrame += 1;
-	if (jabCombo == 1 && playFrame > 10) {
-		playFrame = 0;
-		animState = "jab2";
-		jabFrame = 48;
-	} 
-	if (playFrame == 19) {
-		playFrame = 0;
-		animState = "jabEnd";
-		jabFrame = 60;
+	if (playFrame > 21) {
+		if (jabCombo == 1) {
+			playFrame = 0;
+			animState = "jab2";
+		} else if (jabCombo != 1) {
+			playFrame = 0;
+			animState = "jabEnd";
+		}
 	}
 	image_index = jabFrame; 
 } if (animState == "jab2") {
 	jabbing = 1;
 	if (playFrame == 0) {
-		jabFrame = 49;
-	} else if (playFrame == 1) {
-		jabFrame = 50;
-	} else if (playFrame == 2) {
-		jabFrame = 51;
-	} else if (playFrame == 4) {
-		jabFrame = 52;
-	} else if (playFrame == 5) {
-		jabFrame = 53;
-	} else if (playFrame == 9) {
-		jabFrame = 54;
-	} else if (playFrame == 11) {
-		jabFrame = 55;
-	} else if (playFrame == 13) {
-		jabFrame = 56;
-	} else if (playFrame == 15) {
-		jabFrame = 57;
-	} else if (playFrame == 16) {
-		jabFrame = 58;
-	} else if (playFrame == 17) {
-		jabFrame = 59;
+		jabFrame = 123;
+	} else if (playFrame == 3) {
+		jabFrame = 124;
+	} else if (playFrame == 6) {
+		jabFrame = 125;
+	} else if (playFrame == 10) {
+		jabFrame = 126;
+	} else if (playFrame == 14) {
+		jabFrame = 127;
 	} else if (playFrame == 18) {
-		jabFrame = 49;
-	}
-	if (jabFrame >= 50) && (jabFrame <= 57) {
-		damageGiven = 3;
-		knockbackGivenX = 2;
-		knockbackGivenY = 2;
-		percentMultiplier = 0.01;
-		framesGiven = 12;
+		jabFrame = 128;
 	}
 	playFrame += 1;
-	if (playFrame > 13 && jabCombo == 2) {
-		playFrame = 0;
-		animState = "jab3";
-		jabFrame = 59;
+	if (playFrame > 22){
+		if (jabCombo == 2) {
+			playFrame = 0;
+			animState = "jab3";
+		} else {
+			playFrame = 0;
+			jabCombo = 0;
+			animState = "jab2End";
+		}
 	} 
-	if (playFrame == 19) {
-		playFrame = 0;
-		jabCombo = 0;
-		animState = "jabEnd";
-	}
 	image_index = jabFrame;
 } if (animState == "jab3") {
 	jabbing = 1;
 	if (playFrame == 0) {
-		jabFrame = 59;
-	} else if (playFrame == 1) {
-		jabFrame = 65;
-	} else if (playFrame == 2) {
-		jabFrame = 66;
-	} else if (playFrame == 4) {
-		jabFrame = 67;
+		jabFrame = 132;
+	} else if (playFrame == 3) {
+		jabFrame = 133;
 	} else if (playFrame == 6) {
-		jabFrame = 68;
-	} else if (playFrame == 8) {
-		jabFrame = 69;
-	} else if (playFrame == 10) {
-		jabFrame = 70;
-	} else if (playFrame == 12) {
-		jabFrame = 71;
-	} else if (playFrame == 14) {
-		jabFrame = 72;
+		jabFrame = 134;
+	} else if (playFrame == 9) {
+		jabFrame = 135;
+	} else if (playFrame == 13) {
+		jabFrame = 136;
 	} else if (playFrame == 17) {
-		jabFrame = 73;
-	} else if (playFrame == 20) {
-		jabFrame = 74;
-	} else if (playFrame == 23) {
-		jabFrame = 75;
-	} else if (playFrame == 25) {
-		jabFrame = 76;
-	} else if (playFrame == 27) {
-		jabFrame = 77;
-	} else if (playFrame == 28) {
-		jabFrame = 78;
-	}
-	if (jabFrame >= 65) && (jabFrame <= 74) {
-		damageGiven = 6;
-		knockbackGivenX = 12;
-		knockbackGivenY = 8;
-		percentMultiplier = 0.01;
-		framesGiven = 30;
+		jabFrame = 137;
+	} else if (playFrame == 21) {
+		jabFrame = 138;
 	}
 	playFrame += 1;
-	if (playFrame == 30) {
+	if (playFrame == 25) {
 		playFrame = 0;
 		jabCombo = 0;
-		animState = "jabEnd";
+		animState = "jab3End";
 	}
 	image_index = jabFrame;
 } if (animState == "jabEnd") {
 	jabbing = 1;
 	if (playFrame == 0) {
-		jabFrame = 61;
-	} else if (playFrame == 2) {
-		jabFrame = 62;
-	} else if (playFrame == 4) {
-		jabFrame = 63;
-	} else if (playFrame == 6) {
-		jabFrame = 64;
+		jabFrame = 139;
+	} else if (playFrame == 5) {
+		jabFrame = 140;
 	} 
 	playFrame += 1;
-	if (playFrame == 9) {
+	if (playFrame == 11) {
+		playFrame = 0;
+		jabCombo = 0;
+		animState = "idle";
+	}
+	image_index = jabFrame;
+} if (animState == "jab2End") {
+	jabbing = 1;
+	if (playFrame == 0) {
+		jabFrame = 129;
+	} else if (playFrame == 5) {
+		jabFrame = 130;
+	} else if (playFrame == 10) {
+		jabFrame = 131;
+	}
+	playFrame += 1;
+	if (playFrame == 16) {
+		playFrame = 0;
+		jabCombo = 0;
+		animState = "idle";
+	}
+	image_index = jabFrame;
+} if (animState == "jab3End") {
+	jabbing = 1;
+	if (playFrame == 0) {
+		jabFrame = 139;
+	} else if (playFrame == 5) {
+		jabFrame = 140;
+	}
+	playFrame += 1;
+	if (playFrame == 11) {
 		playFrame = 0;
 		jabCombo = 0;
 		animState = "idle";
@@ -449,86 +411,47 @@ else if (animState == "jumpUp") {
 	image_index = jabFrame;
 } if (animState == "FCharge") {
 	FCharging = 1;
-	image_index = 92;
 	if (playFrame == 0) {
-		FChargeFrame = 92;
+		FChargeFrame = 168;
 	} else if (playFrame == 3) {
-		FChargeFrame = 93;
+		FChargeFrame = 169;
 	} else if (playFrame == 6) {
-		FChargeFrame = 94;
+		FChargeFrame = 170;
 	} else if (playFrame == 9) {
-		FChargeFrame = 95;
+		FChargeFrame = 171;
 	} else if (playFrame == 12) {
-		FChargeFrame = 96;
+		FChargeFrame = 172;
 	} else if (playFrame == 15) {
-		FChargeFrame = 97;
+		FChargeFrame = 171;
 	} else if (playFrame == 18) {
-		FChargeFrame = 98;
+		FChargeFrame = 170;
 	}
 	playFrame += 1;
 	if (playFrame == 21) {
-		playFrame = 6;
+		playFrame = 3;
 	}
 	image_index = FChargeFrame;
 } if (animState == "FSmash") {
 	FSmashing = 1;
 	if (playFrame == 0) {
-		FSmashFrame = 99;
+		FSmashFrame = 173;
 	} else if (playFrame == 2) {
-		FSmashFrame = 100;
+		FSmashFrame = 173;
+		proj = scr_ProjectileSpawnBack(char,0,15+(15*FCharge),15+(5*FCharge),18*FCharge,0.01,player,30,1+3*FCharge,0,direct,4,true);
 	} else if (playFrame == 4) {
-		FSmashFrame = 101;
-	} else if (playFrame == 6) {
-		FSmashFrame = 102;
+		FSmashFrame = 174;
 	} else if (playFrame == 8) {
-		FSmashFrame = 103;
-	} else if (playFrame == 10) {
-		FSmashFrame = 104;
-	} else if (playFrame == 12) {
-		FSmashFrame = 105;
-	} else if (playFrame == 14) {
-		FSmashFrame = 106;
+		FSmashFrame = 175;
 	} else if (playFrame == 16) {
-		FSmashFrame = 107;
-	} else if (playFrame == 19) {
-		FSmashFrame = 108;
-	} else if (playFrame == 23) {
-		FSmashFrame = 109;
-	} else if (playFrame == 26) {
-		FSmashFrame = 110;
-	} else if (playFrame == 29) {
-		FSmashFrame = 111;
-	} else if (playFrame == 32) {
-		FSmashFrame = 112;
-	} else if (playFrame == 35) {
-		FSmashFrame = 113;
-	} else if (playFrame == 39) {
-		FSmashFrame = 114;
-	} else if (playFrame == 46) {
-		FSmashFrame = 115;
-	} else if (playFrame == 49) {
-		FSmashFrame = 61;
-	} else if (playFrame == 53) {
-		FSmashFrame = 62;
-	} else if (playFrame == 57) {
-		FSmashFrame = 63;
-	} else if (playFrame == 61) {
-		FSmashFrame = 64;
-	}
+		FSmashFrame = 176;
+	} else if (playFrame == 30) {
+		FSmashFrame = 178;
+	} 
 	playFrame += 1;
-	if (FSmashFrame >= 104) && (FSmashFrame <= 112) {
-		damageGiven = 18*FCharge;
-		knockbackGivenX = 15+(15*FCharge);
-		knockbackGivenY = 15+(5*FCharge);
-		percentMultiplier = 0.01;
-		framesGiven = 30;
-		maxPauseFrames = 12;
-	}
 	image_index = FSmashFrame;
-	if (playFrame == 65) {
+	if (playFrame == 45) {
 		playFrame = 0;
 		animState = "idle";
-		FSmashFrame = 99;
 	}
 } if (animState == "GroundNSpecial") {
 	GNSpecialing = 1;
@@ -550,7 +473,6 @@ else if (animState == "jumpUp") {
 		GNSpecialFrame = 138;
 	} else if (playFrame == 16) {
 		GNSpecialFrame = 139;
-		proj = scr_ProjectileSpawn(char,0,1,1,5,0.01,player,15,5,0,direct);
 		canShoot = false;
 		shotTimer = 0;
 		shotDelay = 30;
@@ -579,7 +501,6 @@ else if (animState == "jumpUp") {
 		GSSpecialFrame = 120;
 	} else if (playFrame == 11) {
 		GSSpecialFrame = 121;
-		proj = scr_ProjectileSpawn(char,1,10,3,7,0.01,player,40,7,0,direct)
 		canShoot = false;
 		shotDelay = 50;
 	} else if (playFrame == 14) {
@@ -674,7 +595,6 @@ else if (animState == "jumpUp") {
 		ANSpecialFrame = 156;
 	} else if (playFrame == 16) {
 		ANSpecialFrame = 157;
-		proj = scr_ProjectileSpawn(char,0,1,1,5,0.01,player,15,5,0,direct);
 		canShoot = false;
 	} else if (playFrame == 18) {
 		ANSpecialFrame = 158;

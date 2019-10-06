@@ -11,4 +11,8 @@ if (char == 0) {
 	}
 } else if (char == -1) {
 	sprite_index = spr_SandbagHurt;
+} else if (char == 1) {
+	if (projectile == 0) {
+		sprite_index = spr_GenoFSmashHit;
+	}
 }

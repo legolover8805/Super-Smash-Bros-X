@@ -54,6 +54,8 @@ shadowY = .15;
 // Attacks
 jabCombo = 0;
 jabLagging = false;
+jabFrameEnd = 22;
+jab2FrameEnd = 21;
 crouchLagging = false;
 FChargeCount = 0;
 FCharge = 0;

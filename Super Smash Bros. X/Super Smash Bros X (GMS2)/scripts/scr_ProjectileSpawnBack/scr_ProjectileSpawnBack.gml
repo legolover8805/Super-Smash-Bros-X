@@ -1,4 +1,4 @@
-_projectile = instance_create_layer(x,y,"Projectiles",obj_Projectile);
+_projectile = instance_create_layer(x,y,"ProjectilesBack",obj_Projectile);
 _projectile.char = argument0;
 _projectile.projectile = argument1;
 _projectile.knockbackX = argument2;

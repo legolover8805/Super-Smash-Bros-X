@@ -9,6 +9,15 @@ if (owner != other.owner) {
 			with other.proj {
 				instance_destroy();
 			}
+		} else if (other.char == 1) {
+			if (other.projectile == 0) {
+				with other {
+					instance_destroy();
+				}
+				with other.proj {
+					instance_destroy();
+				}
+			}
 		}
 		if (isHit == 0) {
 			other.fighters[other.owner].hitConnect = true;

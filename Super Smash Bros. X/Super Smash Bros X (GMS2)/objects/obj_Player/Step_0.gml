@@ -68,11 +68,11 @@ if (vsp >= -.5) && (!onGround) && (animState != "dair") && (key_downfall) {
 // Jab
 if (onGround && key_normal && !key_left && !key_right && !key_down && !key_up && !key_jump && !key_grab && !key_shield && !jabLagging && animState != "FCharge" && animState != "DCharge" && animState != "FSmash" && animState != "DSmash") {
 	if (animState == "jab") {
-		if (jabCombo == 0 && playFrame <= 18) {
+		if (jabCombo == 0 && playFrame <= jabFrameEnd) {
 			jabCombo = 1;
 		}
 	} else if (animState == "jab2") {
-		if (jabCombo == 1 && playFrame <= 18){
+		if (jabCombo == 1 && playFrame <= jab2FrameEnd){
 			jabCombo = 2;
 		}
 	} else if (animState != "jab" && animState != "jab2" && animState != "jab3") {
@@ -108,19 +108,19 @@ if (!place_meeting(x,y+sign(vsp),obj_Wall)) && (place_meeting(x,y+vsp+4,obj_Wall
 }
 
 
-if (animState == "grab") || (animState == "dashGrab") || (animState == "pummel") || (animState == "hold") || (animState == "land") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") ||  (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "grab") || (animState == "dashGrab") || (animState == "pummel") || (animState == "hold") || (animState == "land") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") ||  (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") || (animState == "jab2End") || (animState == "jab3End") {
 	lagging = true;
 } else {
 	lagging = false;
 }
 
-if (animState == "grab") || (animState == "dashGrab") || (animState == "pummel") || (animState == "hold") || (animState == "land") || (animState == "dashAttack") || (animState == "dashLoop") || (animState == "dashStart") || (animState == "dashLag") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "grab") || (animState == "dashGrab") || (animState == "pummel") || (animState == "hold") || (animState == "land") || (animState == "dashAttack") || (animState == "dashLoop") || (animState == "dashStart") || (animState == "dashLag") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzyWake") || (animState == "dizzy") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "jab") || (animState == "jab2") || (animState == "jab3") || (animState == "fairland") || (animState == "jabEnd") || (animState == "jab2End") || (animState == "jab3End") {
 	crouchLagging = true;
 } else {
 	crouchLagging = false;
 }
 
-if (animState == "grab") || (animState == "dashGrab") || (animState == "pummel") || (animState == "hold") || (animState == "land") || (animState == "dashAttack") || (animState == "dashLoop") || (animState == "dashStart") || (animState == "dashLag") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzy") || (animState == "dizzyWake") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "fairland") || (animState == "jabEnd") {
+if (animState == "grab") || (animState == "dashGrab") || (animState == "pummel") || (animState == "hold") || (animState == "land") || (animState == "dashAttack") || (animState == "dashLoop") || (animState == "dashStart") || (animState == "dashLag") || (animState == "ledgeGrab") || (animState == "ledgeClimbJump") || (animState == "ledgeClimbAttack") || (animState == "ledgeClimb") || (animState == "spotDodge") || (animState == "fRoll") || (animState = "bRoll") || (animState == "dizzy") || (animState == "dizzyWake") || (animState == "shielding") || isDairLanding || (animState == "dtilt") || (animState == "crouch") || (animState == "GroundNSpecial") || (animState == "GroundSSpecial") || (animState == "FSmashEnd") || (animState == "FCharge") || (animState == "FSmash") ||  (animState == "DCharge") || (animState == "DSmash") || (animState == "fairland") || (animState == "jabEnd") || (animState == "jab2End") || (animState == "jab3End") {
 	jabLagging = true;
 } else {
 	jabLagging = false;
@@ -471,7 +471,7 @@ if (animState == "hold") {
 print(isGrab);
 
 
-if (animState == "land") || (animState = "fRoll") || (animState = "bRoll") || (animState == "dizzy") || (animState == "shield") || (animState == "jab") || (animState == "jab2") || (animState == "jab3")  || (animState == "fairland") || (animState == "jabEnd") || lagging {
+if (animState == "land") || (animState = "fRoll") || (animState = "bRoll") || (animState == "dizzy") || (animState == "shield") || (animState == "jab") || (animState == "jab2") || (animState == "jab3")  || (animState == "fairland") || (animState == "jabEnd") || (animState == "jab2End") || (animState == "jab3End") || lagging {
 	hsp = 0;
 	dir = pastDir;
 }
@@ -687,7 +687,7 @@ if (key_special && !lagging && onGround && !key_up && !key_shield && !key_down &
 // Down
 if (key_special && !key_shield && !crouchLagging && key_down && canShoot == true) {
 	if (char == 0) {
-		proj = scr_ProjectileSpawn(char,2,10,10,6,0.01,player,13,0,0,direct)
+		proj = scr_ProjectileSpawn(char,2,10,10,6,0.01,player,13,0,0,direct,0,false)
 		canShoot = false;
 		shotDelay = 40;
 	}

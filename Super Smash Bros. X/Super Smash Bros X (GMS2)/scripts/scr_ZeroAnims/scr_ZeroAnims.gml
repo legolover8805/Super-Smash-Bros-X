@@ -638,7 +638,7 @@ else if (animState == "jumpUp") {
 		GNSpecialFrame = 138;
 	} else if (playFrame == 16) {
 		GNSpecialFrame = 139;
-		proj = scr_ProjectileSpawn(char,0,1,1,5,0.01,player,15,5,0,direct);
+		proj = scr_ProjectileSpawn(char,0,1,1,5,0.01,player,15,5,0,direct,0,false);
 		canShoot = false;
 		shotTimer = 0;
 		shotDelay = 30;
@@ -667,7 +667,7 @@ else if (animState == "jumpUp") {
 		GSSpecialFrame = 120;
 	} else if (playFrame == 11) {
 		GSSpecialFrame = 121;
-		proj = scr_ProjectileSpawn(char,1,10,3,7,0.01,player,40,7,0,direct)
+		proj = scr_ProjectileSpawn(char,1,10,3,7,0.01,player,40,7,0,direct,0,false)
 		canShoot = false;
 		shotDelay = 50;
 	} else if (playFrame == 14) {
@@ -762,7 +762,7 @@ else if (animState == "jumpUp") {
 		ANSpecialFrame = 156;
 	} else if (playFrame == 16) {
 		ANSpecialFrame = 157;
-		proj = scr_ProjectileSpawn(char,0,1,1,5,0.01,player,15,5,0,direct);
+		proj = scr_ProjectileSpawn(char,0,1,1,5,0.01,player,15,5,0,direct,0,false);
 		canShoot = false;
 	} else if (playFrame == 18) {
 		ANSpecialFrame = 158;

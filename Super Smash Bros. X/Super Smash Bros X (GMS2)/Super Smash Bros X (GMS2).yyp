@@ -231,6 +231,14 @@
             }
         },
         {
+            "Key": "230db5df-8a4f-4b0c-8173-1290670e25a0",
+            "Value": {
+                "id": "45e59dff-f840-4040-aad7-78381aaa5545",
+                "resourcePath": "sprites\\spr_GenoFSmashHit\\spr_GenoFSmashHit.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "27713307-a7bc-4856-8b37-28236b2c39d3",
             "Value": {
                 "id": "ecbcb28b-415d-4898-bf68-c31d737f3aac",
@@ -599,6 +607,14 @@
             }
         },
         {
+            "Key": "99e102b6-b626-4c23-8f4b-91d954ad954a",
+            "Value": {
+                "id": "298bf45f-ba14-48ad-8fa4-bf7916aeb923",
+                "resourcePath": "scripts\\scr_ProjectileSpawnBack\\scr_ProjectileSpawnBack.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "99e43a04-76e9-4202-a212-f95e9230bd5f",
             "Value": {
                 "id": "3487fd90-ffdd-4fba-8dbe-22182828a1f9",
@@ -922,6 +938,7 @@
         "22ef7228-cf66-4c95-ad5f-4d9e06b07c5d",
         "074fe619-e5dc-4eda-bf17-7e5a79e5e9e9",
         "ffc0c370-09b0-4808-8374-2002a85bde54",
+        "99e102b6-b626-4c23-8f4b-91d954ad954a",
         "8345ae15-f069-4927-9aaf-eac55295db99",
         "99e43a04-76e9-4202-a212-f95e9230bd5f",
         "487fb563-363e-4d51-8f4e-053224451a40",

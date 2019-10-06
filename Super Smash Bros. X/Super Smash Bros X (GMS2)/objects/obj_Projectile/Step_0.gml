@@ -27,7 +27,17 @@ if (framesExisted == 0) {
 				projectile = 2;
 			}
 		}
-	} 
+	} else if (char == 1) {
+		if (projectile == 0) {
+			alarm[0] = 32;
+			sprite_index = spr_GenoFSmash;
+			hitbox = scr_HitboxCreate(char,owner);
+			moveStarted = true;
+			with hitbox {
+				projectile = 0;
+			}
+		}
+	}
 }
 
 if (char == 0) {
@@ -116,6 +126,24 @@ if (char == 0) {
 			hsp = 0;
 		}
 	}
+} else if (char == 1) {
+	if (projectile == 0) {
+		if (playFrames == 0) {
+			image_index = 0;
+		} if (playFrames == 2) {
+			image_index = 1;
+		} if (playFrames == 4) {
+			image_index = 2;
+		} if (playFrames == 6) {
+			image_index = 3;
+		}
+		if (playFrames == 9) {
+			playFrames = 0;
+		}
+		if (framesExisted >= 24) {
+			image_alpha -= 0.1;
+		}
+	}
 }
 
 if (moveStarted) {
@@ -142,7 +170,8 @@ with hitbox {
 	isHit = 1;
 	frames = 0;
 	framesGiven = other.framesGiven;
-	maxPauseFrames = 0;
+	maxPauseFrames = other.maxPauseFrames;
+	isPaused = other.isPaused;
 	proj = other.proj;
 }
 playFrames += 1;
