@@ -407,6 +407,14 @@
             }
         },
         {
+            "Key": "5ac45474-6b80-4a1c-9d32-903b97239524",
+            "Value": {
+                "id": "898d9e68-e90d-478d-a9e2-d17934dc6312",
+                "resourcePath": "sprites\\spr_GenoFSmash\\spr_GenoFSmash.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "5e3b5c1e-22ac-41db-8874-df9b281c4a75",
             "Value": {
                 "id": "b9ec517b-cb68-4a03-937a-b29f422ef63e",
@@ -851,6 +859,14 @@
             "Value": {
                 "id": "ac2e8d7b-c236-4c79-a360-93070c99be71",
                 "resourcePath": "views\\ecdf0636-ad31-4c1e-860c-31fbfd966268.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "f0cdd8aa-8956-40b9-9888-e0c496c96b8f",
+            "Value": {
+                "id": "a611bc88-78a0-46e6-951d-c1e11e7b377b",
+                "resourcePath": "views\\f0cdd8aa-8956-40b9-9888-e0c496c96b8f.yy",
                 "resourceType": "GMFolder"
             }
         },
