@@ -471,6 +471,14 @@
             }
         },
         {
+            "Key": "6d670af9-ddd3-49a2-b77b-ad34b37871ff",
+            "Value": {
+                "id": "b3e50eb1-d8b4-43b8-8a35-cd7dcfb16ec3",
+                "resourcePath": "fonts\\font2\\font2.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "7023cd97-654e-495d-ac90-a6acea673cb3",
             "Value": {
                 "id": "d7cc78cd-0db0-46f7-83db-39c9824896ba",
@@ -572,6 +580,14 @@
                 "id": "8efa2715-bb68-45e1-9b63-2409749f9189",
                 "resourcePath": "scripts\\scr_ShieldCreate\\scr_ShieldCreate.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "909f77c4-4f2a-4e19-9b5c-b33fd7197323",
+            "Value": {
+                "id": "c328c2db-4c7e-49c5-b5ba-1c1c410dc399",
+                "resourcePath": "sprites\\spr_GenoCannonAnim\\spr_GenoCannonAnim.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
