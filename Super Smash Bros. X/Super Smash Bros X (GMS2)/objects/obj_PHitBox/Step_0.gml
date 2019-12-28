@@ -12,7 +12,14 @@ if (char == 0) {
 } else if (char == -1) {
 	sprite_index = spr_SandbagHurt;
 } else if (char == 1) {
+	sprite_index = spr_GenoHit;
 	if (projectile == 0) {
 		sprite_index = spr_GenoFSmashHit;
+	} else if (projectile == 1) {
+		sprite_index = spr_GenoWhirlHit;
+	} else if (projectile == 2) {
+		sprite_index = spr_GenoCannonHit;
+	} else if (projectile == 3) {
+		sprite_index = spr_GenoBlastHit;
 	}
 }

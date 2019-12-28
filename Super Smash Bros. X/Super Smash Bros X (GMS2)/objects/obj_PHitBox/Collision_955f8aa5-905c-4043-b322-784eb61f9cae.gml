@@ -9,21 +9,26 @@ if (owner != other.owner) {
 			with other.proj {
 				instance_destroy();
 			}
-		} else if (other.char == 1) {
-			if (other.projectile == 0) {
+		} else if (other.char == 1 && other.projectile != -1) {
+			//if (other.projectile == 0) {
 				with other {
 					instance_destroy();
 				}
 				with other.proj {
 					instance_destroy();
 				}
-			}
+			//}
 		}
 		if (isHit == 0) {
 			other.fighters[other.owner].hitConnect = true;
 			percent += other.percentGiven;
 			knockbackX = other.knockbackGivenX;
 			knockbackY = other.knockbackGivenY;
+			baseKnockbackX = other.baseKnockbackGivenX;
+			baseKnockbackY = other.baseKnockbackGivenY;
+			capKnockbackX = other.capKnockbackGivenX;
+			capKnockbackY = other.capKnockbackGivenY;
+			knockbackDir = other.knockbackDirGiven;
 			percentMultiplied = other.percentMultiplier;
 			isMeteorSmashed = other.isMeteor;
 			isGrabbed = other.isGrab;
@@ -58,13 +63,23 @@ if (owner != other.owner) {
 				}
 				other.prevAttack = other.attack;
 			} else {
-				while (x < other.x-other.grabSpotX) {
-					x += 1;
-				} 
-				while (x > other.x+other.grabSpotX) {
-					x-= 1;
+				if (other.fighters[other.owner].direct == 1) {
+					while (x < other.x+other.grabSpotX) {
+						x+= 1;
+					} 
+					while (x > other.x+other.grabSpotX) {
+						x-= 1;
+					}
+				} else {
+					while (x < other.x-other.grabSpotX) {
+						x+= 1;
+					} 
+					while (x > other.x-other.grabSpotX) {
+						x-= 1;
+					}
 				}
 				if (other.grabSpotY != 0) {
+					y = round(y);
 					while (y < other.y+other.grabSpotY) {
 						y-= 1;
 					} 

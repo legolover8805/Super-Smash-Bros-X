@@ -54,29 +54,39 @@ if (isHit == 1 && !isPaused) {
 }
 
 
+
+
 if (knockbackY != 0 && !isPaused) {
+	knockValue = knockbackY * percentMultiplied
+	if (knockValue > capKnockbackY) {
+		knockValue = capKnockbackY;
+	} else if (knockValue < baseKnockbackY) {
+		knockValue = baseKnockbackY;
+	} 
 	if (knockbackYCount < 4) {
 		if (!isMeteorSmashed) {
-			vsp -= (percentMultiplied * knockbackY)/4;
-			savedBackY = knockbackY;
+			vsp -= (knockValue)/4;
+			savedBackY = knockValue/percentMultiplied;
 			knockbackYCount+=1;
 		} else {
 			if (onGround == false) {
 				stayMeteor = true;
-				vsp += (percentMultiplied * knockbackY)/4;
+				vsp += (knockValue)/4;
 				knockbackYCount+=1;
-				savedBackY = knockbackY;
+				savedBackY = knockValue/percentMultiplied;
 			} else {
-				vsp -= (percentMultiplied * knockbackY);
+				vsp -= (knockValue);
 				knockbackYCount = 4;
-				savedBackY = knockbackY;
+				savedBackY = knockValue/percentMultiplied;
 			}
 		}
 	} else { 
 		knockbackY = 0;
 		knockbackYCount = 0;
 	}
-} 
+}  else {
+	knockValue = 0;
+}
 
 if (isGrabbed) {
 	hsp = 0;
@@ -86,18 +96,41 @@ y = y + vsp;
 
 // Knockback
 if (knockbackX != 0 && !isPaused) {
-	knockValue = percentMultiplied * knockbackX * dir;
-	if (hsp < knockValue && dir == 1) {
+
+	if (knockValue == 0) {
+		knockValue = percentMultiplied * knockbackX * dir;		
+	}
+	
+	if (sign(dir)*sign(knockbackDir) != sign(knockValue)) {
+		knockValue *= -1;
+		
+	}
+	//print(knockValue);
+	if (hsp < knockValue && knockValue > 0) {
+		if (knockValue > capKnockbackX) {
+			knockValue = capKnockbackX;
+		} else if (knockValue < baseKnockbackX) {
+		knockValue = baseKnockbackX;
+		} 
 		hsp += knockValue/20;
-	} else if (dir == 1 && hsp >= knockValue) {
+	} else if (knockValue >= 0 && hsp >= knockValue) {
 		hsp = 0;
 		knockbackX = 0;
-	} else if ( hsp > knockValue && dir == -1) {
+		
+	} else if ( hsp > knockValue && knockValue < 0) {
+		if (knockValue < -capKnockbackX) {
+			knockValue = -capKnockbackX;
+		} else if (knockValue > -baseKnockbackX) {
+			knockValue = -baseKnockbackX;
+		} 
 		hsp += knockValue/20;
-	} else if (dir == -1 && hsp <= knockValue) {
+	} else if (hsp <= knockValue && knockValue <= 0) {
 		hsp = 0;
 		knockbackX = 0;
 	}
+	
+} else {
+	knockValue = 0;
 }
 if (hsp < 0) && (hsp > -.01) {
 	hsp = 0;
@@ -122,6 +155,7 @@ if (x > room_width) || (x < 0) || (y > room_height) || (y < 0) {
 	percent = 0;
 	knockbackX = 0;
 	knockbackY = 0;
+	knockValue = 0;
 }
 
 /*show_debug_message(maxFrames);
@@ -156,3 +190,4 @@ with shadow {
 		image_alpha = 0;
 	}
 }
+//print(hsp)

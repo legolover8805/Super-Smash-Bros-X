@@ -12,5 +12,9 @@ _projectile.vsp = argument9;
 _projectile.dir = argument10;
 _projectile.maxPauseFrames = argument11;
 _projectile.isPaused = argument12;
-//woot
+_projectile.baseKnockbackX = 0;
+_projectile.baseKnockbackY = 0;
+_projectile.capKnockbackX = 1000
+_projectile.capKnockbackY = 1000;
+_projectile.knockbackDirGiven = 1;
 return _projectile; 

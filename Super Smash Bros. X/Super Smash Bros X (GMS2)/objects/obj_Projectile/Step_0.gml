@@ -1,6 +1,22 @@
 /// @description Insert description here
 // You can write your code in this editor
 image_xscale = dir;
+if (place_meeting(x,y+sign(vsp)*4,obj_Wall)) {
+	grounded = true;
+} else {
+	grounded = false;
+}
+if (place_meeting(x+dir*4,y,obj_Wall)) {
+	walled = true;
+} else {
+	walled = false;
+}
+if (place_meeting(x+dir*4,y,obj_InvWall)) {
+	forceDestroy = true;
+} else {
+	forceDestroy = false;
+}
+
 
 if (framesExisted == 0) {
 	if (char == 0 ) {
@@ -36,6 +52,42 @@ if (framesExisted == 0) {
 			with hitbox {
 				projectile = 0;
 			}
+			wallDie = true;
+			groundDie = false;
+		} else if (projectile == 1) {
+			alarm[0] = 60;
+			image_alpha = 0;
+			sprite_index = spr_GenoWhirl;
+			hitbox = scr_HitboxCreate(char,owner);
+			moveStarted = true;
+			with hitbox {
+				projectile = 1;
+			}
+			wallDie = false;
+			groundDie = false;
+		} else if (projectile == 2) {
+			alarm[0] = 60;
+			sprite_index = spr_GenoCannonAnim;
+			image_speed = 0;
+			hitbox = scr_HitboxCreate(char,owner);
+			moveStarted = true;
+			with hitbox {
+				projectile = 2;
+			}
+			wallDie = false;
+		} else if (projectile == 3) {
+			alarm[0] = 90;
+			sprite_index = spr_GenoBlast;
+			image_speed = 0;
+			hitbox = scr_HitboxCreate(char,owner)
+			starType = 5*irandom(2)
+			moveStarted = true;
+			//bounceTimer = 3;
+			with hitbox {
+				projectile = 3;
+			}
+			wallDie = false;
+			groundDie = false;
 		}
 	}
 }
@@ -143,6 +195,65 @@ if (char == 0) {
 		if (framesExisted >= 24) {
 			image_alpha -= 0.1;
 		}
+	} else if (projectile == 1) {
+		image_speed = 5;
+		if (framesExisted < 5) {
+			image_alpha += 0.2;
+		}
+		if (framesExisted >= 50) {
+			image_alpha -= 0.1;
+		}
+	} else if (projectile == 2) {
+		if (playFrames == 0) {
+			image_index = 0;
+		} else if (playFrames == 2) {
+			image_index = 1;
+		} else if (playFrames == 4) {
+			image_index = 2;
+		} else if (playFrames == 6) {
+			image_index = 3;
+		} else if (playFrames == 8) {
+			image_index = 4;
+		}
+		if (playFrames >= 8) {
+			if (!grounded) {
+				image_angle += 1*genoCannonAcc;
+			} else {
+				image_angle = 0;
+			}
+			genoCannonAcc += .25;
+			useGrav = true;
+			gravNum = 1.4;
+		}if (framesExisted >= 50) {
+			image_alpha -= 0.1;
+		}
+	} else if (projectile == 3) {
+		if (playFrames == 0) {
+			image_index = 0+starType;
+		} else if (playFrames == 2) {
+			image_index = 1+starType;
+		} else if (playFrames == 4) {
+			image_index = 2+starType;
+		} else if (playFrames == 6) {
+			image_index = 3+starType;
+		} else if (playFrames == 8) {
+			image_index = 4+starType;
+		} 
+		if (playFrames == 10) {
+			playFrames = 0;
+		} if (framesExisted >= 70) {
+			image_alpha -= 0.1;
+		}
+		if grounded {
+			vsp *= -1;
+			bounceTimer = 0;
+		} else if (walled) {
+			hsp *= -1;
+			bounceTimer = 0;
+		}
+		/*if (bounceTimer < 3) {
+			bounceTimer += 1;
+		}*/
 	}
 }
 
@@ -154,16 +265,27 @@ if (moveStarted) {
 	}
 	y += vsp;
 }
+if (useGrav) {
+	if (!place_meeting(x,y+sign(vsp),obj_Wall)) {
+		y += gravNum;
+	}
+}
 with hitbox {
 	x = other.x;
 	y = other.y;
 	attack = "Projectile";
+	image_angle = other.image_angle
 	image_xscale = other.image_xscale;
 	image_index = other.image_index;
 	percentGiven = other.damage;
 	knockbackGivenX = other.knockbackX;
 	knockbackGivenY = other.knockbackY;
+	baseKnockbackGivenX = other.baseKnockbackX;
+	baseKnockbackGivenY = other.baseKnockbackY;
+	capKnockbackGivenX = other.capKnockbackX;
+	capKnockbackGivenY = other.capKnockbackY;
 	percentMultiplier = other.percentMultiplier;
+	knockbackDirGiven = other.knockbackDirGiven;
 	isMeteor = false;
 	isGrab = false;
 	grabSpot = 0;
@@ -174,5 +296,15 @@ with hitbox {
 	isPaused = other.isPaused;
 	proj = other.proj;
 }
+
+if (walled && wallDie) {
+	alarm[0] = 1;
+} if (grounded && groundDie) {
+	alarm[0] = 1;
+} 
+if (forceDestroy) {
+	alarm[0] = 1;
+}
+
 playFrames += 1;
 framesExisted += 1;

@@ -1,0 +1,2 @@
+loop start: 370020 samples (7.7089 seconds)
+loop end: 642180 samples (13.3790 seconds)
