@@ -10,6 +10,7 @@ capKnockbackGivenY = 1000;
 percentMultiplier = 0;
 framesGiven = 0;
 maxPauseFrames = 0;
+isJabbed = false;
 
 if (playFrame == 0) {
 	hitConnect = false;
@@ -417,9 +418,32 @@ else if (animState == "jumpUp") {
 		dairFrame = 262;
 	} 
 	playFrame += 1;
+	if (playFrame >= 9 && playFrame <= 17) {
+		damageGiven = 10;
+		knockbackGivenX = 8;
+		knockbackGivenY = 5;
+		baseKnockbackGivenY = 2.5;
+		if (hitConnect) {
+			if (dairFrame != 257) {
+				hitConCount = 1;
+			}
+		}  if (dairFrame == 257 && !hitConCount) {
+			isMeteor = true;
+		}
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+	} else {
+		damageGiven = 8;
+		knockbackGivenX = 7;
+		knockbackGivenY = 4;
+		baseKnockbackGivenY = 2.5;
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+	}
 	if (playFrame == 29) {
 		playFrame = 0;
 		airLag = true;
+		hitConCount = 0;
 		airLagMax = 50;
 		animState = "fall";
 	}
@@ -444,6 +468,14 @@ else if (animState == "jumpUp") {
 		uairFrame = 251;
 	}
 	playFrame += 1;
+	if (playFrame >= 7 && playFrame < 19) {
+		damageGiven = 7;
+		knockbackGivenX = 7;
+		knockbackGivenY = 20;
+		baseKnockbackGivenY = 10;
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+	}
 	if (playFrame == 26) {
 		playFrame = 0;
 		airLag = true;
@@ -467,6 +499,14 @@ else if (animState == "jumpUp") {
 		jabFrame = 122;
 	}
 	playFrame += 1;
+	if (playFrame >= 17) { 
+		damageGiven = 3;
+		knockbackGivenX = 1;
+		knockbackGivenY = 2;
+		percentMultiplier = 0.01;
+		framesGiven = 5;
+		isJabbed = true;
+	}
 	if (playFrame > 21) {
 		if (jabCombo == 1) {
 			playFrame = 0;
@@ -491,6 +531,14 @@ else if (animState == "jumpUp") {
 		jabFrame = 127;
 	} else if (playFrame == 18) {
 		jabFrame = 128;
+	}
+	if (playFrame >= 3 && playFrame< 18) { 
+		damageGiven = 3;
+		knockbackGivenX = 2;
+		knockbackGivenY = 2;
+		percentMultiplier = 0.01;
+		framesGiven = 20;
+		isJabbed = true;
 	}
 	playFrame += 1;
 	if (playFrame > 22){
@@ -520,6 +568,14 @@ else if (animState == "jumpUp") {
 		jabFrame = 137;
 	} else if (playFrame == 21) {
 		jabFrame = 138;
+	}
+	if (playFrame >= 6 && playFrame < 21) { 
+		damageGiven = 4;
+		knockbackGivenX = 15;
+		knockbackGivenY = 15;
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+		isJabbed = true;
 	}
 	playFrame += 1;
 	if (playFrame == 25) {
@@ -600,7 +656,7 @@ else if (animState == "jumpUp") {
 		FSmashFrame = 173;
 	} else if (playFrame == 2) {
 		FSmashFrame = 173;
-		proj = scr_ProjectileSpawnBack(char,0,15+(15*FCharge),15+(5*FCharge),18*FCharge,0.01,player,30,1+3*FCharge,0,direct,4,true);
+		proj = scr_ProjectileSpawnBack(char,0,11+(15*FCharge),11+(5*FCharge),18*FCharge,0.01,player,30,1+3*FCharge,0,direct,4,true);
 	} else if (playFrame == 4) {
 		FSmashFrame = 174;
 	} else if (playFrame == 8) {
@@ -610,6 +666,17 @@ else if (animState == "jumpUp") {
 	} else if (playFrame == 30) {
 		FSmashFrame = 178;
 	} 
+	/*if (FSmashFrame == 173) {
+		if (hitConnect) {
+			terminateProj = true;
+		}
+		damageGiven = 21*FCharge;
+		knockbackGivenX = 12+(15*FCharge);
+		knockbackGivenY = 12+(15*FCharge);
+		framesGiven = 30;
+		percentMultiplier = 0.01;
+		maxPauseFrames = 1;
+	}*/
 	playFrame += 1;
 	image_index = FSmashFrame;
 	if (playFrame == 45) {
@@ -686,6 +753,21 @@ else if (animState == "jumpUp") {
 		ANSpecialFrame = 295;
 	} else if (playFrame == 81) {
 		ANSpecialFrame = 296;
+	}
+	if (ANSpecialFrame >= 279 && ANSpecialFrame <= 290) {
+		damageGiven = 20;
+		knockbackGivenX = 25;
+		knockbackGivenY = 25;
+		framesGiven = 30;
+		percentMultiplier = 0.01;
+		maxPauseFrames = 5;
+	} else {
+		damageGiven = 13;
+		knockbackGivenX = 15;
+		knockbackGivenY = 15;
+		framesGiven = 30;
+		percentMultiplier = 0.01;
+		maxPauseFrames = 5;
 	}
 	playFrame += 1;
 	if (playFrame == 83) {
@@ -764,6 +846,23 @@ else if (animState == "jumpUp") {
 	} else if (playFrame == 81) {
 		GNSpecialFrame = 296;
 	}
+	if (GNSpecialFrame >= 279 && GNSpecialFrame <= 290) {
+		damageGiven = 15;
+		knockbackGivenX = 18;
+		baseKnockbackGivenX = 7;
+		baseKnockbackGivenY = 7;
+		knockbackGivenY = 18;
+		framesGiven = 30;
+		percentMultiplier = 0.01;
+		maxPauseFrames = 5;
+	} else {
+		damageGiven = 8;
+		knockbackGivenX = 15;
+		knockbackGivenY = 15;
+		framesGiven = 30;
+		percentMultiplier = 0.01;
+		maxPauseFrames = 5;
+	}
 	playFrame += 1;
 	if (playFrame == 83) {
 		playFrame = 0;
@@ -826,7 +925,7 @@ else if (animState == "jumpUp") {
 		ADSpecialFrame = 319;
 	} else if (playFrame == 6) {
 		ADSpecialFrame = 320;
-	} else if (playFrame == 18) {
+	} else if (playFrame == 10) {
 		ADSpecialFrame = 321;
 		proj = scr_ProjectileSpawn(char,3,3,3,4,.01,player,30,4,4,direct,6,true);
 	} else if (playFrame == 40) {
@@ -844,7 +943,7 @@ else if (animState == "jumpUp") {
 		GDSpecialFrame = 319;
 	} else if (playFrame == 6) {
 		GDSpecialFrame = 320;
-	} else if (playFrame == 18) {
+	} else if (playFrame == 10) {
 		GDSpecialFrame = 321;
 		proj = scr_ProjectileSpawn(char,3,3,3,4,.01,player,30,4,4,direct,6,true);
 	} else if (playFrame == 40) {
@@ -988,6 +1087,14 @@ else if (animState == "jumpUp") {
 	} else if (playFrame == 26) {
 		downTiltFrame = 167;
 	}
+	damageGiven = 6;
+	knockbackGivenX = 8;
+	knockbackGivenY = 11;
+	baseKnockbackGivenX = 3;
+	baseKnockbackGivenY = 7;
+	percentMultiplier = 0.01;
+	framesGiven = 30;
+	maxPauseFrames = 2;
 	playFrame += 1;
 	if (playFrame == 30) {
 		playFrame = 0;
@@ -1017,6 +1124,14 @@ else if (animState == "jumpUp") {
 	} else if (playFrame == 27) {
 		upTiltFrame = 149;
 	}
+	damageGiven = 5;
+	knockbackGivenX = 3;
+	knockbackGivenY = 14;
+	baseKnockbackGivenX = 1;
+	baseKnockbackGivenY = 8;
+	percentMultiplier = 0.01;
+	framesGiven = 30;
+	maxPauseFrames = 3;
 	playFrame += 1;
 	if (playFrame == 31) {
 		playFrame = 0;
@@ -1042,6 +1157,14 @@ else if (animState == "jumpUp") {
 	} else if (playFrame == 24) {
 		forwardTiltFrame = 148;
 	}
+	damageGiven = 7;
+	knockbackGivenX = 15;
+	knockbackGivenY = 5;
+	baseKnockbackGivenX = 12;
+	baseKnockbackGivenY = 3;
+	percentMultiplier = 0.01;
+	framesGiven = 30;
+	maxPauseFrames = 3;
 	playFrame += 1;
 	if (playFrame == 30) {
 		playFrame = 0;
@@ -1112,13 +1235,20 @@ else if (animState == "jumpUp") {
 		DSmashFrame = 220;
 	} 
 	playFrame += 1;
-	if (DSmashFrame >= 203) && (DSmashFrame <= 208) {
-		damageGiven = 2 + (18*DCharge);
-		knockbackGivenX = 10+(15*DCharge);
-		knockbackGivenY = 10+(9*DCharge);
+	if (DSmashFrame >= 212) && (DSmashFrame <= 215) {
+		damageGiven = 4 + (18*DCharge);
+		knockbackGivenX = 8+(15*DCharge);
+		knockbackGivenY = 7+(9*DCharge);
 		percentMultiplier = 0.01;
 		framesGiven = 30;
 		maxPauseFrames = 12;
+	} else {
+		damageGiven = 2 + (12*DCharge);
+		knockbackGivenX = 2+(12*DCharge);
+		knockbackGivenY = 2+(9*DCharge);
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+		maxPauseFrames = 6;
 	}
 	image_index = DSmashFrame;
 	if (playFrame == 49) {
@@ -1168,6 +1298,28 @@ else if (animState == "jumpUp") {
 		USmashFrame = 193;
 	} else if (playFrame == 36) {
 		USmashFrame = 194;
+	}
+	if (USmashFrame == 185) {
+		damageGiven = 1 + (18*UCharge);
+		knockbackGivenX = 6+(6*UCharge);
+		knockbackGivenY = 6+(12*UCharge);
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+		maxPauseFrames = 12;
+	} else if (USmashFrame <= 188) {
+		damageGiven = 1 + (18*UCharge);
+		knockbackGivenX = 6+(6*UCharge);
+		knockbackGivenY = 9+(15*UCharge);
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+		maxPauseFrames = 12;
+	} else {
+		damageGiven = 1 + (18*UCharge);
+		knockbackGivenX = 6+(6*UCharge);
+		knockbackGivenY = 6+(12*UCharge);
+		percentMultiplier = 0.01;
+		framesGiven = 30;
+		maxPauseFrames = 12;
 	}
 	playFrame += 1;
 	image_index = USmashFrame;
@@ -1334,6 +1486,12 @@ else if (animState == "jumpUp") {
 	} else if (playFrame == 18) {
 		ledgeClimbAttackFrame = 49;
 	}
+	damageGiven = 8;
+	knockbackGivenX = 20;
+	baseKnockbackGivenX = 13;
+	knockbackGivenY = 10;
+	percentMultiplier = 0.01;
+	framesGiven = 40;
 	playFrame += 1;
 	if (playFrame == 25) {
 		playFrame = 0;
@@ -1424,10 +1582,10 @@ else if (animState == "jumpUp") {
 		downThrowFrame = 93;
 		isGrab = false;
 		damageGiven = 4;
-		knockbackGivenX = 1;
+		knockbackGivenX = 17;
 		knockbackGivenY = 20;
 		knockbackDirGiven = -1;
-		baseKnockbackGivenX = 4;
+		baseKnockbackGivenX = 15;
 		baseKnockbackGivenY = 8;
 		capKnockbackGivenY = 14;
 		percentMultiplier = 0.01;
@@ -1464,7 +1622,7 @@ else if (animState == "jumpUp") {
 		isGrab = false;
 		knockbackGivenX = 0;
 		baseKnockbackGivenX = 2;
-		knockbackGivenY = 22;
+		knockbackGivenY = 18;
 		baseKnockbackGivenY = 8;
 		capKnockbackGivenY = 16.5;
 		percentMultiplier = 0.01;
@@ -1702,6 +1860,7 @@ if (wasDairing == 1) && (dairing == 0) {
 	wasDairing = 0;
 	playFrame = 0;
 	dairFrame = 175;
+	hitConCount = 0;
 }
 if (wasUairing == 1) && (uairing == 0) {
 	wasUairing = 0;

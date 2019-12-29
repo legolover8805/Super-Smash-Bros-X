@@ -25,6 +25,12 @@ if (place_meeting(x,y+1,obj_Wall)) {
 	image_index = 6;
 }
 
+// Horizontal Collision
+if (place_meeting(x+4*dir,y,obj_Wall)) {
+	wallSwitchDir = true;
+	image_xscale *= -1;
+}
+
 
 // Hitstun
 if (maxPauseFrames != 0) {
@@ -41,7 +47,7 @@ if (isHit == 1 && !isPaused) {
 	if (frames == 0) {
 		percentMultiplied *= percent;
 		if (percentMultiplied == 0) {
-			percentMultiplied = 1;
+			percentMultiplied = .01;
 		}
 	}
 	frames += 1;
@@ -57,27 +63,39 @@ if (isHit == 1 && !isPaused) {
 
 
 if (knockbackY != 0 && !isPaused) {
-	knockValue = knockbackY * percentMultiplied
-	if (knockValue > capKnockbackY) {
-		knockValue = capKnockbackY;
-	} else if (knockValue < baseKnockbackY) {
-		knockValue = baseKnockbackY;
-	} 
+	knockValueY = knockbackY * percentMultiplied
+	if (knockValueY > 0 && !isMeteorSmashed) {
+		if (knockValueY > capKnockbackY) {
+			knockValueY = capKnockbackY;
+		} else if (knockValueY < baseKnockbackY) {
+			knockValueY = baseKnockbackY;
+		}
+	} else if (knockValueY < 0 && !isMeteorSmashed) {
+		if (knockValueY < -capKnockbackY) {
+			knockValueY = -capKnockbackY;
+		} else if (knockValueY > -baseKnockbackY) {
+			knockValueY = -baseKnockbackY;
+		}
+	} else {
+		if (!isMeteorSmashed && !stayMeteor) {
+			vsp = 0;
+		}
+	}
 	if (knockbackYCount < 4) {
 		if (!isMeteorSmashed) {
-			vsp -= (knockValue)/4;
-			savedBackY = knockValue/percentMultiplied;
+			vsp -= (knockValueY)/4;
+			savedBackY = knockValueY/percentMultiplied;
 			knockbackYCount+=1;
 		} else {
 			if (onGround == false) {
 				stayMeteor = true;
-				vsp += (knockValue)/4;
+				vsp += (knockValueY)/4;
 				knockbackYCount+=1;
-				savedBackY = knockValue/percentMultiplied;
+				savedBackY = knockValueY/percentMultiplied;
 			} else {
-				vsp -= (knockValue);
+				vsp -= (knockValueY)/4;
 				knockbackYCount = 4;
-				savedBackY = knockValue/percentMultiplied;
+				savedBackY = knockValueY/percentMultiplied;
 			}
 		}
 	} else { 
@@ -85,7 +103,7 @@ if (knockbackY != 0 && !isPaused) {
 		knockbackYCount = 0;
 	}
 }  else {
-	knockValue = 0;
+	knockValueY = 0;
 }
 
 if (isGrabbed) {
@@ -95,52 +113,66 @@ if (isGrabbed) {
 y = y + vsp;
 
 // Knockback
-if (knockbackX != 0 && !isPaused) {
+if (knockbackX != 0 && !wallSwitchDir && !isPaused) {
 
-	if (knockValue == 0) {
-		knockValue = percentMultiplied * knockbackX * dir;		
+	if (knockValueX == 0) {
+		knockValueX = percentMultiplied * knockbackX * dir;	
+		//hsp = 0;
 	}
 	
-	if (sign(dir)*sign(knockbackDir) != sign(knockValue)) {
-		knockValue *= -1;
+	if (sign(dir)*sign(knockbackDir) != sign(knockValueX)) {
+		knockValueX *= -1;
 		
 	}
-	//print(knockValue);
-	if (hsp < knockValue && knockValue > 0) {
-		if (knockValue > capKnockbackX) {
-			knockValue = capKnockbackX;
-		} else if (knockValue < baseKnockbackX) {
-		knockValue = baseKnockbackX;
+	if (hsp < knockValueX && knockValueX > 0) {
+		if (knockValueX > capKnockbackX) {
+			knockValueX = capKnockbackX;
+		} else if (knockValueX < baseKnockbackX) {
+		knockValueX = baseKnockbackX;
 		} 
-		hsp += knockValue/20;
-	} else if (knockValue >= 0 && hsp >= knockValue) {
+		hsp += knockValueX/20;
+	} else if (knockValueX >= 0 && hsp >= knockValueX) {
 		hsp = 0;
 		knockbackX = 0;
 		
-	} else if ( hsp > knockValue && knockValue < 0) {
-		if (knockValue < -capKnockbackX) {
-			knockValue = -capKnockbackX;
-		} else if (knockValue > -baseKnockbackX) {
-			knockValue = -baseKnockbackX;
+	} else if ( hsp > knockValueX && knockValueX < 0) {
+		if (knockValueX < -capKnockbackX) {
+			knockValueX = -capKnockbackX;
+		} else if (knockValueX > -baseKnockbackX) {
+			knockValueX = -baseKnockbackX;
 		} 
-		hsp += knockValue/20;
-	} else if (hsp <= knockValue && knockValue <= 0) {
+		hsp += knockValueX/20;
+	} else if (hsp <= knockValueX && knockValueX <= 0) {
 		hsp = 0;
 		knockbackX = 0;
 	}
-	
 } else {
-	knockValue = 0;
+	knockValueX = 0;
 }
 if (hsp < 0) && (hsp > -.01) {
 	hsp = 0;
+	wallSwitchDir = false;
 } else if (hsp > 0) && (hsp < .01) {
 	hsp = 0;
+	wallSwitchDir = false;
+}
+if (hsp == 0) {
+	wallSwitchDir = false;
 }
 
 if (isGrabbed) {
 	hsp = 0;
 	vsp = 0;
+}
+
+if (wallSwitchDir) {
+	if (sign(hsp) != sign(image_xscale)) {
+		hsp *= -1;
+	} 
+	hsp *= .5;
+	knockValueX = 0;
+	knockbackX = 0;
+	print(hsp);
 }
 
 x += hsp;
@@ -155,7 +187,8 @@ if (x > room_width) || (x < 0) || (y > room_height) || (y < 0) {
 	percent = 0;
 	knockbackX = 0;
 	knockbackY = 0;
-	knockValue = 0;
+	knockValueX = 0;
+	knockValueY = 0;
 }
 
 /*show_debug_message(maxFrames);

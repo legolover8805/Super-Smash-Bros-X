@@ -7,10 +7,12 @@ scr_Controls();
 if(place_meeting(x,y+1,obj_Wall) || ledgeAction) {
 	airLag = false;
 	onGround = true;
+	hitConCount = 0;
 } else {
 	onGround = false;
 	lagging = false;
 }
+terminateProj = false;
 
 
 if (animState == "AirDSpecial") || (animState = "AirUSpecial") || (animState == "nair") || (animState == "bair") || (animState == "ledgeGrab") || (animState == "dair") || (animState == "uair") || (animState == "fair") || (animState == "AirNSpecial") || (animState == "AirSSpecial") || (isFreeFalling) || (animState == "UpSpecial") {
@@ -62,6 +64,7 @@ if (!onGround && !airLagging && !ledgeAction && !onLedge && !lagging && animStat
 	}
 	
 } 
+
 if (airLag) {
 	if (airLagCounter < airLagMax) {
 		airLagCounter += 1;
@@ -211,7 +214,7 @@ if (vsp < 0) && (!key_jumpheld) && (!key_jumpupheld) {
 }
 
 if (vsp >= 0) {
-	if (!lagging) && !airLagging && !stuckGround && !ledgeAction && (animState != "bair") && (animState != "UpSpecial") && (animState != "quickFall") && (animState != "dair") && (animState != "nair") && (animState != "AirNSpecial") && (animState != "fair")  && (animState == "uair") {
+	if (!lagging) && !airLagging && !stuckGround && !ledgeAction && (animState != "bair") && (animState != "UpSpecial") && (animState != "quickFall") && (animState != "dair") && (animState != "nair") && (animState != "AirNSpecial") && (animState != "fair")  && (animState != "uair") {
 		animState = "fall";
 	}
 	/*if (animState == "fair") {
@@ -962,11 +965,15 @@ with hitbox {
 	maxPauseFrames = other.maxPauseFrames;
 	isMeteor = other.isMeteor;
 	isGrab = other.isGrab;
+	isJabbed = other.isJabbed;
 	grabSpotX = other.grabSpotX;
 	grabSpotY = other.grabSpotY;
 }
 with proj {
 	proj = other.proj;
+	if (other.terminateProj) {
+		instance_destroy();
+	}
 }
 with shield {
 	direct = other.direct;

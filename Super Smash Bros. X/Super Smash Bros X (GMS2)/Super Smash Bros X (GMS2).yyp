@@ -1031,6 +1031,14 @@
             }
         },
         {
+            "Key": "f4f44230-6cbc-4584-9381-b24daa765f8a",
+            "Value": {
+                "id": "aa8badea-16f9-4583-b2a1-50eca0ac8ec7",
+                "resourcePath": "rooms\\BATTLEFIELD\\BATTLEFIELD.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "f937d6a2-a1c8-408b-9eef-c4203e2b5332",
             "Value": {
                 "id": "49365bbe-9835-44c8-9ab3-3cee8c91fc27",

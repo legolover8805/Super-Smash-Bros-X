@@ -46,6 +46,7 @@ shiftDSpecial = false;
 shiftUSpecial = false;
 ledgeAction = false;
 hitConCount = 0;
+terminateProj = false;
 
 // Start
 startWalking = 0;

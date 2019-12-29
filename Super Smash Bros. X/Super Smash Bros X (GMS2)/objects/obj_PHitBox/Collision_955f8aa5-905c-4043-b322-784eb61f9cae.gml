@@ -32,6 +32,7 @@ if (owner != other.owner) {
 			percentMultiplied = other.percentMultiplier;
 			isMeteorSmashed = other.isMeteor;
 			isGrabbed = other.isGrab;
+			isJabbed = other.isJabbed;
 			isHit = 1;
 			frames = 0;
 			maxFrames = other.framesGiven;
@@ -46,7 +47,7 @@ if (owner != other.owner) {
 				}
 			}
 			//print(isGrabbed);
-			if (!isGrabbed) {
+			if (!isGrabbed && !isJabbed) {
 				if (other.attack == other.prevAttack) {
 					other.staleCounter += 1;
 					if (other.staleCounter > 9) {
@@ -62,7 +63,7 @@ if (owner != other.owner) {
 					other.staleCounter = 0;
 				}
 				other.prevAttack = other.attack;
-			} else {
+			} else if (isGrabbed) {
 				if (other.fighters[other.owner].direct == 1) {
 					while (x < other.x+other.grabSpotX) {
 						x+= 1;

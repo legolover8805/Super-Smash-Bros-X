@@ -288,6 +288,7 @@ with hitbox {
 	knockbackDirGiven = other.knockbackDirGiven;
 	isMeteor = false;
 	isGrab = false;
+	isJabbed = false;
 	grabSpot = 0;
 	isHit = 1;
 	frames = 0;
