@@ -3,6 +3,26 @@
 // Keybinding
 scr_Controls();
 
+if (x > room_width) || (x < 0) || (y > room_height) || (y < 0 && !isFreeFalling) {
+	x = reviveX;
+	y = reviveY;
+	hsp = 0;
+	isPaused = false;
+	airLag = false;
+	onGround = false;
+	hitConCount = 0;
+	lagging = false;
+	isFreeFalling = true;
+	playFrame = 0;
+	isHit = 0;
+	vsp = 0;
+	percent = 0;
+	knockbackX = 0;
+	knockbackY = 0;
+	knockValueX = 0;
+	knockValueY = 0;
+}
+
 // Verticality
 if(place_meeting(x,y+1,obj_Wall) || ledgeAction) {
 	airLag = false;
@@ -1013,7 +1033,7 @@ if (char == 0) {
 // Sounds
 if (hitConnect) {
 	if (!isMeteor) {
-		if (damageGiven >= 3) {
+		/*if (damageGiven >= 3) {
 			if (damageGiven <= 6) {
 				playSound(snd_LaunchSmall,1,false);
 			} else if (damageGiven <= 9) {
@@ -1021,7 +1041,7 @@ if (hitConnect) {
 			} else {
 				playSound(snd_LaunchBig,1,false)
 			}
-		}
+		}*/
 	} else if (isMeteor) {
 		playSound(snd_Meteor1,1,false);
 	}

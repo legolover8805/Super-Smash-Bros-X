@@ -995,7 +995,7 @@ else if (animState == "jumpUp") {
 	playFrame += 1;
 	if (playFrame == 16) {
 		onGround = false;
-		vsp = -14;
+		vsp = -12;
 	} else if (playFrame == 17) {
 		hsp = 14*direct;
 	} else if (playFrame == 34) {
@@ -1043,7 +1043,7 @@ else if (animState == "jumpUp") {
 	playFrame += 1;
 	if (playFrame == 16) {
 		onGround = false;
-		vsp = -14;
+		vsp = -12;
 	} else if (playFrame == 17) {
 		hsp = 14*direct;
 	} else if (playFrame == 34) {

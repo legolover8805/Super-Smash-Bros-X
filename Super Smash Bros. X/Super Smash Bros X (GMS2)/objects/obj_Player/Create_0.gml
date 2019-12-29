@@ -18,6 +18,8 @@ if (char == 0) {
 	scr_GenoTraits();
 }
 player = 1;
+reviveX = 480;
+reviveY = 384;
 
 
 // Damage
