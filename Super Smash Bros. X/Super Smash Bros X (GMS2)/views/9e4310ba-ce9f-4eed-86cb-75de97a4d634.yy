@@ -8,7 +8,9 @@
         "766b299d-a3ef-4601-9c63-08d35bcaf212",
         "337c191f-37e9-44f4-8219-cd4d5fb322f5",
         "7302ca5a-fee7-4034-9c79-f5c033df17ab",
-        "ad68184b-99bf-4dcb-9112-9e9ecce8a5c0"
+        "ad68184b-99bf-4dcb-9112-9e9ecce8a5c0",
+        "cf9f4ded-a683-4157-88f6-108a276d195a",
+        "cca28de3-6643-4e81-9620-a9491beb02e3"
     ],
     "filterType": "GMSprite",
     "folderName": "Beta",

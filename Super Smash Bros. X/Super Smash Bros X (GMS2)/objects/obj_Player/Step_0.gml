@@ -2,7 +2,9 @@
 
 // Keybinding
 scr_Controls();
-
+if (hurting) {
+	scr_ControlsFalse();
+}
 if (x > room_width) || (x < 0) || (y > room_height) || (y < 0 && !isFreeFalling) {
 	x = reviveX;
 	y = reviveY;
@@ -28,6 +30,17 @@ if(place_meeting(x,y+1,obj_Wall) || ledgeAction) {
 	airLag = false;
 	onGround = true;
 	hitConCount = 0;
+	if (stayMeteor == false) {
+		knockbackY = 0;
+		knockValueY = 0;
+		knockbackX = 0;
+		knockValueX = 0;
+	} else {
+		stayMeteor = false;
+		quickValue = percent * 0.02
+		vsp = -(savedBackY-weight)*quickValue;
+	}
+	savedBackY = 0;
 } else {
 	onGround = false;
 	lagging = false;
@@ -42,7 +55,7 @@ if (animState == "AirDSpecial") || (animState = "AirUSpecial") || (animState == 
 }
 
 // Aerials
-if (!onGround && !airLagging && !ledgeAction && !onLedge && !lagging && animState != "quickFall"){
+if (!onGround && !hurting && !airLagging && !ledgeAction && !onLedge && !lagging && animState != "quickFall"){
 	if (animState != "jump" && animState != "jumpUp") {
 		animState = "fall";
 	}
@@ -94,7 +107,7 @@ if (airLag) {
 	}
 } 
 
-if (vsp >= -.5) && (!onGround) && !ledgeAction && (animState != "dair") && (key_downfall) {
+if (vsp >= -.5) && (!onGround) && !hurting && !ledgeAction && (animState != "dair") && (key_downfall) {
 	if (!airLagging) {
 		vsp += grav+6;
 		animState = "quickFall";
@@ -327,6 +340,8 @@ if (hangLedge) {
 	airStopped = false;
 }
 
+scr_PHurtY();
+
 y = y + vsp;
 
 if (notLedgeMax > 0) {
@@ -352,7 +367,7 @@ if (jabbing == 1) {
 // Walk Movement
 pastDir = dir;
 dir = key_right - key_left;
-if (animState != "UpSpecial" && animState != "AirUSpecial") {
+if (animState != "UpSpecial" && !hurting && animState != "AirUSpecial") {
 	if (hsp > 0) && (dir == 0) && (isSkid == 0) && (vsp != 0) {
 		hsp -= decel;
 		if (hsp < .75) {
@@ -477,12 +492,32 @@ if (dashCheck) {
 //print(isDashing);
 
 // Horizontal Collision
+if (place_meeting(x+4,y,obj_Wall)) {
+	while (place_meeting(x+4,y,obj_Wall)) {
+		x -= 1;
+	}
+	wallTouch = true;
+} else if (place_meeting(x-4,y,obj_Wall)) {
+	while (place_meeting(x-4,y,obj_Wall)) {
+		x += 1;
+	}
+	wallTouch = true;
+} else {
+	wallTouch = false;
+}
+
 if (place_meeting(x+hsp,y,obj_Wall)) {
 	while (!place_meeting(x+sign(hsp),y,obj_Wall)) {
 		x += sign(hsp);
 	}
-	hsp = 0;
+	if (knockbackX != 0) {
+		wallSwitchDir = true;
+		image_xscale *= -1;
+	} else {
+		hsp = 0;
+	}
 }
+
 
 if (hsp != 0 && !hangLedge && onGround && !isDashing && vsp == 0) {
 	if (!lagging) {
@@ -493,6 +528,8 @@ if (hsp != 0 && !hangLedge && onGround && !isDashing && vsp == 0) {
 		animState = "idle";
 	}
 }
+
+
 
 if (!lagging && onGround && !isDashing && key_shield) {
 	animState = "shield";
@@ -647,7 +684,27 @@ if (animState != "spotDodge" && animState == "shield" && key_downfall) {
 	animState = "spotDodge";
 }
 
+scr_PHurtX();
 
+if (wallSwitchDir) {
+	if (sign(hsp) != sign(image_xscale)) {
+		hsp *= -1;
+	} 
+	hsp *= .5;
+	knockValueX = 0;
+	knockbackX = 0;
+}
+
+if (hsp < 0) && (hsp > -.01) {
+	hsp = 0;
+	wallSwitchDir = false;
+} else if (hsp > 0) && (hsp < .01) {
+	hsp = 0;
+	wallSwitchDir = false;
+}
+if (hsp == 0) {
+	wallSwitchDir = false;
+}
 
 x += hsp;
 
@@ -747,6 +804,7 @@ wasBackThrowing = backThrowing;
 wasSideTaunting = sideTaunting;
 wasDownTaunting = downTaunting;
 wasUpTaunting = upTaunting;
+wasHurting = hurting;
 
 
 direct = sign(image_xscale);
@@ -941,7 +999,6 @@ if (onGround) && (isFreeFalling) {
 }
 
 
-
 framesGiven = 0;
 scr_PAnimVars();
 if (char == 0) {
@@ -1061,4 +1118,5 @@ onLedge = false;
 //print(dashCheck);
 //print(char);
 //print(player);
-
+//print(lagging);
+print(percent);

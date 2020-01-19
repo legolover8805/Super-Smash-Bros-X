@@ -172,7 +172,6 @@ if (wallSwitchDir) {
 	hsp *= .5;
 	knockValueX = 0;
 	knockbackX = 0;
-	print(hsp);
 }
 
 x += hsp;

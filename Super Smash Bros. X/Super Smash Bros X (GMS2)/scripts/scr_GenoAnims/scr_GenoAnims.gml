@@ -1582,10 +1582,10 @@ else if (animState == "jumpUp") {
 		downThrowFrame = 93;
 		isGrab = false;
 		damageGiven = 4;
-		knockbackGivenX = 17;
+		knockbackGivenX = 12;
 		knockbackGivenY = 20;
 		knockbackDirGiven = -1;
-		baseKnockbackGivenX = 15;
+		baseKnockbackGivenX = 6;
 		baseKnockbackGivenY = 8;
 		capKnockbackGivenY = 14;
 		percentMultiplier = 0.01;
@@ -1762,6 +1762,14 @@ else if (animState == "jumpUp") {
 		animState = "idle";
 	}
 	image_index = upTauntFrame;
+} if (animState == "hurt") {
+	hurting = 1;
+	image_index = 418;
+	if (knockbackX == 0 && knockbackY == 0 && !lagging) {
+		animState = "fall";
+		hurting = 0;
+		hasBeenHit = false;
+	}
 }
 
 if (wasIdling == 1) && (idling == 0) {
@@ -2017,4 +2025,7 @@ if (wasADSpecialing == 1) && (ADSpecialing == 0) {
 	wasUpTaunting = 0;
 	playFrame = 0;
 	upTauntFrame = 352;
+} else if (wasHurting && !hurting) {
+	wasHurting = 0;
+	playFrame = 0;
 }

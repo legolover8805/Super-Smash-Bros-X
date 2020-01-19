@@ -55,3 +55,4 @@ backThrowing = 0;
 downTaunting = 0;
 upTaunting = 0;
 sideTaunting = 0;
+hurting = 0;

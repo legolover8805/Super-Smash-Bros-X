@@ -1,5 +1,6 @@
 // Specific values
 grav = 0.15;
+weight = 3;
 wsp = 1.8;
 wasp = 2;
 dsp = 4;

@@ -22,6 +22,7 @@ if (owner != other.owner) {
 		if (isHit == 0) {
 			other.fighters[other.owner].hitConnect = true;
 			percent += other.percentGiven;
+			hasBeenHit = true;
 			knockbackX = other.knockbackGivenX;
 			knockbackY = other.knockbackGivenY;
 			baseKnockbackX = other.baseKnockbackGivenX;

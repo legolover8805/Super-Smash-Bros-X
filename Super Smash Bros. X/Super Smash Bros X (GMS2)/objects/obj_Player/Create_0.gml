@@ -7,6 +7,7 @@ dir = 1;
 jumps = 0;
 hasJump = 0;
 onGround = true;
+wallTouch = false;
 
 // Definition
 char = 1;
@@ -112,6 +113,7 @@ wasBackThrowing = 0;
 wasSideTaunting = 0;
 wasDownTaunting = 0;
 wasUpTaunting = 0;
+wasHurting = 0;
 
 // Is
 walking = 0
@@ -171,6 +173,7 @@ backThrowing = 0;
 sideTaunting = 0;
 downTaunting = 0;
 upTaunting = 0;
+hurting = 0;
 
 
 playFrame = 0;
@@ -182,3 +185,29 @@ hitbox = scr_HitboxCreate(char,player);
 // Effects
 shield = scr_ShieldCreate(player);
 shadow = scr_ShadowCreate(shadowX,shadowY);
+
+// Being Hurt
+hasBeenHit = false;
+percent = 0;
+isHit = 0;
+frames = 0;
+wallSwitchDir = false;
+maxFrames = 0;
+knockbackX = 0;
+knockbackY = 0;
+baseKnockbackX = 0;
+baseKnockbackY = 0;
+capKnockbackX = 0;
+capKnockbackY = 0;
+knockbackDir = 1;
+knockbackYCount = 0;
+knockValueX = 0;
+knockValueY = 0;
+percentMultiplier = 0;
+maxPauseFrames = 0;
+isPaused = false;
+isMeteorSmashed = false;
+stayMeteor = false;
+savedBackY = 0;
+isGrabbed = false;
+whoGrab = pointer_null;

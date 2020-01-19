@@ -4,4 +4,6 @@ if (char == 0) {
 	sprite_index = spr_ZeroHurt;
 } else if (char == -1) {
 	sprite_index = spr_SandbagHurt;
+} else if (char == 1) {
+	sprite_index = spr_GenoHurt;
 }
